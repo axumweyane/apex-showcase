@@ -12,20 +12,17 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
 canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.25}
 
-/* Nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
 nav .logo{font-size:1.2rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
 nav .nav-links{display:flex;gap:20px}
 nav .nav-links a{color:#8892a8;text-decoration:none;font-size:.85rem;font-weight:500;transition:color .3s}
 nav .nav-links a:hover{color:var(--cyan)}
 
-/* Search */
 .search-wrap{position:relative;margin:0 16px}
 .search-wrap input{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;padding:6px 12px 6px 30px;color:var(--text);font-size:.82rem;width:180px;outline:none;transition:border-color .3s}
 .search-wrap input:focus{border-color:var(--cyan);width:240px}
 .search-wrap::before{content:'';position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;border:2px solid #5a6680;border-radius:50%;pointer-events:none}
 
-/* Hero */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;z-index:1}
 .hero-badge{display:inline-block;padding:4px 14px;border-radius:20px;border:1px solid rgba(0,229,255,.3);background:rgba(0,229,255,.06);font-size:.72rem;font-weight:600;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
 .hero h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1.1;margin-bottom:16px}
@@ -43,13 +40,11 @@ nav .nav-links a:hover{color:var(--cyan)}
 .btn-secondary{background:var(--card2);color:var(--text);border-color:var(--border)}
 .btn-secondary:hover{border-color:var(--cyan);transform:translateY(-2px)}
 
-/* Sections */
-section{position:relative;z-index:1;padding:80px 24px;max-width:1100px;margin:0 auto}
+section{position:relative;z-index:1;padding:80px 24px;max-width:1200px;margin:0 auto}
 .section-title{text-align:center;margin-bottom:48px}
 .section-title h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;margin-bottom:8px}
 .section-title p{color:#8892a8;font-size:.95rem;max-width:500px;margin:0 auto}
 
-/* Performance cards */
 .perf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
 .perf-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 18px;text-align:center}
 .perf-card .pf-val{font-size:2rem;font-weight:800;line-height:1.1}
@@ -59,7 +54,6 @@ section{position:relative;z-index:1;padding:80px 24px;max-width:1100px;margin:0 
 .perf-card.gold .pf-val{color:var(--gold)}
 .perf-card.magenta .pf-val{color:var(--magenta)}
 
-/* Interactive grid cards */
 .igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
 .igrid.arch{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
 .icard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 16px;text-align:center;cursor:pointer;transition:all .35s;position:relative;overflow:hidden}
@@ -71,37 +65,32 @@ section{position:relative;z-index:1;padding:80px 24px;max-width:1100px;margin:0 
 .icard .ic-name{font-size:.82rem;font-weight:700}
 .icard .ic-hint{font-size:.62rem;color:#5a6680;margin-top:4px}
 
-/* Arch cards */
 .icard.arch-card .ic-label{font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:#5a6680;margin-bottom:4px}
 .icard.arch-card .ic-val{font-size:1.3rem;font-weight:700;color:var(--gold)}
 .icard.arch-card .ic-desc{font-size:.68rem;color:#8892a8;margin-top:4px}
 
-/* Detail panel */
 .detail-panel{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s,padding .4s;opacity:0;background:var(--detail-bg);border:1px solid transparent;border-radius:14px;margin-top:0;grid-column:1/-1}
-.detail-panel.open{max-height:3000px;opacity:1;padding:28px 24px;border-color:var(--border);margin-top:14px}
+.detail-panel.open{max-height:8000px;opacity:1;padding:28px 24px;border-color:var(--border);margin-top:14px}
 .detail-panel h3{font-size:1rem;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--cyan)}
 .detail-panel h4{font-size:.82rem;font-weight:700;margin:16px 0 8px;color:var(--gold)}
-.detail-panel p,.detail-panel li{font-size:.82rem;color:#c0c8d8;line-height:1.7}
+.detail-panel p,.detail-panel li{font-size:.8rem;color:#c0c8d8;line-height:1.7}
 .detail-panel ul{list-style:none;padding-left:0}
 .detail-panel li{padding:3px 0 3px 14px;position:relative}
 .detail-panel li::before{content:'';position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--cyan)}
-.detail-panel code{background:rgba(0,229,255,.08);color:var(--cyan);padding:1px 6px;border-radius:4px;font-size:.78rem;font-family:'Cascadia Code',monospace}
-.detail-panel .tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:.75rem}
-.detail-panel .tbl th{text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;color:#8892a8;padding:6px 8px;border-bottom:1px solid var(--border);background:rgba(0,0,0,.2)}
-.detail-panel .tbl td{padding:5px 8px;border-bottom:1px solid rgba(30,41,59,.4);color:#b8c0d0}
+.detail-panel code{background:rgba(0,229,255,.08);color:var(--cyan);padding:1px 6px;border-radius:4px;font-size:.75rem;font-family:'Cascadia Code',monospace}
+.detail-panel .tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:.72rem}
+.detail-panel .tbl th{text-align:left;font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;color:#8892a8;padding:5px 6px;border-bottom:1px solid var(--border);background:rgba(0,0,0,.2)}
+.detail-panel .tbl td{padding:4px 6px;border-bottom:1px solid rgba(30,41,59,.4);color:#b8c0d0}
 .detail-panel .tbl tr:hover td{background:rgba(0,229,255,.03)}
-.detail-panel .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:600;margin:2px}
+.detail-panel .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.65rem;font-weight:600;margin:2px}
 .tag-cyan{background:rgba(0,229,255,.12);color:var(--cyan)}
 .tag-lime{background:rgba(118,255,3,.12);color:var(--lime)}
 .tag-gold{background:rgba(255,215,64,.12);color:var(--gold)}
 .tag-magenta{background:rgba(224,64,251,.12);color:var(--magenta)}
-.detail-panel .ep{display:inline-block;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.15);border-radius:4px;padding:2px 8px;margin:3px;font-size:.72rem;font-family:monospace;color:var(--cyan)}
-.detail-panel .metric-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:.78rem}
-.detail-panel .metric-row code{min-width:200px}
+.detail-panel .ep{display:inline-block;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.15);border-radius:4px;padding:2px 8px;margin:3px;font-size:.7rem;font-family:monospace;color:var(--cyan)}
 .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 
-/* Docs */
 .docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 .doc-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all .4s}
 .doc-card:hover{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,229,255,.1)}
@@ -110,23 +99,17 @@ section{position:relative;z-index:1;padding:80px 24px;max-width:1100px;margin:0 
 .doc-card .dc-desc{font-size:.82rem;color:#8892a8;line-height:1.6}
 .doc-card .dc-arrow{font-size:.82rem;color:var(--cyan);font-weight:600;margin-top:auto}
 
-/* Back to top */
 #btt{position:fixed;bottom:24px;right:24px;z-index:99;width:44px;height:44px;border-radius:50%;background:var(--cyan);color:#000;border:none;cursor:pointer;font-size:1.2rem;font-weight:700;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,229,255,.3);transition:transform .3s}
 #btt:hover{transform:scale(1.1)}
 #btt.show{display:flex}
 
-/* Footer */
 footer{position:relative;z-index:1;text-align:center;padding:40px 24px;border-top:1px solid var(--border);font-size:.8rem;color:#5a6680}
 footer a{color:var(--cyan);text-decoration:none}
 
-/* Animations */
 .fade-up{opacity:0;transform:translateY(25px);transition:all .6s ease}
 .fade-up.visible{opacity:1;transform:translateY(0)}
-
-/* Search highlight */
 mark{background:rgba(0,229,255,.25);color:var(--text);padding:0 2px;border-radius:2px}
 
-/* Responsive */
 @media(max-width:700px){
   .hero-stats{gap:16px}
   .hero-stat .num{font-size:1.6rem}
@@ -157,7 +140,7 @@ mark{background:rgba(0,229,255,.25);color:var(--text);padding:0 2px;border-radiu
   <div class="hero-badge">Multi-Strategy Algorithmic Trading</div>
   <h1><span class="gradient">APEX</span> Trading Platform</h1>
   <div class="subtitle">Built by axumweyane &mdash; Algorithmic Trading Engineer</div>
-  <p>Production-grade system with 10 ML models, 12 strategies, 5 safety guardrails, and full microservices infrastructure. Click any card below to explore every component in detail.</p>
+  <p>Production-grade system with 10 ML models, 12 strategies, 5 safety guardrails, and full microservices infrastructure. Click any card below to explore every component in exhaustive detail.</p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="num" style="color:var(--cyan)" data-count="10">0</div><div class="label">ML Models</div></div>
     <div class="hero-stat"><div class="num" style="color:var(--lime)" data-count="12">0</div><div class="label">Strategies</div></div>
@@ -171,7 +154,6 @@ mark{background:rgba(0,229,255,.25);color:var(--text);padding:0 2px;border-radiu
   </div>
 </div>
 
-<!-- Performance -->
 <section id="performance">
   <div class="section-title"><h2>Backtest Performance</h2><p>Walk-forward validated, Jan 2022 &ndash; Dec 2025 (simulated)</p></div>
   <div class="perf-grid">
@@ -186,19 +168,16 @@ mark{background:rgba(0,229,255,.25);color:var(--text);padding:0 2px;border-radiu
   </div>
 </section>
 
-<!-- Tech Stack -->
 <section id="tech">
   <div class="section-title"><h2>Technology Stack</h2><p>Click any technology to see exactly how APEX uses it</p></div>
   <div class="igrid" id="tech-grid"></div>
 </section>
 
-<!-- Architecture -->
 <section id="architecture">
   <div class="section-title"><h2>System Architecture</h2><p>Click any component for full implementation details</p></div>
   <div class="igrid arch" id="arch-grid"></div>
 </section>
 
-<!-- Docs -->
 <section id="docs">
   <div class="section-title"><h2>Interactive Documentation</h2></div>
   <div class="docs-grid">
@@ -219,313 +198,490 @@ mark{background:rgba(0,229,255,.25);color:var(--text);padding:0 2px;border-radiu
 // ── DATA ──
 const TECH=[
 {id:'python',name:'Python 3.12',logo:'Py',bg:'#3776ab',fg:'#ffd43b',round:true,detail:`
-<h3>Python 3.12 &mdash; Core Language</h3>
-<p><strong>179 Python files</strong> across the entire APEX codebase. Python was chosen for its dominant position in quantitative finance, deep ML ecosystem, and async capabilities via <code>asyncio</code>/<code>aiohttp</code>.</p>
-<h4>Key Libraries</h4>
+<h3>Python 3.12 &mdash; Core Language (179 Files)</h3>
+<p><strong>179 Python files</strong> across the APEX codebase. Python 3.12 chosen for quantitative finance ecosystem, async capabilities (<code>asyncio</code>/<code>aiohttp</code>), and deep ML library support.</p>
+<h4>Core Dependencies (requirements.txt)</h4>
 <div class="cols-2">
 <div>
 <ul>
 <li><code>pandas &ge; 2.1</code> &mdash; DataFrame operations, time series</li>
-<li><code>numpy &ge; 1.24</code> &mdash; Numerical computing</li>
+<li><code>numpy &ge; 1.24</code> &mdash; Numerical computing, linear algebra</li>
 <li><code>torch &ge; 2.2</code> &mdash; Deep learning (TFT, Kronos)</li>
-<li><code>pytorch-forecasting</code> &mdash; TFT implementation</li>
-<li><code>scikit-learn &ge; 1.3</code> &mdash; Preprocessing, metrics</li>
-<li><code>scipy / statsmodels</code> &mdash; Statistical tests, OU estimation</li>
+<li><code>pytorch-forecasting</code> &mdash; TFT model implementation</li>
+<li><code>pytorch-lightning</code> &mdash; Training loop abstraction</li>
+<li><code>scikit-learn &ge; 1.3</code> &mdash; Preprocessing, metrics, StandardScaler</li>
+<li><code>scipy</code> &mdash; Statistical tests, optimization (L-BFGS-B)</li>
+<li><code>statsmodels</code> &mdash; OU estimation, cointegration tests</li>
+<li><code>transformers</code> &mdash; FinBERT sentiment model (ProsusAI/finbert)</li>
+<li><code>nltk / vaderSentiment</code> &mdash; VADER fallback sentiment</li>
 </ul>
 </div>
 <div>
 <ul>
 <li><code>fastapi &ge; 0.100</code> &mdash; REST APIs (6 services)</li>
-<li><code>psycopg2</code> &mdash; PostgreSQL driver</li>
-<li><code>aiohttp</code> &mdash; Async HTTP (Alpaca broker)</li>
-<li><code>redis</code> &mdash; Circuit breaker, pub/sub</li>
-<li><code>transformers</code> &mdash; FinBERT sentiment model</li>
-<li><code>confluent-kafka</code> &mdash; Event streaming</li>
+<li><code>uvicorn</code> &mdash; ASGI server for FastAPI</li>
+<li><code>psycopg2-binary</code> &mdash; PostgreSQL driver + connection pool</li>
+<li><code>aiohttp</code> &mdash; Async HTTP (AlpacaBroker)</li>
+<li><code>redis &ge; 4.5</code> &mdash; Circuit breaker, pub/sub signals</li>
+<li><code>confluent-kafka &ge; 2.1</code> &mdash; Kafka producer/consumer</li>
+<li><code>yfinance &ge; 0.2</code> &mdash; Market data (OHLCV, FX, VIX)</li>
+<li><code>mlflow</code> &mdash; Experiment tracking, model registry</li>
+<li><code>apscheduler</code> &mdash; AsyncIOScheduler (daily pipeline)</li>
+<li><code>praw</code> &mdash; Reddit API (sentiment data)</li>
 </ul>
 </div>
 </div>
 <h4>Project Structure</h4>
-<p><code>models/</code> (10 models), <code>strategies/</code> (12 strategies), <code>trading/</code> (broker, safety, risk, audit), <code>services/</code> (DLQ, schema registry), <code>microservices/</code> (5 FastAPI services), <code>paper-trader/</code> (daily pipeline), <code>tests/</code> (970 tests across 30 modules).</p>
+<table class="tbl">
+<tr><th>Directory</th><th>Contents</th><th>Files</th></tr>
+<tr><td><code>models/</code></td><td>10 ML models + ModelManager + BaseTFTModel ABC</td><td>12</td></tr>
+<tr><td><code>strategies/</code></td><td>12 strategies + ensemble + regime + risk + validation</td><td>25+</td></tr>
+<tr><td><code>trading/</code></td><td>AlpacaBroker, safety guardrails, audit, notifications</td><td>10</td></tr>
+<tr><td><code>services/</code></td><td>DLQ, schema registry</td><td>4</td></tr>
+<tr><td><code>microservices/</code></td><td>5 FastAPI services (data, sentiment, predictor, trading, orchestrator)</td><td>15</td></tr>
+<tr><td><code>paper-trader/</code></td><td>Main daily pipeline orchestrator</td><td>3</td></tr>
+<tr><td><code>tests/</code></td><td>970 tests across 30 modules</td><td>30</td></tr>
+<tr><td><code>monitoring/</code></td><td>Prometheus metrics, Grafana config</td><td>4</td></tr>
+<tr><td><code>utils/</code></td><td>Environment validator, helpers</td><td>3</td></tr>
+<tr><td><code>agents/</code></td><td>SignalAnalyst (LLM-powered analysis via Ollama)</td><td>2</td></tr>
+</table>
+<h4>Dev Tools</h4>
+<ul>
+<li><code>black</code> &mdash; Code formatter (146 files formatted)</li>
+<li><code>flake8</code> &mdash; Linter (max-line-length: 120)</li>
+<li><code>mypy</code> &mdash; Type checker (warning only)</li>
+<li><code>pytest + pytest-cov</code> &mdash; Testing (40% min coverage)</li>
+<li><code>yamllint</code> &mdash; YAML validation</li>
+<li><code>pip-audit + detect-secrets</code> &mdash; Security scanning</li>
+</ul>
 `},
 {id:'postgres',name:'PostgreSQL',logo:'PG',bg:'#336791',fg:'#fff',detail:`
-<h3>PostgreSQL 15 / TimescaleDB &mdash; Primary Database</h3>
-<p>Port <code>5432</code> (Docker: <code>15432</code>), database <code>tft_trading</code>. All trade data, signals, risk reports, and audit trails are persisted here with connection pooling (<code>ThreadedConnectionPool</code>, 2&ndash;10 connections).</p>
-<h4>Core Tables (11)</h4>
+<h3>PostgreSQL 15 / TimescaleDB &mdash; All 29 Tables with Full Schema</h3>
+<p>Port <code>5432</code> (Docker: <code>15432</code>), database <code>tft_trading</code>. Connection pooling via <code>ThreadedConnectionPool</code> (min=2, max=10). Schema defined in <code>postgres_schema.py</code>, <code>paper-trader/main.py</code>, and <code>trading/persistence/audit.py</code>.</p>
+
+<h4>Core Data Tables (7) &mdash; postgres_schema.py</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Columns (name : type)</th><th>Primary Key</th></tr>
+<tr><td><code>symbols</code></td><td>symbol VARCHAR(10), company_name VARCHAR(255), sector VARCHAR(100), industry VARCHAR(100), exchange VARCHAR(20), market_cap BIGINT, created_at TIMESTAMP, updated_at TIMESTAMP</td><td>symbol</td></tr>
+<tr><td><code>ohlcv</code></td><td>symbol VARCHAR(10), date DATE, open NUMERIC(12,4), high NUMERIC(12,4), low NUMERIC(12,4), close NUMERIC(12,4), volume BIGINT, adj_open NUMERIC(12,4), adj_high NUMERIC(12,4), adj_low NUMERIC(12,4), adj_close NUMERIC(12,4), adj_volume BIGINT, created_at TIMESTAMP</td><td>(symbol, date)</td></tr>
+<tr><td><code>fundamentals</code></td><td>symbol VARCHAR(10), date DATE, market_cap BIGINT, pe_ratio NUMERIC(10,2), eps NUMERIC(10,4), dividend_yield NUMERIC(6,4), book_value NUMERIC(12,4), debt_to_equity NUMERIC(10,2), roe NUMERIC(6,4), roa NUMERIC(6,4), revenue BIGINT, net_income BIGINT, shares_outstanding BIGINT, created_at TIMESTAMP</td><td>(symbol, date)</td></tr>
+<tr><td><code>sentiment</code></td><td>symbol VARCHAR(10), date DATE, sentiment_score NUMERIC(5,4), sentiment_magnitude NUMERIC(5,4), news_count INT, reddit_mentions INT, reddit_sentiment NUMERIC(5,4), twitter_mentions INT, twitter_sentiment NUMERIC(5,4), source VARCHAR(50), created_at TIMESTAMP</td><td>(symbol, date, source)</td></tr>
+<tr><td><code>earnings</code></td><td>symbol VARCHAR(10), earnings_date DATE, earnings_estimate NUMERIC(10,4), earnings_actual NUMERIC(10,4), surprise_percent NUMERIC(6,2), announcement_time VARCHAR(20), fiscal_quarter VARCHAR(10), fiscal_year INT, created_at TIMESTAMP, updated_at TIMESTAMP</td><td>(symbol, earnings_date)</td></tr>
+<tr><td><code>economic_indicators</code></td><td>indicator_name VARCHAR(50), date DATE, value NUMERIC(15,6), source VARCHAR(50), created_at TIMESTAMP</td><td>(indicator_name, date)</td></tr>
+<tr><td><code>vix_data</code></td><td>date DATE, vix_open NUMERIC(6,2), vix_high NUMERIC(6,2), vix_low NUMERIC(6,2), vix_close NUMERIC(6,2), vix_volume BIGINT, created_at TIMESTAMP</td><td>date</td></tr>
+</table>
+
+<h4>ML Pipeline Tables (3) &mdash; postgres_schema.py</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Columns (name : type)</th><th>Primary Key</th></tr>
+<tr><td><code>model_predictions</code></td><td>id SERIAL, symbol VARCHAR(10), prediction_date DATE, target_date DATE, prediction_value NUMERIC(10,6), prediction_type VARCHAR(20), confidence_lower NUMERIC(10,6), confidence_upper NUMERIC(10,6), model_version VARCHAR(50), created_at TIMESTAMP</td><td>id</td></tr>
+<tr><td><code>model_performance</code></td><td>id SERIAL, model_version VARCHAR(50), evaluation_date DATE, metric_name VARCHAR(50), metric_value NUMERIC(10,6), test_start_date DATE, test_end_date DATE, symbols_count INT, created_at TIMESTAMP</td><td>id</td></tr>
+<tr><td><code>training_jobs</code></td><td>id SERIAL, job_name VARCHAR(100), symbols TEXT[], start_date DATE, end_date DATE, target_type VARCHAR(20), config JSONB, status VARCHAR(20), started_at TIMESTAMP, completed_at TIMESTAMP, error_message TEXT, final_loss NUMERIC(10,6), epochs_trained INT, model_path VARCHAR(255), created_at TIMESTAMP</td><td>id</td></tr>
+</table>
+
+<h4>Paper Trading Tables (7) &mdash; paper-trader/main.py</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Columns (name : type)</th><th>Key</th></tr>
+<tr><td><code>paper_trades</code></td><td>id SERIAL, trade_date DATE, symbol VARCHAR(16), side VARCHAR(8), quantity DOUBLE, price DOUBLE, order_id VARCHAR(64), strategy_source VARCHAR(64), signal_score DOUBLE, signal_confidence DOUBLE, metadata JSONB, created_at TIMESTAMPTZ</td><td>id</td></tr>
+<tr><td><code>paper_daily_snapshots</code></td><td>id SERIAL, snapshot_date DATE, portfolio_value DOUBLE, cash DOUBLE, equity DOUBLE, daily_pnl DOUBLE, daily_return_pct DOUBLE, total_return_pct DOUBLE, positions_count INT, regime VARCHAR(32), strategy_weights JSONB, positions JSONB, risk_metrics JSONB, created_at TIMESTAMPTZ</td><td>id</td></tr>
+<tr><td><code>paper_strategy_signals</code></td><td>id SERIAL, signal_date DATE, strategy_name VARCHAR(64), symbol VARCHAR(16), score DOUBLE, confidence DOUBLE, direction VARCHAR(16), metadata JSONB, created_at TIMESTAMPTZ</td><td>id</td></tr>
+<tr><td><code>paper_risk_reports</code></td><td>id SERIAL, report_time TIMESTAMPTZ, drawdown DOUBLE, var_99 DOUBLE, cvar_95 DOUBLE, sharpe_21 DOUBLE, killed_strategies TEXT[], correlation_alerts JSONB, portfolio_breached BOOLEAN, raw_json JSONB</td><td>id (hypertable)</td></tr>
+<tr><td><code>paper_execution_stats</code></td><td>id SERIAL, execution_time TIMESTAMPTZ, ticker VARCHAR(10), side VARCHAR(4), total_requested DOUBLE, total_filled DOUBLE, expected_price DOUBLE, filled_avg_price DOUBLE, slippage_bps DOUBLE, fill_rate DOUBLE, num_slices INT, used_fallback BOOLEAN, adv_capped BOOLEAN, elapsed_s DOUBLE, slices_json JSONB, error TEXT</td><td>id (hypertable)</td></tr>
+<tr><td><code>paper_signal_analyses</code></td><td>id SERIAL, analysis_time TIMESTAMPTZ, regime VARCHAR(32), summary TEXT, patterns TEXT, confidence VARCHAR(8), flags_json JSONB, top_signals JSONB, model_used VARCHAR(64), latency_s DOUBLE, raw_json JSONB</td><td>id (hypertable)</td></tr>
+<tr><td><code>bayesian_weight_state</code></td><td>strategy_name VARCHAR(64), alpha DOUBLE DEFAULT 1.0, beta DOUBLE DEFAULT 1.0, n_updates INT DEFAULT 0, state_json JSONB, updated_at TIMESTAMPTZ</td><td>strategy_name</td></tr>
+</table>
+
+<h4>Audit / Circuit Breaker Tables (3) &mdash; trading/persistence/audit.py</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Columns (name : type)</th></tr>
+<tr><td><code>circuit_breaker_events</code></td><td>id SERIAL PK, event_type VARCHAR(32) [trip/reset], triggered_by VARCHAR(128), reason TEXT, drawdown_method VARCHAR(32), drawdown_percent DOUBLE, portfolio_value DOUBLE, hwm DOUBLE, sod_value DOUBLE, initial_capital DOUBLE, positions_closed INT, metadata JSONB, created_at TIMESTAMPTZ</td></tr>
+<tr><td><code>circuit_breaker_closures</code></td><td>id SERIAL PK, event_id INT FK, ticker VARCHAR(16), quantity DOUBLE, side VARCHAR(8), market_value DOUBLE, unrealized_pnl DOUBLE, close_order_id VARCHAR(64), close_status VARCHAR(32), created_at TIMESTAMPTZ</td></tr>
+<tr><td><code>portfolio_snapshots</code></td><td>id SERIAL PK, portfolio_value DOUBLE, high_water_mark DOUBLE, snapshot_type VARCHAR(32) [periodic/trip/reset/sod], created_at TIMESTAMPTZ</td></tr>
+</table>
+
+<h4>Infrastructure Table (1)</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Columns (name : type)</th></tr>
+<tr><td><code>dead_letter_queue</code></td><td>id SERIAL PK, service_name VARCHAR(128), topic VARCHAR(256), message_key TEXT, message_value JSONB, error TEXT, retry_count INT, max_retries INT DEFAULT 5, next_retry_at TIMESTAMPTZ, created_at TIMESTAMPTZ, updated_at TIMESTAMPTZ, status VARCHAR(16) [PENDING/RETRYING/RESOLVED/EXHAUSTED]</td></tr>
+</table>
+
+<h4>SQLite Legacy Tables (8) &mdash; data_pipeline.py / enhanced_data_pipeline.py</h4>
 <table class="tbl">
 <tr><th>Table</th><th>Key Columns</th></tr>
-<tr><td><code>paper_trades</code></td><td>time, symbol, side, qty, price, filled_price, order_id, strategy</td></tr>
-<tr><td><code>paper_daily_snapshots</code></td><td>time, portfolio_value, cash, positions_value, day_return, high_water_mark</td></tr>
-<tr><td><code>paper_strategy_signals</code></td><td>time, strategy_name, symbol, score, direction, confidence</td></tr>
-<tr><td><code>paper_risk_reports</code></td><td>time, var_99, cvar_95, max_drawdown, correlation_matrix, portfolio_value</td></tr>
-<tr><td><code>paper_execution_stats</code></td><td>time, symbol, expected_price, filled_price, slippage_bps, strategy</td></tr>
-<tr><td><code>paper_signal_analyses</code></td><td>time, analysis_json, patterns, narrative</td></tr>
-<tr><td><code>bayesian_weight_state</code></td><td>strategy_name, alpha, beta, weight, updated_at</td></tr>
-<tr><td><code>dead_letter_queue</code></td><td>id, service_name, topic, payload, status, retry_count, error_message, created_at</td></tr>
-<tr><td><code>portfolio_snapshots</code></td><td>time, portfolio_value, high_water_mark, snapshot_type, created_at</td></tr>
-<tr><td><code>circuit_breaker_events</code></td><td>time, event_type, details</td></tr>
-<tr><td><code>calibration_snapshots</code></td><td>time, model_name, metrics_json</td></tr>
+<tr><td><code>stock_prices</code></td><td>symbol TEXT, date TEXT, open/high/low/close REAL, volume INT, adj_close REAL</td></tr>
+<tr><td><code>stock_fundamentals</code></td><td>symbol TEXT, date TEXT, market_cap/pe_ratio/pb_ratio/dividend_yield/eps/revenue/debt_to_equity/roe REAL</td></tr>
+<tr><td><code>sentiment_data</code></td><td>symbol TEXT, date TEXT, source TEXT, sentiment_score/wsb_sentiment/confidence_score REAL, news_count/reddit_mentions/reddit_upvotes/reddit_comments INT</td></tr>
+<tr><td><code>economic_indicators</code></td><td>date TEXT, indicator_name TEXT, value REAL</td></tr>
+<tr><td><code>vix_data</code></td><td>date TEXT, open/high/low/close REAL, volume INT, regime TEXT</td></tr>
+<tr><td><code>market_regimes</code></td><td>date TEXT, vix_level REAL, regime TEXT, bullish_threshold/bearish_threshold REAL</td></tr>
 </table>
-<h4>Microservices Tables (15+)</h4>
-<table class="tbl">
-<tr><th>Table</th><th>Service</th></tr>
-<tr><td><code>raw_ohlcv</code></td><td>data-ingestion</td></tr>
-<tr><td><code>raw_news</code></td><td>data-ingestion</td></tr>
-<tr><td><code>raw_reddit_posts</code></td><td>data-ingestion</td></tr>
-<tr><td><code>sentiment_scores</code></td><td>sentiment-engine</td></tr>
-<tr><td><code>tft_predictions</code></td><td>tft-predictor</td></tr>
-<tr><td><code>model_registry</code></td><td>tft-predictor</td></tr>
-<tr><td><code>trading_signals</code></td><td>trading-engine</td></tr>
-<tr><td><code>order_history</code></td><td>trading-engine</td></tr>
-<tr><td><code>position_snapshots</code></td><td>trading-engine</td></tr>
-<tr><td><code>workflow_state</code></td><td>orchestrator</td></tr>
-<tr><td><code>saga_events</code></td><td>orchestrator</td></tr>
-<tr><td><code>system_health</code></td><td>orchestrator</td></tr>
-<tr><td><code>audit_log</code></td><td>shared</td></tr>
-<tr><td><code>notification_log</code></td><td>shared</td></tr>
-<tr><td><code>feature_store</code></td><td>shared</td></tr>
-</table>
-<h4>TimescaleDB Features</h4>
+
+<h4>PostgreSQL Views (5)</h4>
 <ul>
-<li><strong>Hypertables</strong>: <code>raw_ohlcv</code>, <code>paper_trades</code>, <code>paper_daily_snapshots</code>, <code>sentiment_scores</code></li>
-<li><strong>Retention policies</strong>: 365 days for OHLCV/snapshots, 90 days for signals/risk/execution</li>
-<li><strong>Continuous aggregates</strong>: <code>ohlcv_15m</code>, <code>ohlcv_1h</code>, <code>ohlcv_1d</code> with automatic refresh</li>
-<li><strong>Compression</strong>: segment by symbol, order by time, after 7 days</li>
+<li><code>latest_fundamentals</code> &mdash; Latest fundamental metrics per symbol</li>
+<li><code>daily_sentiment_agg</code> &mdash; Aggregated daily sentiment per symbol</li>
+<li><code>upcoming_earnings</code> &mdash; Earnings in next 90 days</li>
+<li><code>model_performance_summary</code> &mdash; Latest metrics per model version</li>
+<li><code>ohlcv_15m</code>, <code>ohlcv_1h</code>, <code>ohlcv_1d</code> &mdash; TimescaleDB continuous aggregates</li>
 </ul>
+
+<h4>Indexes (25+)</h4>
+<p><code>idx_ohlcv_symbol_date</code>, <code>idx_ohlcv_date</code>, <code>idx_ohlcv_symbol</code>, <code>idx_fundamentals_symbol_date</code>, <code>idx_sentiment_symbol_date</code>, <code>idx_earnings_symbol_date</code>, <code>idx_economic_indicators_name_date</code>, <code>idx_vix_data_date</code>, <code>idx_predictions_symbol_pred_date</code>, <code>idx_predictions_target_date</code>, <code>idx_predictions_model_version</code>, <code>idx_performance_model_version</code>, <code>idx_training_jobs_status</code>, <code>idx_prr_time</code>, <code>idx_pt_date</code>, <code>idx_pds_date</code>, <code>idx_pss_date</code>, <code>idx_exec_stats_time</code>, <code>idx_exec_stats_ticker</code>, <code>idx_signal_analyses_time</code>, <code>idx_cb_events_type</code>, <code>idx_cb_events_created</code>, <code>idx_cb_closures_event</code>, <code>idx_dlq_status_next_retry</code>, <code>idx_dlq_service</code></p>
 `},
 {id:'redis',name:'Redis',logo:'Re',bg:'#dc382d',fg:'#fff',round:true,detail:`
-<h3>Redis &mdash; Cache & Circuit Breaker</h3>
-<p>Port <code>6379</code>. Redis serves two critical roles in APEX: circuit breaker state management and real-time signal distribution.</p>
-<h4>Circuit Breaker (405 lines)</h4>
+<h3>Redis 7 Alpine &mdash; Cache, Circuit Breaker, Signal Pub/Sub</h3>
+<p>Port <code>6379</code>. Docker image: <code>redis:7-alpine</code>. Command: <code>redis-server --appendonly yes</code>. Volume: <code>redis_data:/data</code>. Healthcheck: <code>redis-cli ping</code> every 30s, timeout 10s, 3 retries.</p>
+
+<h4>Circuit Breaker (405 lines) &mdash; trading/circuit_breaker.py</h4>
+<table class="tbl">
+<tr><th>Redis Key</th><th>Type</th><th>Purpose</th></tr>
+<tr><td><code>apex:circuit_breaker:tripped</code></td><td>String (0/1)</td><td>Whether circuit breaker is currently tripped</td></tr>
+<tr><td><code>apex:circuit_breaker:high_water_mark</code></td><td>String (float)</td><td>Portfolio high water mark for drawdown calc</td></tr>
+<tr><td><code>apex:circuit_breaker:daily_pnl</code></td><td>String (float)</td><td>Start-of-day portfolio value</td></tr>
+</table>
+<h4>Drawdown Methods</h4>
 <ul>
-<li><strong>Keys</strong>: <code>apex:circuit_breaker:tripped</code>, <code>apex:circuit_breaker:high_water_mark</code>, <code>apex:circuit_breaker:daily_pnl</code></li>
-<li><strong>Drawdown methods</strong>: High Water Mark (5%), Start-of-Day (3%)</li>
-<li><strong>Check interval</strong>: Every 30 seconds</li>
-<li><strong>Fail-closed</strong>: If Redis crashes, circuit breaker assumes TRIPPED &mdash; no trades execute until Redis recovers</li>
-<li><strong>Lifespan management</strong>: Started in FastAPI startup, stopped in shutdown with 30s timeout</li>
+<li><strong>High Water Mark (HWM)</strong>: Trip at 5% drawdown from peak. <code>drawdown = 1 - current / hwm</code></li>
+<li><strong>Start-of-Day (SOD)</strong>: Trip at 3% daily loss. <code>drawdown = 1 - current / sod_value</code></li>
+<li><strong>Check interval</strong>: Every 30 seconds (configurable via <code>CircuitBreakerConfig</code>)</li>
 </ul>
-<h4>Signal Pub/Sub Channels</h4>
+<h4>Fail-Closed Behavior</h4>
+<p>If Redis is unreachable, circuit breaker assumes <strong>TRIPPED</strong> state &mdash; no trades execute until Redis recovers. This is a deliberate safety design: unknown state = halt trading.</p>
+<h4>Lifespan Management</h4>
 <ul>
-<li><code>apex:signals:stock</code> &mdash; Equity alpha signals</li>
-<li><code>apex:signals:forex</code> &mdash; FX strategy signals</li>
-<li><code>apex:signals:options</code> &mdash; Options/vol signals</li>
-<li><code>apex:signals:risk</code> &mdash; Risk alerts and kill switch events</li>
+<li>Started in FastAPI <code>lifespan</code> context manager (startup event)</li>
+<li>Stopped in shutdown with <code>asyncio.wait_for(timeout=30)</code></li>
+<li>SIGTERM/SIGINT handlers for graceful shutdown (CF-9 fix)</li>
 </ul>
-<p>Signal publishing is <strong>fire-and-forget</strong> &mdash; if Redis is down, the pipeline continues without pub/sub (additive layer, not required).</p>
+
+<h4>Signal Pub/Sub Channels &mdash; strategies/signals/publisher.py</h4>
+<table class="tbl">
+<tr><th>Channel</th><th>Payload</th><th>Publisher</th></tr>
+<tr><td><code>apex:signals:stock</code></td><td>JSON: {symbol, score, direction, confidence, strategy, timestamp}</td><td>Paper trader after ensemble</td></tr>
+<tr><td><code>apex:signals:forex</code></td><td>JSON: {pair, score, direction, confidence, strategy, timestamp}</td><td>Paper trader (FX strategies)</td></tr>
+<tr><td><code>apex:signals:options</code></td><td>JSON: {symbol, score, direction, confidence, strategy, timestamp}</td><td>Paper trader (options strategies)</td></tr>
+<tr><td><code>apex:signals:risk</code></td><td>JSON: {event_type, details, timestamp}</td><td>Risk manager on kill switch events</td></tr>
+</table>
+<p>Publishing is <strong>fire-and-forget</strong> &mdash; if Redis is down, the pipeline continues. Signals are an additive layer, not a dependency.</p>
 `},
 {id:'docker',name:'Docker',logo:'Dk',bg:'#2496ed',fg:'#fff',detail:`
-<h3>Docker Compose &mdash; Microservices Orchestration</h3>
-<p>Single <code>docker-compose.yml</code> orchestrates the full APEX stack on an external network <code>tft_network</code>.</p>
-<h4>Services</h4>
+<h3>Docker Compose &mdash; Full Infrastructure (16 Services)</h3>
+<p>Single <code>docker-compose.yml</code> on external network <code>tft_network</code>. All credentials use <code>\${VAR:?error}</code> syntax.</p>
 <table class="tbl">
-<tr><th>Service</th><th>Image/Build</th><th>Port</th></tr>
-<tr><td><code>postgres</code></td><td>timescale/timescaledb:latest-pg15</td><td>15432</td></tr>
-<tr><td><code>redis</code></td><td>redis:7-alpine (healthcheck)</td><td>6379</td></tr>
-<tr><td><code>kafka</code></td><td>confluentinc/cp-kafka (KRaft mode)</td><td>9092</td></tr>
-<tr><td><code>schema-registry</code></td><td>confluentinc/cp-schema-registry</td><td>8081</td></tr>
-<tr><td><code>prometheus</code></td><td>prom/prometheus</td><td>9090</td></tr>
-<tr><td><code>grafana</code></td><td>grafana/grafana</td><td>3000</td></tr>
-<tr><td><code>mlflow</code></td><td>ghcr.io/mlflow/mlflow</td><td>5000</td></tr>
-<tr><td><code>data-ingestion</code></td><td>./microservices/data-ingestion</td><td>8001</td></tr>
-<tr><td><code>sentiment-engine</code></td><td>./microservices/sentiment-engine</td><td>8002</td></tr>
-<tr><td><code>tft-predictor</code></td><td>./microservices/tft-predictor</td><td>8003</td></tr>
-<tr><td><code>trading-engine</code></td><td>./microservices/trading-engine</td><td>8004</td></tr>
-<tr><td><code>orchestrator</code></td><td>./microservices/orchestrator</td><td>8005</td></tr>
-<tr><td><code>paper-trader</code></td><td>./paper-trader</td><td>8010</td></tr>
+<tr><th>Service</th><th>Image</th><th>Port</th><th>Healthcheck</th><th>Depends On</th></tr>
+<tr><td><code>redis</code></td><td>redis:7-alpine</td><td>6379</td><td>redis-cli ping (30s/10s/3)</td><td>&mdash;</td></tr>
+<tr><td><code>postgres</code></td><td>timescale/timescaledb:latest-pg15</td><td>15432&rarr;5432</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>kafka-broker</code></td><td>confluentinc/cp-kafka:7.6.0</td><td>9092, 29092</td><td>kafka-broker-api-versions (30s/10s/5/30s start)</td><td>&mdash;</td></tr>
+<tr><td><code>schema-registry</code></td><td>confluentinc/cp-schema-registry:7.6.0</td><td>8085&rarr;8081</td><td>&mdash;</td><td>kafka (healthy)</td></tr>
+<tr><td><code>data-ingestion</code></td><td>./microservices/data-ingestion</td><td>8001</td><td>&mdash;</td><td>redis (healthy), kafka (healthy)</td></tr>
+<tr><td><code>sentiment-engine</code></td><td>./microservices/sentiment-engine</td><td>8002</td><td>&mdash;</td><td>postgres, redis (healthy), kafka (healthy)</td></tr>
+<tr><td><code>tft-predictor</code></td><td>./microservices/tft-predictor</td><td>8003</td><td>&mdash;</td><td>postgres, redis (healthy), kafka (healthy)</td></tr>
+<tr><td><code>trading-engine</code></td><td>./microservices/trading-engine</td><td>8004</td><td>&mdash;</td><td>postgres, redis (healthy), kafka (healthy)</td></tr>
+<tr><td><code>orchestrator</code></td><td>./microservices/orchestrator</td><td>8005</td><td>&mdash;</td><td>all above services</td></tr>
+<tr><td><code>paper-trader</code></td><td>./paper-trader/Dockerfile</td><td>8010</td><td>&mdash;</td><td>postgres, redis (healthy)</td></tr>
+<tr><td><code>mlflow</code></td><td>python:3.11-slim</td><td>5000</td><td>&mdash;</td><td>postgres</td></tr>
+<tr><td><code>prometheus</code></td><td>prom/prometheus:latest</td><td>9090</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>grafana</code></td><td>grafana/grafana:latest</td><td>3000</td><td>&mdash;</td><td>prometheus</td></tr>
+<tr><td><code>kafka-ui</code></td><td>provectuslabs/kafka-ui:latest</td><td>8080</td><td>&mdash;</td><td>kafka (healthy)</td></tr>
+<tr><td><code>redis-commander</code></td><td>rediscommander/redis-commander</td><td>8081</td><td>&mdash;</td><td>redis (healthy)</td></tr>
 </table>
-<p>All credentials use <code>\${VAR:?error}</code> syntax &mdash; Docker refuses to start if any required env var is missing.</p>
+<h4>Key Environment Variables per Service</h4>
+<table class="tbl">
+<tr><th>Service</th><th>Environment Variables</th></tr>
+<tr><td><code>postgres</code></td><td>POSTGRES_DB=tft_trading, POSTGRES_USER, POSTGRES_PASSWORD (required)</td></tr>
+<tr><td><code>kafka-broker</code></td><td>KAFKA_NODE_ID=1, KAFKA_PROCESS_ROLES=broker,controller, CLUSTER_ID=MkU3OEVBNTcwNTJENDM2Qk, log.retention.hours=168, log.retention.bytes=5368709120, log.segment.bytes=1073741824</td></tr>
+<tr><td><code>data-ingestion</code></td><td>POLYGON_API_KEY, REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, KAFKA_BOOTSTRAP_SERVERS, SCHEMA_REGISTRY_URL, REDIS_URL</td></tr>
+<tr><td><code>sentiment-engine</code></td><td>DATABASE_URL, REDIS_URL, KAFKA_BOOTSTRAP_SERVERS, SCHEMA_REGISTRY_URL</td></tr>
+<tr><td><code>tft-predictor</code></td><td>DATABASE_URL, REDIS_URL, KAFKA_BOOTSTRAP_SERVERS, MLFLOW_TRACKING_URI, MODEL_ARTIFACT_PATH. GPU: nvidia device reservation</td></tr>
+<tr><td><code>trading-engine</code></td><td>DATABASE_URL, REDIS_URL, KAFKA_BOOTSTRAP_SERVERS, ALPACA_API_KEY, ALPACA_SECRET_KEY, ALPACA_BASE_URL</td></tr>
+<tr><td><code>orchestrator</code></td><td>DATABASE_URL, REDIS_URL, KAFKA_BOOTSTRAP_SERVERS, DATA_INGESTION_URL, SENTIMENT_ENGINE_URL, TFT_PREDICTOR_URL, TRADING_ENGINE_URL</td></tr>
+<tr><td><code>paper-trader</code></td><td>ALPACA_*, DB_HOST/PORT/NAME/USER/PASSWORD, REDIS_URL, DISCORD_WEBHOOK_URL, PAPER_TRADING_SYMBOLS, PAPER_FX_PAIRS, PAPER_SCHEDULE_HOUR/MINUTE, PAPER_INITIAL_CAPITAL</td></tr>
+<tr><td><code>grafana</code></td><td>GF_SECURITY_ADMIN_PASSWORD (required)</td></tr>
+</table>
+<h4>Volumes</h4>
+<p><code>redis_data</code>, <code>postgres_data</code>, <code>kafka_data</code>, <code>grafana_data</code>, <code>./data/models:/app/models</code>, <code>./data/mlflow:/mlflow</code>, <code>./init-db.sql</code></p>
+<h4>Restart Policy</h4>
+<p>All microservices: <code>unless-stopped</code>. Infrastructure services: default.</p>
 `},
 {id:'fastapi',name:'FastAPI',logo:'FA',bg:'#009688',fg:'#fff',detail:`
-<h3>FastAPI &mdash; REST API Framework</h3>
-<p>ASGI server via <code>uvicorn</code>. Used across 6 services. The paper trader on port <strong>8010</strong> is the primary API surface.</p>
+<h3>FastAPI &mdash; REST API Framework (6 Services)</h3>
+<p>ASGI server via <code>uvicorn</code>. Used across 6 services. Paper trader (port 8010) is the primary API surface.</p>
 <h4>Paper Trader Endpoints</h4>
-<div>
-<span class="ep">GET /health</span>
-<span class="ep">GET /dashboard</span>
-<span class="ep">POST /run-now</span>
-<span class="ep">GET /positions</span>
-<span class="ep">GET /weights</span>
-<span class="ep">GET /history</span>
-<span class="ep">GET /dlq</span>
-<span class="ep">GET /metrics</span>
-</div>
+<table class="tbl">
+<tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+<tr><td>GET</td><td><code>/health</code></td><td>Models loaded, strategies enabled, infrastructure status, regime, circuit breaker</td></tr>
+<tr><td>GET</td><td><code>/dashboard</code></td><td>Full HTML dashboard with panels for all 12 strategies</td></tr>
+<tr><td>POST</td><td><code>/run-now</code></td><td>Manual trigger for daily pipeline</td></tr>
+<tr><td>GET</td><td><code>/positions</code></td><td>Current Alpaca positions</td></tr>
+<tr><td>GET</td><td><code>/weights</code></td><td>Current ensemble strategy weights</td></tr>
+<tr><td>GET</td><td><code>/history</code></td><td>Trade history from paper_trades table</td></tr>
+<tr><td>GET</td><td><code>/dlq</code></td><td>Dead letter queue stats (by_status, recent_failures, retry_success_rate)</td></tr>
+<tr><td>GET</td><td><code>/metrics</code></td><td>Prometheus exposition format (9 custom metrics)</td></tr>
+</table>
 <h4>Signal Provider API (API Key Auth + Rate Limiting + ETag Cache)</h4>
-<div>
-<span class="ep">GET /api/v1/signals</span>
-<span class="ep">GET /api/v1/signals/{symbol}</span>
-<span class="ep">GET /api/v1/signals/regime</span>
-<span class="ep">GET /api/v1/signals/weights</span>
-<span class="ep">GET /api/v1/signals/history/{symbol}</span>
-</div>
+<table class="tbl">
+<tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr>
+<tr><td>GET</td><td><code>/api/v1/signals</code></td><td>X-API-Key header</td><td>All current signals</td></tr>
+<tr><td>GET</td><td><code>/api/v1/signals/{symbol}</code></td><td>X-API-Key header</td><td>Signal for specific symbol</td></tr>
+<tr><td>GET</td><td><code>/api/v1/signals/regime</code></td><td>X-API-Key header</td><td>Current market regime</td></tr>
+<tr><td>GET</td><td><code>/api/v1/signals/weights</code></td><td>X-API-Key header</td><td>Current strategy weights</td></tr>
+<tr><td>GET</td><td><code>/api/v1/signals/history/{symbol}</code></td><td>X-API-Key header</td><td>Historical signals for symbol</td></tr>
+</table>
 <h4>/health Response Shape</h4>
-<p><code>{ status, version, day_count, last_run, portfolio_value, is_running, regime, strategy_weights, enabled_strategies, circuit_breaker_tripped, infrastructure: { broker, models: { registered, loaded, details } } }</code></p>
+<p><code>{ status, version, day_count, last_run, portfolio_value, is_running, regime, strategy_weights: {}, enabled_strategies: [], circuit_breaker_tripped, infrastructure: { broker: {connected, mode}, models: { registered: 10, loaded: N, details: [{name, asset_class, loaded}] } } }</code></p>
+<h4>Feature Flags (Optional)</h4>
+<ul>
+<li><code>ENSEMBLE_USE_BAYESIAN_WEIGHTS</code> &mdash; Enable Bayesian weight updater (default: false)</li>
+<li><code>EXECUTION_USE_VWAP</code> &mdash; Enable VWAP execution model (default: false)</li>
+<li><code>LLM_ANALYST_ENABLED</code> &mdash; Enable Ollama signal analysis (default: false)</li>
+<li><code>SIGNAL_API_ENABLED</code> &mdash; Enable Signal Provider REST API (default: false)</li>
+<li><code>METRICS_ENABLED</code> &mdash; Enable Prometheus metrics (default: true)</li>
+</ul>
 `},
 {id:'pytorch',name:'PyTorch',logo:'PT',bg:'#ee4c2c',fg:'#fff',round:true,detail:`
 <h3>PyTorch &mdash; Deep Learning Framework</h3>
-<p>Powers the core TFT model and Kronos foundation model. Training via <code>pytorch-lightning</code>, model definition via <code>pytorch-forecasting</code>.</p>
+<p>Powers TFT core model + Kronos foundation model. Training via <code>pytorch-lightning</code>, model via <code>pytorch-forecasting.TemporalFusionTransformer</code>.</p>
 <h4>TFT Architecture</h4>
+<table class="tbl">
+<tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+<tr><td>Model class</td><td><code>TemporalFusionTransformer</code></td><td>Multi-horizon quantile forecaster</td></tr>
+<tr><td>Loss</td><td>QuantileLoss</td><td>Quantiles: [0.1, 0.5, 0.9]</td></tr>
+<tr><td>Encoder length</td><td>63 bars</td><td>~3 months of daily data</td></tr>
+<tr><td>Prediction length</td><td>5 steps</td><td>5-day ahead forecast</td></tr>
+<tr><td>Hidden size</td><td>64 (stocks), 48 (forex/vol)</td><td>GRN hidden dimension</td></tr>
+<tr><td>LSTM layers</td><td>2</td><td>Encoder/decoder LSTM depth</td></tr>
+<tr><td>Attention heads</td><td>4</td><td>Multi-head interpretable attention</td></tr>
+<tr><td>Dropout</td><td>0.2 (stocks), 0.15 (vol)</td><td>Regularization</td></tr>
+<tr><td>Batch size</td><td>64 (stocks), 32 (forex/vol)</td><td>Training batch</td></tr>
+<tr><td>Learning rate</td><td>0.001 (stocks/forex), 0.0008 (vol)</td><td>Adam optimizer</td></tr>
+<tr><td>Mixed precision</td><td>Configurable</td><td><code>TFT_MIXED_PRECISION=true</code></td></tr>
+</table>
+<h4>Input Features</h4>
 <ul>
-<li><strong>Model</strong>: <code>TemporalFusionTransformer</code> with quantile loss</li>
-<li><strong>Attention</strong>: Multi-head interpretable attention (4 heads)</li>
-<li><strong>Forecasting</strong>: Multi-horizon (5 steps ahead)</li>
-<li><strong>Encoder length</strong>: 63 bars | <strong>Hidden size</strong>: 64 | <strong>LSTM layers</strong>: 2</li>
-<li><strong>Dropout</strong>: 0.2 | <strong>Batch size</strong>: 64 | <strong>LR</strong>: 0.001</li>
+<li><strong>Technical indicators</strong>: RSI, MACD, Bollinger Bands, ATR</li>
+<li><strong>Temporal features</strong>: day of week, month, quarter, hour (ET-aware for market sessions)</li>
+<li><strong>Forex-specific</strong>: Cross-pair correlations, interest rate differentials, USD strength index, carry signals</li>
+<li><strong>Volatility-specific</strong>: Realized vol (5d/10d/21d/63d annualized), Parkinson vol, estimated IV, IV-RV spread, IV rank, vol-of-vol, GARCH residuals</li>
 </ul>
-<h4>Training Pipeline</h4>
-<ul>
-<li><code>train_postgres.py</code> &mdash; PostgreSQL-based training (recommended)</li>
-<li><code>train.py</code> &mdash; Legacy file-based training</li>
-<li>Technical indicators computed: RSI, MACD, Bollinger Bands, ATR</li>
-<li>Temporal features: day of week, month, quarter</li>
-<li>GPU-enabled with mixed precision (<code>TFT_MIXED_PRECISION=true</code>)</li>
-</ul>
-<h4>MLflow Integration</h4>
-<p>All training runs logged to MLflow (port 5000): loss curves, validation Sharpe, model artifacts. Model registry tracks versions for promotion via <code>ModelPromotionGate</code> (Sharpe &ge; 0.5 required).</p>
+<h4>Training Pipelines</h4>
+<table class="tbl">
+<tr><th>File</th><th>Backend</th><th>Description</th></tr>
+<tr><td><code>train_postgres.py</code></td><td>PostgreSQL</td><td>Recommended. Reads from ohlcv table, logs to MLflow</td></tr>
+<tr><td><code>train.py</code></td><td>SQLite/files</td><td>Legacy. Reads from local data/ directory</td></tr>
+</table>
+<h4>Output</h4>
+<p><code>ModelPrediction</code> dataclass: <code>{ symbol, predicted_value (median), lower_bound (10th%), upper_bound (90th%), confidence, horizon_days, model_name, prediction_time, metadata }</code></p>
 `},
 {id:'kafka',name:'Kafka',logo:'Kf',bg:'#231f20',fg:'#fff',detail:`
-<h3>Apache Kafka &mdash; Event Streaming</h3>
-<p><strong>KRaft mode</strong> (no ZooKeeper). Retention: 168h (7 days), 5GB max per topic, 1GB segments.</p>
+<h3>Apache Kafka &mdash; Event Streaming (KRaft Mode)</h3>
+<p>Image: <code>confluentinc/cp-kafka:7.6.0</code>. KRaft mode (no ZooKeeper). Node ID: 1. Ports: 9092 (internal), 29092 (external), 9093 (controller).</p>
+<h4>Broker Configuration</h4>
+<ul>
+<li><code>KAFKA_PROCESS_ROLES=broker,controller</code></li>
+<li><code>KAFKA_CONTROLLER_QUORUM_VOTERS=1@kafka-broker:9093</code></li>
+<li><code>log.retention.hours=168</code> (7 days)</li>
+<li><code>log.retention.bytes=5368709120</code> (5 GB per topic)</li>
+<li><code>log.segment.bytes=1073741824</code> (1 GB segments)</li>
+<li><code>CLUSTER_ID=MkU3OEVBNTcwNTJENDM2Qk</code></li>
+</ul>
 <h4>Topics (7)</h4>
 <table class="tbl">
-<tr><th>Topic</th><th>Producer</th><th>Consumer</th></tr>
-<tr><td><code>market-data</code></td><td>data-ingestion</td><td>tft-predictor</td></tr>
-<tr><td><code>sentiment-scores</code></td><td>sentiment-engine</td><td>tft-predictor</td></tr>
-<tr><td><code>tft-predictions</code></td><td>tft-predictor</td><td>trading-engine</td></tr>
-<tr><td><code>trading-signals</code></td><td>trading-engine</td><td>orchestrator</td></tr>
-<tr><td><code>order-updates</code></td><td>trading-engine</td><td>orchestrator</td></tr>
-<tr><td><code>portfolio-updates</code></td><td>orchestrator</td><td>all services</td></tr>
-<tr><td><code>system-events</code></td><td>all services</td><td>orchestrator</td></tr>
+<tr><th>Topic</th><th>Producer</th><th>Consumer</th><th>Payload</th></tr>
+<tr><td><code>market-data</code></td><td>data-ingestion</td><td>tft-predictor</td><td>OHLCV bars, news articles</td></tr>
+<tr><td><code>sentiment-scores</code></td><td>sentiment-engine</td><td>tft-predictor</td><td>FinBERT/VADER scores per symbol</td></tr>
+<tr><td><code>tft-predictions</code></td><td>tft-predictor</td><td>trading-engine</td><td>Multi-horizon return forecasts</td></tr>
+<tr><td><code>trading-signals</code></td><td>trading-engine</td><td>orchestrator</td><td>Actionable buy/sell signals</td></tr>
+<tr><td><code>order-updates</code></td><td>trading-engine</td><td>orchestrator</td><td>Fill confirmations, rejections</td></tr>
+<tr><td><code>portfolio-updates</code></td><td>orchestrator</td><td>all services</td><td>Position snapshots, P&L</td></tr>
+<tr><td><code>system-events</code></td><td>all services</td><td>orchestrator</td><td>Health checks, errors, alerts</td></tr>
 </table>
-<h4>Consumer Configuration</h4>
+<h4>Consumer Configuration (CF-7 Fix)</h4>
 <ul>
-<li><code>enable_auto_commit=False</code> on all 4 consumers (CF-7 fix)</li>
-<li>Explicit <code>consumer.commit()</code> after processing</li>
-<li><code>producer.flush()</code> before commit</li>
+<li><code>enable_auto_commit=False</code> on all 4 consumers</li>
+<li>Explicit <code>consumer.commit()</code> after successful processing</li>
+<li><code>producer.flush()</code> before commit (exactly-once semantics)</li>
 <li>Failed messages routed to Dead Letter Queue (PostgreSQL-backed)</li>
 </ul>
 <h4>Schema Registry</h4>
-<p>Confluent Schema Registry (port 8081) with thread-safe singleton connection cache, exponential backoff (max 3 retries).</p>
+<p>Confluent Schema Registry (port 8085). Thread-safe singleton connection cache. Exponential backoff on connection failure (max 3 retries). All message schemas validated before produce/consume.</p>
 `},
 {id:'prometheus',name:'Prometheus',logo:'Pm',bg:'#e6522c',fg:'#fff',round:true,detail:`
-<h3>Prometheus &mdash; Metrics Collection</h3>
-<p>Scrapes <code>/metrics</code> endpoint on the paper trader (port 8010). 9 custom metrics defined in <code>monitoring/metrics.py</code> (185 lines).</p>
-<h4>Custom Metrics</h4>
+<h3>Prometheus &mdash; 9 Custom Metrics (monitoring/metrics.py, 185 lines)</h3>
+<p>Port <code>9090</code>. Scrapes <code>/metrics</code> on paper trader (port 8010). Class: <code>PrometheusMetrics</code>.</p>
 <table class="tbl">
-<tr><th>Metric</th><th>Type</th><th>Labels</th></tr>
-<tr><td><code>apex_signal_score</code></td><td>Gauge</td><td>strategy, symbol</td></tr>
-<tr><td><code>apex_strategy_weight</code></td><td>Gauge</td><td>strategy</td></tr>
-<tr><td><code>apex_regime_state</code></td><td>Gauge</td><td>regime</td></tr>
-<tr><td><code>apex_ensemble_confidence</code></td><td>Gauge</td><td>&mdash;</td></tr>
-<tr><td><code>apex_execution_slippage_bps</code></td><td>Histogram</td><td>strategy, symbol</td></tr>
-<tr><td><code>apex_pipeline_duration_seconds</code></td><td>Histogram</td><td>stage</td></tr>
-<tr><td><code>apex_risk_max_drawdown</code></td><td>Gauge</td><td>&mdash;</td></tr>
-<tr><td><code>apex_risk_var_99</code></td><td>Gauge</td><td>&mdash;</td></tr>
-<tr><td><code>apex_risk_cvar_95</code></td><td>Gauge</td><td>&mdash;</td></tr>
+<tr><th>#</th><th>Metric Name</th><th>Type</th><th>Labels</th><th>Description</th></tr>
+<tr><td>1</td><td><code>apex_signal_score</code></td><td>Gauge</td><td>symbol, direction</td><td>Current ensemble score per symbol</td></tr>
+<tr><td>2</td><td><code>apex_strategy_weight</code></td><td>Gauge</td><td>strategy_name, weight_type (fixed/bayesian)</td><td>Strategy weight in ensemble</td></tr>
+<tr><td>3</td><td><code>apex_regime_state</code></td><td>Info</td><td>regime, volatility, trend</td><td>Current market regime classification</td></tr>
+<tr><td>4</td><td><code>apex_ensemble_confidence</code></td><td>Histogram</td><td>&mdash;</td><td>Confidence distribution. Buckets: 0.1, 0.2, ..., 1.0</td></tr>
+<tr><td>5</td><td><code>apex_execution_slippage_bps</code></td><td>Histogram</td><td>symbol</td><td>VWAP slippage. Buckets: -50, -20, -10, -5, -2, 0, 2, 5, 10, 20, 50, 100, 200</td></tr>
+<tr><td>6</td><td><code>apex_pipeline_duration_seconds</code></td><td>Histogram</td><td>&mdash;</td><td>Pipeline run time. Buckets: 1, 5, 10, 30, 60, 120, 300, 600</td></tr>
+<tr><td>7</td><td><code>apex_risk_drawdown</code></td><td>Gauge</td><td>&mdash;</td><td>Portfolio drawdown (fraction)</td></tr>
+<tr><td>8</td><td><code>apex_risk_var_99</code></td><td>Gauge</td><td>&mdash;</td><td>99th percentile Value at Risk</td></tr>
+<tr><td>9</td><td><code>apex_risk_cvar_95</code></td><td>Gauge</td><td>&mdash;</td><td>95th percentile CVaR (Expected Shortfall)</td></tr>
 </table>
+<h4>Methods</h4>
+<ul>
+<li><code>update_signals(List[Dict])</code> &mdash; Clear + set signal gauges</li>
+<li><code>update_weights(Dict, Optional[Dict])</code> &mdash; Strategy weights (fixed + bayesian)</li>
+<li><code>update_regime(str, is_volatile, is_trending)</code> &mdash; Regime info</li>
+<li><code>update_risk(drawdown, var_99, cvar_95)</code> &mdash; Risk gauges</li>
+<li><code>observe_slippage(symbol, bps)</code> &mdash; Record execution slippage</li>
+<li><code>observe_pipeline_duration(seconds)</code> &mdash; Record pipeline duration</li>
+<li><code>generate() -&gt; bytes</code> &mdash; Prometheus exposition format output</li>
+</ul>
 `},
 {id:'grafana',name:'Grafana',logo:'Gf',bg:'#f46800',fg:'#fff',detail:`
-<h3>Grafana &mdash; Visualization Dashboard</h3>
-<p>Port <code>3000</code>. Prometheus datasource auto-provisioned. 8-panel dashboard for real-time trading observability.</p>
-<h4>Dashboard Panels (8)</h4>
+<h3>Grafana &mdash; 8-Panel Trading Dashboard</h3>
+<p>Port <code>3000</code>. Image: <code>grafana/grafana:latest</code>. Prometheus datasource auto-provisioned. Password via <code>GF_SECURITY_ADMIN_PASSWORD</code>.</p>
+<h4>Dashboard Panels</h4>
 <table class="tbl">
-<tr><th>#</th><th>Panel</th><th>Visualization</th></tr>
-<tr><td>1</td><td>Signal Heatmap</td><td>Heatmap &mdash; strategy x symbol scores</td></tr>
-<tr><td>2</td><td>Strategy Weights</td><td>Bar chart &mdash; current ensemble allocation</td></tr>
-<tr><td>3</td><td>Regime Timeline</td><td>State timeline &mdash; regime transitions over time</td></tr>
-<tr><td>4</td><td>Confidence Histogram</td><td>Histogram &mdash; ensemble confidence distribution</td></tr>
-<tr><td>5</td><td>Slippage Scatter</td><td>Scatter &mdash; expected vs filled price by symbol</td></tr>
-<tr><td>6</td><td>Pipeline Duration</td><td>Time series &mdash; seconds per pipeline stage</td></tr>
-<tr><td>7</td><td>Risk Gauges</td><td>Gauge &mdash; VaR-99, CVaR-95, max drawdown</td></tr>
-<tr><td>8</td><td>Correlation Matrix</td><td>Heatmap &mdash; inter-strategy return correlation</td></tr>
+<tr><th>#</th><th>Panel</th><th>Type</th><th>Source Metric</th><th>Description</th></tr>
+<tr><td>1</td><td>Signal Heatmap</td><td>Heatmap</td><td><code>apex_signal_score</code></td><td>Strategy x symbol scores, color-coded by intensity</td></tr>
+<tr><td>2</td><td>Strategy Weights</td><td>Bar Chart</td><td><code>apex_strategy_weight</code></td><td>Current ensemble allocation per strategy</td></tr>
+<tr><td>3</td><td>Regime Timeline</td><td>State Timeline</td><td><code>apex_regime_state</code></td><td>Regime transitions over time (4 states)</td></tr>
+<tr><td>4</td><td>Confidence Histogram</td><td>Histogram</td><td><code>apex_ensemble_confidence</code></td><td>Distribution of ensemble confidence scores</td></tr>
+<tr><td>5</td><td>Slippage Scatter</td><td>Scatter</td><td><code>apex_execution_slippage_bps</code></td><td>Expected vs filled price deviation by symbol</td></tr>
+<tr><td>6</td><td>Pipeline Duration</td><td>Time Series</td><td><code>apex_pipeline_duration_seconds</code></td><td>Seconds per pipeline stage over time</td></tr>
+<tr><td>7</td><td>Risk Gauges</td><td>Gauge</td><td><code>apex_risk_*</code></td><td>VaR-99, CVaR-95, max drawdown live gauges</td></tr>
+<tr><td>8</td><td>Correlation Matrix</td><td>Heatmap</td><td>Computed from risk reports</td><td>Inter-strategy return correlation (&gt;0.85 = alert)</td></tr>
 </table>
+<h4>Provisioning</h4>
+<ul>
+<li>Datasource: <code>./monitoring/grafana/datasources/*.yml</code></li>
+<li>Dashboard JSON: <code>./monitoring/grafana/dashboards/</code></li>
+<li>Volume: <code>grafana_data:/var/lib/grafana</code></li>
+</ul>
 `},
 {id:'timescale',name:'TimescaleDB',logo:'TS',bg:'#0db7ed',fg:'#fff',detail:`
-<h3>TimescaleDB &mdash; Time-Series Extension</h3>
-<p>PostgreSQL 15 extension providing hypertables, continuous aggregates, and automated data retention.</p>
-<h4>Hypertables (4)</h4>
-<ul>
-<li><code>raw_ohlcv</code> &mdash; partitioned by time, 7-day chunks</li>
-<li><code>paper_trades</code> &mdash; all executed orders</li>
-<li><code>paper_daily_snapshots</code> &mdash; daily portfolio state</li>
-<li><code>sentiment_scores</code> &mdash; NLP sentiment by symbol</li>
-</ul>
+<h3>TimescaleDB &mdash; Time-Series Extension for PostgreSQL 15</h3>
+<p>Image: <code>timescale/timescaledb:latest-pg15</code>. Provides hypertables, continuous aggregates, compression, and automated retention.</p>
+<h4>Hypertables (6)</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Time Column</th><th>Chunk Interval</th><th>Retention</th></tr>
+<tr><td><code>ohlcv</code></td><td>date</td><td>7 days</td><td>365 days</td></tr>
+<tr><td><code>paper_trades</code></td><td>created_at</td><td>7 days</td><td>365 days</td></tr>
+<tr><td><code>paper_daily_snapshots</code></td><td>created_at</td><td>7 days</td><td>365 days</td></tr>
+<tr><td><code>sentiment_scores</code></td><td>created_at</td><td>7 days</td><td>90 days</td></tr>
+<tr><td><code>paper_risk_reports</code></td><td>report_time</td><td>7 days</td><td>90 days</td></tr>
+<tr><td><code>paper_execution_stats</code></td><td>execution_time</td><td>7 days</td><td>90 days</td></tr>
+</table>
 <h4>Continuous Aggregates (3)</h4>
 <table class="tbl">
-<tr><th>View</th><th>Interval</th><th>Refresh</th></tr>
-<tr><td><code>ohlcv_15m</code></td><td>15 minutes</td><td>Every 15 min, lag 1h</td></tr>
-<tr><td><code>ohlcv_1h</code></td><td>1 hour</td><td>Every 1h, lag 2h</td></tr>
-<tr><td><code>ohlcv_1d</code></td><td>1 day</td><td>Every 1d, lag 1d</td></tr>
+<tr><th>View</th><th>Source</th><th>Bucket</th><th>Refresh Policy</th><th>Fields</th></tr>
+<tr><td><code>ohlcv_15m</code></td><td>ohlcv</td><td>15 min</td><td>Every 15 min, lag 1h</td><td>first(open), max(high), min(low), last(close), sum(volume)</td></tr>
+<tr><td><code>ohlcv_1h</code></td><td>ohlcv</td><td>1 hour</td><td>Every 1h, lag 2h</td><td>first(open), max(high), min(low), last(close), sum(volume)</td></tr>
+<tr><td><code>ohlcv_1d</code></td><td>ohlcv</td><td>1 day</td><td>Every 1d, lag 1d</td><td>first(open), max(high), min(low), last(close), sum(volume)</td></tr>
 </table>
+<h4>Compression Policy</h4>
+<ul>
+<li><strong>Segment by</strong>: <code>symbol</code></li>
+<li><strong>Order by</strong>: <code>time DESC</code></li>
+<li><strong>Compress after</strong>: 7 days</li>
+<li>Compression reduces storage by 90%+ for time-series data</li>
+</ul>
 <h4>Retention Policies</h4>
 <ul>
-<li><strong>365 days</strong>: OHLCV data, portfolio snapshots</li>
-<li><strong>90 days</strong>: Signals, risk reports, execution stats</li>
-<li>Compression: segment by <code>symbol</code>, order by <code>time</code>, after 7 days</li>
+<li><strong>365 days</strong>: OHLCV data, portfolio snapshots, trade history</li>
+<li><strong>90 days</strong>: Signals, risk reports, execution stats, sentiment scores</li>
+<li>Automated via <code>add_retention_policy()</code></li>
 </ul>
 `},
 {id:'mlflow',name:'MLflow',logo:'ML',bg:'#0366d6',fg:'#fff',detail:`
 <h3>MLflow &mdash; Experiment Tracking & Model Registry</h3>
-<p>Port <code>5000</code>. Tracks all training experiments and manages model lifecycle from training to production deployment.</p>
+<p>Port <code>5000</code>. Image: <code>python:3.11-slim</code> (custom command). Backend: PostgreSQL (<code>mlflow</code> database). Artifact store: <code>/mlflow</code> volume.</p>
 <h4>Experiment Tracking</h4>
-<ul>
-<li>Training metrics: loss per epoch, validation Sharpe, RMSE</li>
-<li>Hyperparameters: learning rate, hidden size, dropout, batch size</li>
-<li>Artifacts: model checkpoints (<code>.pth</code>), preprocessor (<code>.pkl</code>), config</li>
-</ul>
+<table class="tbl">
+<tr><th>Category</th><th>Logged Values</th></tr>
+<tr><td>Metrics (per epoch)</td><td>training_loss, validation_loss, validation_sharpe, validation_rmse</td></tr>
+<tr><td>Hyperparameters</td><td>learning_rate, hidden_size, lstm_layers, attention_heads, dropout, batch_size, encoder_length, prediction_length, max_epochs</td></tr>
+<tr><td>Artifacts</td><td>Model checkpoint (.pth), preprocessor (.pkl), config (JSON), training log</td></tr>
+<tr><td>Tags</td><td>model_type (stocks/forex/volatility), symbols, target_type, data_source</td></tr>
+</table>
 <h4>Model Registry</h4>
+<table class="tbl">
+<tr><th>Stage</th><th>Description</th><th>Transition Rule</th></tr>
+<tr><td><code>None</code></td><td>Newly registered model</td><td>Automatic on training completion</td></tr>
+<tr><td><code>Staging</code></td><td>Candidate for production</td><td>Manual promotion</td></tr>
+<tr><td><code>Production</code></td><td>Serving live predictions</td><td>Pass ModelPromotionGate (Sharpe &ge; 0.5)</td></tr>
+<tr><td><code>Archived</code></td><td>Retired model</td><td>Manual demotion</td></tr>
+</table>
+<h4>Registered Models</h4>
 <ul>
-<li>Stages: <code>None</code> &rarr; <code>Staging</code> &rarr; <code>Production</code> &rarr; <code>Archived</code></li>
-<li>Promotion requires passing <code>ModelPromotionGate</code> (Sharpe &ge; 0.5)</li>
-<li>Version history with rollback capability</li>
-<li>3 TFT variants registered: stocks, forex, volatility</li>
+<li><code>tft-stocks</code> &mdash; TFT for equities (<code>models/tft_model.pth</code>)</li>
+<li><code>tft-forex</code> &mdash; TFT for FX pairs (<code>models/tft_forex.pth</code>)</li>
+<li><code>tft-volatility</code> &mdash; TFT for vol forecasting (<code>models/tft_volatility.pth</code>)</li>
 </ul>
 `},
 {id:'alpaca',name:'Alpaca API',logo:'AL',bg:'#f7df1e',fg:'#000',detail:`
-<h3>Alpaca &mdash; Broker Integration</h3>
-<p><code>AlpacaBroker</code> class (282 lines) in <code>trading/broker/alpaca.py</code>. Async via <code>aiohttp.ClientSession</code> with 30s timeout.</p>
-<h4>Order Execution</h4>
+<h3>Alpaca &mdash; Broker Integration (282 lines)</h3>
+<p>Class: <code>AlpacaBroker(BaseBroker)</code> in <code>trading/broker/alpaca.py</code>. Async via <code>aiohttp.ClientSession</code>.</p>
+<h4>All Methods</h4>
+<table class="tbl">
+<tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+<tr><td><code>connect()</code></td><td>&mdash;</td><td>Create ClientSession with 30s total timeout</td></tr>
+<tr><td><code>disconnect()</code></td><td>&mdash;</td><td>Close session gracefully</td></tr>
+<tr><td><code>_api_call(method, endpoint, data)</code></td><td>Generic</td><td>Wrapper with 15s per-request timeout, error handling</td></tr>
+<tr><td><code>get_account()</code></td><td>GET /v2/account</td><td>Returns AccountInfo (equity, cash, buying_power)</td></tr>
+<tr><td><code>get_positions()</code></td><td>GET /v2/positions</td><td>Returns List[PositionInfo]</td></tr>
+<tr><td><code>get_position(ticker)</code></td><td>GET /v2/positions/{ticker}</td><td>Single position or None</td></tr>
+<tr><td><code>submit_order(request)</code></td><td>POST /v2/orders</td><td>Submit OrderRequest, returns OrderResult</td></tr>
+<tr><td><code>cancel_order(order_id)</code></td><td>DELETE /v2/orders/{id}</td><td>Cancel pending order</td></tr>
+<tr><td><code>get_order(order_id)</code></td><td>GET /v2/orders/{id}</td><td>Order status lookup</td></tr>
+<tr><td><code>get_open_orders()</code></td><td>GET /v2/orders?status=open</td><td>All open orders</td></tr>
+<tr><td><code>close_position(ticker)</code></td><td>DELETE /v2/positions/{ticker}</td><td>Market sell with 2x retry</td></tr>
+<tr><td><code>close_all_positions()</code></td><td>DELETE /v2/positions (each)</td><td>Close all with retry loop</td></tr>
+</table>
+<h4>Timeout Configuration (CF-8 Fix)</h4>
 <ul>
-<li><strong>Order types</strong>: Market, Limit, IOC (Immediate or Cancel)</li>
-<li><strong>Position management</strong>: <code>get_positions()</code>, <code>close_position()</code>, <code>close_all()</code> with retry</li>
-<li><strong>Timeout alignment</strong>: Session timeout = API call timeout (CF-8 fix)</li>
+<li><strong>Session-level</strong>: <code>ClientTimeout(total=30)</code> &mdash; default for all requests</li>
+<li><strong>Per-request</strong>: <code>ClientTimeout(total=15)</code> &mdash; override in _api_call</li>
+<li>Both coexist: session timeout is fallback, per-request is tighter</li>
 </ul>
-<h4>VWAP Execution Model</h4>
-<ul>
-<li><strong>Slices</strong>: 5 child orders per parent</li>
-<li><strong>Interval</strong>: 60 seconds between slices</li>
-<li><strong>ADV cap</strong>: 10% of average daily volume per slice</li>
-<li>Enabled via <code>EXECUTION_USE_VWAP=true</code></li>
-</ul>
+<h4>VWAP Execution Model (trading/execution/vwap.py)</h4>
+<table class="tbl">
+<tr><th>Parameter</th><th>Value</th><th>Env Var</th></tr>
+<tr><td>Child slices per parent</td><td>5</td><td><code>VWAP_NUM_SLICES</code></td></tr>
+<tr><td>Interval between slices</td><td>60 seconds</td><td><code>VWAP_SLICE_INTERVAL</code></td></tr>
+<tr><td>ADV cap per slice</td><td>10%</td><td><code>VWAP_ADV_CAP</code></td></tr>
+<tr><td>Fallback on failure</td><td>Market order</td><td>&mdash;</td></tr>
+<tr><td>Enable</td><td>false (default)</td><td><code>EXECUTION_USE_VWAP</code></td></tr>
+</table>
 <h4>Paper vs Live</h4>
 <ul>
 <li>Paper: <code>https://paper-api.alpaca.markets</code></li>
 <li>Live: <code>https://api.alpaca.markets</code></li>
-<li>Controlled by <code>TRADING_MODE</code> env var</li>
+<li>Controlled by <code>ALPACA_BASE_URL</code> / <code>TRADING_MODE</code></li>
 </ul>
 `}
 ];
 
 const ARCH=[
 {id:'data',label:'Data Layer',val:'3 Sources',desc:'yfinance, Polygon.io, Reddit',detail:`
-<h3>Data Layer &mdash; 3 Sources</h3>
+<h3>Data Layer &mdash; 3 Sources, 2 Backends</h3>
 <div class="cols-3">
 <div>
-<h4>yfinance</h4>
+<h4>yfinance (Primary)</h4>
 <ul>
-<li>OHLCV for 500+ US equities</li>
-<li>FX pairs (EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF)</li>
+<li>500+ US equities (OHLCV)</li>
+<li>6 FX pairs: EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF</li>
 <li>SPY for regime detection</li>
-<li>Treasury yields (2Y, 10Y, 30Y)</li>
+<li>Treasury yields: ^TNX (10Y), ^FVX (5Y), ^IRX (3M)</li>
+<li>VIX for volatility regime</li>
+<li>UUP (DXY proxy) for USD strength</li>
 <li>Free, no API key required</li>
 </ul>
 </div>
 <div>
-<h4>Polygon.io</h4>
+<h4>Polygon.io (Premium)</h4>
 <ul>
-<li>Real-time OHLCV quotes</li>
-<li>Options chains (strikes, expiries)</li>
+<li>Real-time OHLCV bars</li>
+<li>Options chains (strikes, expiries, greeks)</li>
 <li>Financial news articles</li>
 <li>Company fundamentals</li>
-<li>Rate limited: 5 req/min (free tier)</li>
+<li>Rate limit: 5 req/min (free tier)</li>
+<li>Env: <code>POLYGON_API_KEY</code></li>
+<li>Used by data-ingestion microservice</li>
 </ul>
 </div>
 <div>
@@ -535,177 +691,288 @@ const ARCH=[
 <li>r/stocks, r/investing</li>
 <li>r/SecurityAnalysis</li>
 <li>r/ValueInvesting</li>
+<li>r/options, r/algotrading</li>
 <li>25 posts/subreddit, 8 subreddits</li>
+<li>Env: <code>REDDIT_CLIENT_ID</code>, <code>REDDIT_CLIENT_SECRET</code></li>
 </ul>
 </div>
 </div>
+<h4>Two Data Backends</h4>
+<table class="tbl">
+<tr><th>Layer</th><th>Legacy (SQLite)</th><th>PostgreSQL (Recommended)</th></tr>
+<tr><td>Data loading</td><td><code>data_pipeline.py</code> (StockDataCollector)</td><td><code>postgres_data_loader.py</code> (PostgresDataLoader)</td></tr>
+<tr><td>Preprocessing</td><td><code>data_preprocessing.py</code> (StockDataPreprocessor)</td><td><code>postgres_data_pipeline.py</code> (PostgresDataPipeline)</td></tr>
+<tr><td>Model</td><td><code>tft_model.py</code> (EnhancedTFTModel)</td><td><code>tft_postgres_model.py</code> (TFTPostgresModel)</td></tr>
+<tr><td>Training</td><td><code>train.py</code></td><td><code>train_postgres.py</code></td></tr>
+<tr><td>API</td><td><code>api.py</code></td><td><code>api_postgres.py</code></td></tr>
+</table>
 `},
 {id:'models',label:'Model Layer',val:'10 Models',desc:'TFT, Kronos, FinBERT, TDGF',detail:`
-<h3>Model Layer &mdash; 10 ML Models</h3>
-<p>Managed by <code>ModelManager</code> with graceful fallback (missing models return empty predictions).</p>
+<h3>Model Layer &mdash; 10 ML Models Across 4 Asset Classes</h3>
+<p>Managed by <code>ModelManager</code> (unified loader). Base class: <code>BaseTFTModel</code> (ABC). Output: <code>ModelPrediction</code> dataclass. Graceful fallback: missing models return empty predictions.</p>
 <table class="tbl">
-<tr><th>#</th><th>Model</th><th>Asset Class</th><th>Method</th><th>Accuracy</th></tr>
-<tr><td>1</td><td>TFT Stocks</td><td><span class="tag tag-cyan">stocks</span></td><td>Temporal Fusion Transformer</td><td>78%</td></tr>
-<tr><td>2</td><td>TFT Forex</td><td><span class="tag tag-lime">forex</span></td><td>TFT for G10 FX pairs</td><td>72%</td></tr>
-<tr><td>3</td><td>TFT Volatility</td><td><span class="tag tag-gold">volatility</span></td><td>IV/RV forecaster</td><td>75%</td></tr>
-<tr><td>4</td><td>Kronos</td><td><span class="tag tag-cyan">stocks</span><span class="tag tag-lime">forex</span></td><td>Pre-trained K-line foundation model</td><td>70%</td></tr>
-<tr><td>5</td><td>Deep Surrogates</td><td><span class="tag tag-gold">options</span></td><td>Neural option pricing (Heston)</td><td>85%</td></tr>
-<tr><td>6</td><td>TDGF</td><td><span class="tag tag-gold">options</span></td><td>PDE solver, American exercise</td><td>80%</td></tr>
-<tr><td>7</td><td>Sentiment</td><td><span class="tag tag-magenta">cross-asset</span></td><td>FinBERT + VADER NLP</td><td>68%</td></tr>
-<tr><td>8</td><td>Mean Reversion</td><td><span class="tag tag-cyan">stocks</span></td><td>Hurst exponent + OU estimation</td><td>74%</td></tr>
-<tr><td>9</td><td>Macro Regime</td><td><span class="tag tag-magenta">cross-asset</span></td><td>Yield curve + rate trends</td><td>65%</td></tr>
-<tr><td>10</td><td>Microstructure</td><td><span class="tag tag-cyan">stocks</span></td><td>Volume profile + order flow</td><td>71%</td></tr>
+<tr><th>#</th><th>Model</th><th>Class</th><th>File</th><th>Asset</th><th>Method</th><th>Key Config</th></tr>
+<tr><td>1</td><td>TFT Stocks</td><td><code>TFTStocksAdapter</code></td><td>stocks_adapter.py</td><td><span class="tag tag-cyan">stocks</span></td><td>Temporal Fusion Transformer, quantile loss</td><td>hidden=64, lstm=2, heads=4, dropout=0.2, lr=0.001</td></tr>
+<tr><td>2</td><td>TFT Forex</td><td><code>TFTForexModel</code></td><td>forex_model.py</td><td><span class="tag tag-lime">forex</span></td><td>TFT for G10 FX pairs + rate differentials</td><td>hidden=48, lstm=2, heads=4, dropout=0.2, lr=0.001</td></tr>
+<tr><td>3</td><td>TFT Volatility</td><td><code>TFTVolatilityModel</code></td><td>volatility_model.py</td><td><span class="tag tag-gold">vol</span></td><td>TFT forecasting realized vol (5d/10d/21d/63d)</td><td>hidden=48, lstm=2, heads=4, dropout=0.15, lr=0.0008</td></tr>
+<tr><td>4</td><td>Kronos</td><td><code>KronosModel</code></td><td>kronos_model.py</td><td><span class="tag tag-cyan">stocks</span><span class="tag tag-lime">fx</span></td><td>Pre-trained K-line foundation model, Monte Carlo sampling</td><td>context=512, samples=100, pred_len=5</td></tr>
+<tr><td>5</td><td>Deep Surrogates</td><td><code>DeepSurrogateModel</code></td><td>deep_surrogate_model.py</td><td><span class="tag tag-gold">options</span></td><td>Neural option pricing (Heston calibration via L-BFGS-B)</td><td>tail_risk: vol_of_vol 35%, corr 25%, skew 25%, jump 15%</td></tr>
+<tr><td>6</td><td>TDGF</td><td><code>TDGFModel</code></td><td>tdgf_model.py</td><td><span class="tag tag-gold">options</span></td><td>PDE solver (DGM neural), American exercise boundary</td><td>hidden_layers=3, units=50, lr=0.001, epochs=5000</td></tr>
+<tr><td>7</td><td>Sentiment</td><td><code>SentimentModel</code></td><td>sentiment_model.py</td><td><span class="tag tag-magenta">cross</span></td><td>FinBERT (ProsusAI/finbert) + VADER fallback</td><td>Scores [-1,+1], confidence by article count</td></tr>
+<tr><td>8</td><td>Mean Reversion</td><td><code>MeanReversionModel</code></td><td>mean_reversion_model.py</td><td><span class="tag tag-cyan">stocks</span></td><td>Hurst exponent (R/S analysis) + OU estimation (OLS)</td><td>Needs 252+ days history, outputs half-life + z-score</td></tr>
+<tr><td>9</td><td>Macro Regime</td><td><code>MacroRegimeModel</code></td><td>macro_model.py</td><td><span class="tag tag-magenta">cross</span></td><td>Rule-based yield curve + rate trends via yfinance</td><td>5 regimes: inverted, steep_rise, steep_fall, flat_rise, neutral</td></tr>
+<tr><td>10</td><td>Microstructure</td><td><code>MicrostructureModel</code></td><td>microstructure_model.py</td><td><span class="tag tag-cyan">stocks</span></td><td>Volume profile + order flow analysis</td><td>Composite: 0.3*buying_pressure + 0.2*vwap + 0.2*vol + 0.3*ad</td></tr>
 </table>
-<p>Key classes: <code>BaseTFTModel</code> (ABC), <code>ModelManager</code> (unified loader), <code>ModelPrediction</code> (standardized output).</p>
+<h4>ModelManager API</h4>
+<ul>
+<li><code>load_all()</code> &rarr; ManagerStatus (registered/loaded counts)</li>
+<li><code>predict_stocks/forex/volatility/kronos/deep_surrogates/tdgf/sentiment/mean_reversion/macro/microstructure(data)</code> &rarr; List[ModelPrediction]</li>
+<li><code>predict_all(stock_data, fx_data, options_data)</code> &rarr; Dict[str, List[ModelPrediction]]</li>
+<li><code>is_model_loaded(name)</code>, <code>get_status()</code>, <code>predictions_to_dataframe()</code></li>
+</ul>
 `},
 {id:'strategies',label:'Strategy Layer',val:'12 Strategies',desc:'Momentum, StatArb, FX, Options',detail:`
 <h3>Strategy Layer &mdash; 12 Trading Strategies</h3>
-<p>Each extends <code>BaseStrategy</code> (ABC) and produces <code>StrategyOutput</code> containing z-scored alpha signals.</p>
+<p>Each extends <code>BaseStrategy</code> (ABC). Must implement <code>generate_signals(data) &rarr; StrategyOutput</code>. Output: z-scored <code>AlphaScore</code> per symbol with direction (LONG/SHORT/NEUTRAL) and confidence (0-1).</p>
 <table class="tbl">
-<tr><th>#</th><th>Strategy</th><th>Asset</th><th>Model Dep</th><th>Regime Bucket</th></tr>
-<tr><td>1</td><td>Cross-Sectional Momentum</td><td><span class="tag tag-cyan">stocks</span></td><td>None (factor)</td><td>momentum</td></tr>
-<tr><td>2</td><td>Pairs Trading (StatArb)</td><td><span class="tag tag-cyan">stocks</span></td><td>None (cointegration)</td><td>pairs</td></tr>
-<tr><td>3</td><td>Mean Reversion</td><td><span class="tag tag-cyan">stocks</span></td><td>MeanReversionModel</td><td>mean_reversion</td></tr>
-<tr><td>4</td><td>Sector Rotation</td><td><span class="tag tag-cyan">stocks</span></td><td>MacroRegimeModel</td><td>momentum</td></tr>
-<tr><td>5</td><td>FX Carry + Trend</td><td><span class="tag tag-lime">forex</span></td><td>None</td><td>tft</td></tr>
-<tr><td>6</td><td>FX Momentum</td><td><span class="tag tag-lime">forex</span></td><td>None</td><td>momentum</td></tr>
-<tr><td>7</td><td>FX Vol Breakout</td><td><span class="tag tag-lime">forex</span></td><td>TFT Volatility</td><td>pairs</td></tr>
-<tr><td>8</td><td>Deep Surrogates</td><td><span class="tag tag-gold">options</span></td><td>DeepSurrogateModel</td><td>pairs</td></tr>
-<tr><td>9</td><td>TDGF American Options</td><td><span class="tag tag-gold">options</span></td><td>TDGFModel</td><td>pairs</td></tr>
-<tr><td>10</td><td>Vol Surface Arb</td><td><span class="tag tag-gold">options</span></td><td>None (IV-RV)</td><td>pairs</td></tr>
-<tr><td>11</td><td>Kronos Forecasting</td><td><span class="tag tag-cyan">stocks</span><span class="tag tag-lime">forex</span></td><td>KronosModel</td><td>tft</td></tr>
-<tr><td>12</td><td>Sentiment</td><td><span class="tag tag-magenta">cross</span></td><td>SentimentModel</td><td>tft</td></tr>
+<tr><th>#</th><th>Strategy</th><th>Class</th><th>File</th><th>Asset</th><th>Model Dep</th><th>Regime Bucket</th><th>Env Var</th></tr>
+<tr><td>1</td><td>Cross-Sectional Momentum</td><td><code>CrossSectionalMomentum</code></td><td>momentum/cross_sectional.py</td><td><span class="tag tag-cyan">stocks</span></td><td>None (factor)</td><td>momentum</td><td>STRATEGY_MOMENTUM_ENABLED</td></tr>
+<tr><td>2</td><td>Pairs Trading (StatArb)</td><td><code>PairsTrading</code></td><td>statarb/pairs.py</td><td><span class="tag tag-cyan">stocks</span></td><td>None (cointegration)</td><td>pairs</td><td>STRATEGY_STATARB_ENABLED</td></tr>
+<tr><td>3</td><td>Mean Reversion</td><td><code>MeanReversionStrategy</code></td><td>stocks/mean_reversion.py</td><td><span class="tag tag-cyan">stocks</span></td><td>MeanReversionModel, MicrostructureModel</td><td>mean_reversion</td><td>STRATEGY_MEAN_REVERSION_ENABLED</td></tr>
+<tr><td>4</td><td>Sector Rotation</td><td><code>SectorRotationStrategy</code></td><td>stocks/sector_rotation.py</td><td><span class="tag tag-cyan">stocks</span></td><td>MacroRegimeModel</td><td>momentum</td><td>STRATEGY_SECTOR_ROTATION_ENABLED</td></tr>
+<tr><td>5</td><td>FX Carry + Trend</td><td><code>FXCarryTrend</code></td><td>fx/carry_trend.py</td><td><span class="tag tag-lime">forex</span></td><td>None (carry + trend)</td><td>tft</td><td>STRATEGY_FX_ENABLED</td></tr>
+<tr><td>6</td><td>FX Momentum</td><td><code>FXMomentumStrategy</code></td><td>fx/momentum.py</td><td><span class="tag tag-lime">forex</span></td><td>None (multi-lookback)</td><td>momentum</td><td>STRATEGY_FX_MOMENTUM_ENABLED</td></tr>
+<tr><td>7</td><td>FX Vol Breakout</td><td><code>FXVolBreakoutStrategy</code></td><td>fx/vol_breakout.py</td><td><span class="tag tag-lime">forex</span></td><td>TFT Volatility</td><td>pairs</td><td>STRATEGY_FX_VOL_BREAKOUT_ENABLED</td></tr>
+<tr><td>8</td><td>Deep Surrogates</td><td><code>DeepSurrogateStrategy</code></td><td>deep_surrogates/strategy.py</td><td><span class="tag tag-gold">options</span></td><td>DeepSurrogateModel</td><td>pairs</td><td>STRATEGY_DEEP_SURROGATES_ENABLED</td></tr>
+<tr><td>9</td><td>TDGF American Options</td><td><code>TDGFStrategy</code></td><td>tdgf/strategy.py</td><td><span class="tag tag-gold">options</span></td><td>TDGFModel</td><td>pairs</td><td>STRATEGY_TDGF_ENABLED</td></tr>
+<tr><td>10</td><td>Vol Surface Arb</td><td><code>VolatilityArbitrage</code></td><td>options/strategies/vol_arb.py</td><td><span class="tag tag-gold">options</span></td><td>None (IV-RV)</td><td>pairs</td><td>STRATEGY_VOL_ARB_ENABLED</td></tr>
+<tr><td>11</td><td>Kronos Forecasting</td><td><code>KronosStrategy</code></td><td>kronos/strategy.py</td><td><span class="tag tag-cyan">stocks</span><span class="tag tag-lime">fx</span></td><td>KronosModel</td><td>tft</td><td>STRATEGY_KRONOS_ENABLED</td></tr>
+<tr><td>12</td><td>Sentiment</td><td><code>SentimentStrategy</code></td><td>sentiment/strategy.py</td><td><span class="tag tag-magenta">cross</span></td><td>SentimentModel</td><td>tft</td><td>STRATEGY_SENTIMENT_ENABLED</td></tr>
 </table>
+<h4>Base Classes</h4>
+<p><code>StrategyOutput</code>: strategy_name, timestamp, scores: List[AlphaScore], strategy_sharpe_63d, strategy_sharpe_21d, metadata</p>
+<p><code>AlphaScore</code>: symbol, score (z-scored), raw_score, confidence (0-1), direction (LONG/SHORT/NEUTRAL), metadata</p>
 `},
 {id:'ensemble',label:'Ensemble',val:'Bayesian',desc:'60% Sharpe + 40% Regime',detail:`
-<h3>Bayesian Ensemble Combiner</h3>
-<p><code>EnsembleCombiner</code> in <code>strategies/ensemble/combiner.py</code>. Fuses signals from all enabled strategies using a hybrid weighting scheme.</p>
-<h4>Weighting Method</h4>
+<h3>Bayesian Ensemble Combiner &mdash; strategies/ensemble/combiner.py</h3>
+<p>Class: <code>EnsembleCombiner</code>. Fuses signals from all enabled strategies into <code>CombinedSignal</code> per symbol.</p>
+<h4>Weighting Formula</h4>
+<p><code>final_weight = 0.6 * sharpe_weight + 0.4 * regime_weight</code></p>
 <ul>
-<li><strong>60% Sharpe-based</strong>: Rolling Sharpe ratio over 63-bar lookback</li>
-<li><strong>40% Regime-based</strong>: 4-state regime detector adjusts weights per bucket</li>
-<li>Weights clamped to <code>[min_weight=0.05, max_weight=0.50]</code> then renormalized</li>
+<li><strong>Sharpe-based (60%)</strong>: Weight proportional to max(rolling_sharpe_63d, 0). Negative-Sharpe strategies get zero weight.</li>
+<li><strong>Regime-based (40%)</strong>: 4-state detector maps each strategy to a regime bucket, then applies regime-specific allocation.</li>
+<li><strong>Clamping</strong>: Weights clamped to <code>[min_weight=0.05, max_weight=0.50]</code>, then renormalized to sum to 1.0.</li>
 </ul>
-<h4>Bayesian Updater</h4>
+<h4>Bayesian Weight Updater (Optional)</h4>
 <ul>
 <li>Beta-binomial model per strategy</li>
-<li>Exponential decay: <code>&lambda; = 0.995</code></li>
+<li>Prior: Alpha=1, Beta=1 (uniform/uninformative)</li>
+<li>Exponential decay: lambda = 0.995</li>
 <li>Rolling window: 500 bars</li>
-<li>Prior: <code>Alpha=1, Beta=1</code> (uniform)</li>
-<li>Updated daily with win/loss outcome</li>
+<li>State persisted to <code>bayesian_weight_state</code> table</li>
+<li>Enable via <code>ENSEMBLE_USE_BAYESIAN_WEIGHTS=true</code></li>
 </ul>
 <h4>Regime Weight Buckets</h4>
 <table class="tbl">
 <tr><th>Regime</th><th>Momentum</th><th>Mean Rev</th><th>Pairs</th><th>TFT</th></tr>
-<tr><td>Calm + Trending</td><td>0.35</td><td>0.15</td><td>0.20</td><td>0.30</td></tr>
-<tr><td>Calm + Choppy</td><td>0.15</td><td>0.35</td><td>0.30</td><td>0.20</td></tr>
-<tr><td>Volatile + Trending</td><td>0.30</td><td>0.10</td><td>0.25</td><td>0.35</td></tr>
-<tr><td>Volatile + Choppy</td><td>0.10</td><td>0.30</td><td>0.35</td><td>0.25</td></tr>
+<tr><td><span class="tag tag-lime">Calm + Trending</span></td><td>0.35</td><td>0.15</td><td>0.20</td><td>0.30</td></tr>
+<tr><td><span class="tag tag-cyan">Calm + Choppy</span></td><td>0.15</td><td>0.35</td><td>0.30</td><td>0.20</td></tr>
+<tr><td><span class="tag tag-gold">Volatile + Trending</span></td><td>0.30</td><td>0.10</td><td>0.25</td><td>0.35</td></tr>
+<tr><td><span class="tag tag-magenta">Volatile + Choppy</span></td><td>0.10</td><td>0.30</td><td>0.35</td><td>0.25</td></tr>
 </table>
+<h4>Strategy &rarr; Bucket Mapping</h4>
+<ul>
+<li><strong>momentum</strong>: cross_sectional_momentum, sector_rotation, fx_momentum</li>
+<li><strong>mean_reversion</strong>: mean_reversion</li>
+<li><strong>pairs</strong>: pairs_trading, fx_vol_breakout, deep_surrogates, tdgf, vol_arb</li>
+<li><strong>tft</strong>: fx_carry_trend, kronos, sentiment</li>
+</ul>
+<h4>Output</h4>
+<p><code>CombinedSignal</code>: symbol, combined_score, confidence, direction, contributing_strategies: Dict[str, float]. Sorted by |score|, capped at max_total_positions, split equally long/short.</p>
 `},
 {id:'risk',label:'Risk',val:'VaR / CVaR',desc:'Kill switches, correlation gates',detail:`
-<h3>Portfolio Risk Manager (478 lines)</h3>
-<p><code>strategies/risk/portfolio_risk.py</code>. Persistent instance seeded with 30 days of historical returns at startup, fed live daily returns.</p>
-<h4>Risk Metrics</h4>
+<h3>Portfolio Risk Manager &mdash; 478 lines (strategies/risk/portfolio_risk.py)</h3>
+<p>Class: <code>PortfolioRiskManager</code>. Persistent instance seeded with 30 days historical returns at startup, fed live daily returns.</p>
+<h4>Constructor Parameters</h4>
+<table class="tbl">
+<tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+<tr><td>max_portfolio_drawdown</td><td>0.20</td><td>Portfolio-level kill switch threshold</td></tr>
+<tr><td>var_confidence</td><td>0.99</td><td>VaR confidence level</td></tr>
+<tr><td>correlation_alert_threshold</td><td>0.60</td><td>Pairwise correlation alert trigger</td></tr>
+<tr><td>kill_max_drawdown</td><td>0.20</td><td>Per-strategy kill switch drawdown</td></tr>
+<tr><td>kill_min_sharpe</td><td>-1.0</td><td>Per-strategy kill switch Sharpe floor</td></tr>
+</table>
+<h4>Risk Metrics (from assess() method)</h4>
 <ul>
-<li><strong>VaR-99</strong>: Value at Risk at 99% confidence (daily)</li>
-<li><strong>CVaR-95</strong>: Conditional VaR / Expected Shortfall at 95%</li>
+<li><strong>Parametric VaR-99</strong>: Normal distribution, 99% confidence, daily</li>
+<li><strong>Historical VaR-99</strong>: Empirical percentile from return history</li>
+<li><strong>CVaR-95</strong>: Expected Shortfall &mdash; mean of returns below VaR-95</li>
+<li><strong>Portfolio volatility</strong>: Annualized std of daily returns * sqrt(252)</li>
+<li><strong>Worst case daily</strong>: Minimum daily return in history</li>
 <li><strong>Max Drawdown</strong>: Running high-water-mark tracking</li>
+<li><strong>Rolling Sharpe</strong>: 21d and 63d windows</li>
 </ul>
 <h4>Correlation Monitoring</h4>
 <ul>
-<li>Pairwise return correlation computed daily across all active strategies</li>
+<li>Pairwise return correlation computed daily (63-day rolling window)</li>
 <li>If correlation &gt; <strong>0.85</strong>: both strategies get <strong>50% weight reduction</strong></li>
+<li>Alert threshold at 0.60 for early warning</li>
 <li>Prevents concentration risk from correlated alpha sources</li>
 </ul>
 <h4>Kill Switches</h4>
-<ul>
-<li><strong>Per-strategy kill</strong>: Triggered by drawdown threshold or Sharpe &lt; kill_sharpe</li>
-<li><strong>Portfolio-level kill</strong>: Halts ALL trades when total drawdown exceeds limit</li>
-<li>Killed strategies filtered from ensemble before optimization</li>
-<li>Reports logged to <code>paper_risk_reports</code> table</li>
-</ul>
+<table class="tbl">
+<tr><th>Type</th><th>Trigger</th><th>Action</th></tr>
+<tr><td>Per-strategy kill</td><td>drawdown &gt; kill_max_drawdown OR Sharpe &lt; kill_min_sharpe</td><td>Strategy removed from ensemble</td></tr>
+<tr><td>Portfolio kill</td><td>Total drawdown &gt; max_portfolio_drawdown</td><td>ALL trades halted</td></tr>
+<tr><td>Revive</td><td>Manual via <code>revive_strategy(name, operator)</code></td><td>Strategy re-enabled</td></tr>
+</table>
+<h4>Capital Allocation</h4>
+<p>Risk-parity method: <code>allocation = sharpe_63d / volatility</code>. Higher Sharpe and lower vol get more capital.</p>
+<h4>Reports</h4>
+<p>Logged to <code>paper_risk_reports</code> table: drawdown, var_99, cvar_95, sharpe_21, killed_strategies[], correlation_alerts (JSONB), portfolio_breached flag, raw_json.</p>
 `},
 {id:'execution',label:'Execution',val:'Alpaca',desc:'Paper + live trading',detail:`
-<h3>Execution Layer</h3>
-<h4>AlpacaBroker (282 lines)</h4>
+<h3>Execution Layer &mdash; AlpacaBroker + VWAP + Audit</h3>
+<h4>AlpacaBroker (282 lines) &mdash; trading/broker/alpaca.py</h4>
+<table class="tbl">
+<tr><th>Method</th><th>Alpaca Endpoint</th><th>Return Type</th></tr>
+<tr><td><code>connect()</code></td><td>&mdash;</td><td>Creates aiohttp.ClientSession (timeout: 30s)</td></tr>
+<tr><td><code>get_account()</code></td><td>GET /v2/account</td><td>AccountInfo (equity, cash, buying_power, portfolio_value)</td></tr>
+<tr><td><code>get_positions()</code></td><td>GET /v2/positions</td><td>List[PositionInfo] (symbol, qty, side, market_value, unrealized_pnl, avg_entry)</td></tr>
+<tr><td><code>submit_order(req)</code></td><td>POST /v2/orders</td><td>OrderResult (order_id, status, filled_qty, filled_price)</td></tr>
+<tr><td><code>close_position(ticker)</code></td><td>DELETE /v2/positions/{ticker}</td><td>OrderResult with 2x retry on failure</td></tr>
+<tr><td><code>close_all_positions()</code></td><td>Loop DELETE /v2/positions/*</td><td>List[OrderResult]</td></tr>
+</table>
+<h4>Order Types</h4>
 <ul>
-<li>Async <code>aiohttp.ClientSession</code> with 30s timeout</li>
-<li>Order types: Market, Limit, IOC</li>
-<li>Position close with 2x retry on failure</li>
-<li>Slippage tracked per order in <code>paper_execution_stats</code></li>
+<li><strong>Market</strong>: Immediate execution at best available price</li>
+<li><strong>Limit</strong>: Execute at specified price or better</li>
+<li><strong>IOC</strong> (Immediate or Cancel): Fill what's available, cancel rest</li>
 </ul>
-<h4>VWAP Execution Model</h4>
+<h4>VWAP Execution Model (trading/execution/vwap.py)</h4>
+<p>Splits large orders into time-weighted child slices to minimize market impact.</p>
 <ul>
-<li>Splits large orders into 5 child slices</li>
-<li>60-second intervals between slices</li>
-<li>Each slice capped at 10% of ADV</li>
-<li>Enabled via <code>EXECUTION_USE_VWAP=true</code></li>
+<li><strong>5 child slices</strong> per parent order</li>
+<li><strong>60-second intervals</strong> between slices</li>
+<li><strong>10% ADV cap</strong> per slice (prevents volume spike)</li>
+<li><strong>Fallback</strong>: Market order on VWAP failure</li>
+<li>Execution stats logged to <code>paper_execution_stats</code>: slippage_bps, fill_rate, num_slices, elapsed_s</li>
 </ul>
-<h4>Audit Trail (277 lines)</h4>
-<p><code>AuditLogger</code> persists every pipeline event to PostgreSQL: order submissions, fills, rejections, guardrail triggers, risk alerts, and system events.</p>
+<h4>Audit Trail (277 lines) &mdash; trading/persistence/audit.py</h4>
+<p>Class: <code>AuditLogger</code>. Logs to 3 PostgreSQL tables:</p>
+<ul>
+<li><code>circuit_breaker_events</code>: trip/reset events with drawdown details, positions_closed count</li>
+<li><code>circuit_breaker_closures</code>: Per-position closure details linked to events via FK</li>
+<li><code>portfolio_snapshots</code>: Periodic/trip/reset/SOD snapshots of portfolio value + HWM</li>
+</ul>
+<p>Methods: <code>log_trip_event()</code>, <code>log_closure()</code>, <code>log_reset_event()</code>, <code>log_portfolio_snapshot()</code>, <code>get_recent_events()</code></p>
 `},
 {id:'safety',label:'Safety',val:'5 Guardrails',desc:'Variance, leverage, calibration',detail:`
-<h3>5 Safety Guardrails</h3>
-<p>Automated pre-trade checks in <code>trading/safety/guardrails.py</code>. Added after March 10 incident analysis.</p>
+<h3>5 Safety Guardrails &mdash; trading/safety/guardrails.py</h3>
+<p>Added after March 10 incident analysis. Each guardrail is an independent class with a <code>check()</code> method returning a typed result.</p>
 <table class="tbl">
-<tr><th>#</th><th>Guardrail</th><th>Threshold</th><th>On Failure</th></tr>
-<tr><td>1</td><td>Signal Variance</td><td><code>std &lt; 0.01</code></td><td>HALT pipeline, Discord critical alert</td></tr>
-<tr><td>2</td><td>Leverage Gate</td><td><code>leverage &gt; 1.5x</code></td><td>Skip order batch, continue to reporting</td></tr>
-<tr><td>3</td><td>Calibration Health</td><td><code>tolerance: 1e-6</code></td><td>Log error, skip calibration</td></tr>
-<tr><td>4</td><td>Model Promotion</td><td><code>Sharpe &lt; 0.5</code></td><td>Reject model, log warning</td></tr>
-<tr><td>5</td><td>Execution Failure</td><td><code>rate &gt; 25%</code> in 1h</td><td>Pause remaining orders, Discord alert</td></tr>
+<tr><th>#</th><th>Guardrail</th><th>Class</th><th>Check Method</th><th>Env Var</th><th>Default</th><th>On Failure</th></tr>
+<tr><td>1</td><td>Signal Variance</td><td><code>SignalVarianceGuard</code></td><td><code>check(scores: List[float]) &rarr; SignalVarianceResult</code></td><td><code>GUARDRAIL_SIGNAL_MIN_STD</code></td><td>0.01</td><td>HALT pipeline, Discord critical alert</td></tr>
+<tr><td>2</td><td>Leverage Gate</td><td><code>LeverageGate</code></td><td><code>check(gross_leverage: float) &rarr; LeverageCheckResult</code></td><td><code>GUARDRAIL_MAX_LEVERAGE</code></td><td>1.5</td><td>Skip order batch, continue reporting</td></tr>
+<tr><td>3</td><td>Calibration Health</td><td><code>CalibrationHealthCheck</code></td><td><code>check_platt(a, b)</code>, <code>check_generic(calibrator)</code></td><td><code>GUARDRAIL_CALIBRATION_TOLERANCE</code></td><td>1e-6</td><td>Log error, skip calibration</td></tr>
+<tr><td>4</td><td>Model Promotion</td><td><code>ModelPromotionGate</code></td><td><code>check(model_name, val_sharpe) &rarr; ModelPromotionResult</code></td><td><code>GUARDRAIL_MIN_PROMOTION_SHARPE</code></td><td>0.5</td><td>Reject model, log warning</td></tr>
+<tr><td>5</td><td>Execution Failure</td><td><code>ExecutionFailureMonitor</code></td><td><code>record(success), check() &rarr; ExecutionHealthResult</code></td><td><code>GUARDRAIL_MAX_EXEC_FAILURE_RATE</code> / <code>GUARDRAIL_EXEC_WINDOW_SECONDS</code></td><td>0.25 / 3600</td><td>Pause remaining orders, Discord alert</td></tr>
 </table>
-<h4>Environment Variables</h4>
-<div>
-<code>GUARDRAIL_SIGNAL_MIN_STD</code> <code>GUARDRAIL_MAX_LEVERAGE</code> <code>GUARDRAIL_CALIBRATION_TOLERANCE</code> <code>GUARDRAIL_MIN_PROMOTION_SHARPE</code> <code>GUARDRAIL_MAX_EXEC_FAILURE_RATE</code> <code>GUARDRAIL_EXEC_WINDOW_SECONDS</code>
-</div>
+<h4>Result Types</h4>
+<ul>
+<li><code>SignalVarianceResult</code>: passed, std_dev, num_signals, message</li>
+<li><code>LeverageCheckResult</code>: passed, current_leverage, max_leverage, message</li>
+<li><code>CalibrationCheckResult</code>: passed, is_fitted, is_identity, message, details</li>
+<li><code>ModelPromotionResult</code>: passed, val_sharpe, min_sharpe, model_name, message</li>
+<li><code>ExecutionHealthResult</code>: passed, failure_rate, max_failure_rate, total_orders, failed_orders, message</li>
+</ul>
+<h4>Pipeline Integration Points</h4>
+<ol>
+<li><strong>Signal Variance</strong>: After ensemble combine, before portfolio optimization (step 6)</li>
+<li><strong>Leverage Gate</strong>: After optimization, before order batch submission (step 9)</li>
+<li><strong>Calibration Health</strong>: At startup + before daily run</li>
+<li><strong>Model Promotion</strong>: Before model goes live (MLflow registry transition)</li>
+<li><strong>Execution Failure</strong>: Per-order during execution loop, rolling window deque (step 10)</li>
+</ol>
 `},
 {id:'regime',label:'Regime',val:'4 States',desc:'Calm/volatile x trend/chop',detail:`
-<h3>4-State Regime Detector</h3>
-<p><code>strategies/regime/detector.py</code>. Classifies the current market into one of four states, which directly controls ensemble strategy weights.</p>
+<h3>4-State Regime Detector &mdash; strategies/regime/detector.py</h3>
+<p>Class: <code>RegimeDetector</code>. Classifies market into one of four states using VIX, market breadth, and realized volatility.</p>
 <h4>Regime States</h4>
 <table class="tbl">
-<tr><th>State</th><th>VIX</th><th>Breadth</th><th>Favored Strategies</th></tr>
-<tr><td><span class="tag tag-lime">calm_trending</span></td><td>&lt; 20</td><td>&gt; 0.6 (trending)</td><td>Momentum, TFT</td></tr>
-<tr><td><span class="tag tag-cyan">calm_choppy</span></td><td>&lt; 20</td><td>&lt; 0.4 (choppy)</td><td>Mean Reversion, Pairs</td></tr>
-<tr><td><span class="tag tag-gold">volatile_trending</span></td><td>&gt; 30</td><td>&gt; 0.6</td><td>TFT, Momentum</td></tr>
-<tr><td><span class="tag tag-magenta">volatile_choppy</span></td><td>&gt; 30</td><td>&lt; 0.4</td><td>Pairs, Mean Reversion</td></tr>
+<tr><th>State</th><th>VIX</th><th>Breadth</th><th>Favored</th><th>Exposure Scalar</th></tr>
+<tr><td><span class="tag tag-lime">CALM_TRENDING</span></td><td>&lt; 20</td><td>&gt; 0.6 (broad participation)</td><td>Momentum, TFT</td><td>1.0 (full)</td></tr>
+<tr><td><span class="tag tag-cyan">CALM_CHOPPY</span></td><td>&lt; 20</td><td>&lt; 0.4 (narrow breadth)</td><td>Mean Reversion, Pairs</td><td>0.8</td></tr>
+<tr><td><span class="tag tag-gold">VOLATILE_TRENDING</span></td><td>&gt; 30</td><td>&gt; 0.6 (directional)</td><td>TFT, Momentum (reduced size)</td><td>0.5</td></tr>
+<tr><td><span class="tag tag-magenta">VOLATILE_CHOPPY</span></td><td>&gt; 30</td><td>&lt; 0.4 (no direction)</td><td>Pairs, Mean Reversion (defensive)</td><td>0.3</td></tr>
 </table>
-<h4>Detection Inputs</h4>
-<ul>
-<li><strong>VIX level</strong>: Low (&lt;20), Medium (20-30), High (&gt;30)</li>
-<li><strong>Market breadth</strong>: 50-day lookback, % of stocks above MA</li>
-<li><strong>Realized vol</strong>: 21-day rolling window (<code>STRATEGY_REGIME_RVOL_WINDOW</code>)</li>
-</ul>
-<h4>Bear Regime Scaling (HI-4 fix)</h4>
-<p>In bear regimes, <code>exposure_scalar</code> only reduces <strong>long</strong> positions. Short positions are preserved at full weight to maintain hedging.</p>
+<h4>Detection Algorithm</h4>
+<ol>
+<li><strong>VIX Level</strong>: Explicit value &gt; column in data &gt; realized vol proxy * 100</li>
+<li><strong>Market Breadth</strong>: % of stocks above 50-day MA (50-day lookback)</li>
+<li><strong>Realized Volatility</strong>: SPY (preferred) or QQQ, annualized std * sqrt(252), 21-day window</li>
+<li><strong>Classification</strong>: volatile if VIX &gt; 20 or RVol &gt; 0.25; trending if breadth &gt; 0.6</li>
+<li><strong>Confidence</strong>: (distance from VIX midpoint + distance from breadth midpoint) / 2, clamped [0, 1]</li>
+</ol>
+<h4>Exposure Scalar (HI-4 Fix)</h4>
+<p>Formula: <code>min(target_vol / realized_vol, 1.0)</code> with VIX penalty. Clamped to [0.3, 1.0]. In bear regimes, scalar only reduces <strong>long</strong> positions &mdash; short positions are preserved at full weight to maintain hedging.</p>
+<h4>Output: RegimeState</h4>
+<p><code>{ regime, vix_level, market_breadth, realized_vol, is_volatile, is_trending, confidence, strategy_weights: {momentum, mean_reversion, pairs, tft}, exposure_scalar }</code></p>
 `},
-{id:'messaging',label:'Messaging',val:'Kafka',desc:'7 topics, DLQ, schema registry',detail:`
-<h3>Kafka Event Streaming</h3>
-<p>KRaft mode (no ZooKeeper). 7 topics across 5 microservices. All 4 consumers use manual commit with DLQ fallback.</p>
-<h4>Dead Letter Queue</h4>
-<ul>
-<li>PostgreSQL-backed (<code>dead_letter_queue</code> table)</li>
-<li>Status lifecycle: PENDING &rarr; RETRYING &rarr; RESOLVED/EXHAUSTED</li>
-<li>Exponential backoff: base 1s, 2x multiplier, max 5 retries, max 60s delay</li>
-<li>Jitter: 0&ndash;25% randomization</li>
-<li>Background retry worker polls every 30s</li>
-<li><code>/dlq</code> dashboard endpoint in paper trader</li>
-</ul>
+{id:'messaging',label:'Messaging',val:'Kafka + DLQ',desc:'7 topics, DLQ, schema registry',detail:`
+<h3>Kafka Event Streaming + Dead Letter Queue</h3>
+<h4>Kafka (7 Topics, 5 Services)</h4>
+<p>KRaft mode, 168h retention, 5GB max per topic, 1GB segments. All 4 consumers: manual commit + DLQ fallback.</p>
+<table class="tbl">
+<tr><th>Topic</th><th>Producer</th><th>Consumer</th></tr>
+<tr><td><code>market-data</code></td><td>data-ingestion (8001)</td><td>tft-predictor (8003)</td></tr>
+<tr><td><code>sentiment-scores</code></td><td>sentiment-engine (8002)</td><td>tft-predictor (8003)</td></tr>
+<tr><td><code>tft-predictions</code></td><td>tft-predictor (8003)</td><td>trading-engine (8004)</td></tr>
+<tr><td><code>trading-signals</code></td><td>trading-engine (8004)</td><td>orchestrator (8005)</td></tr>
+<tr><td><code>order-updates</code></td><td>trading-engine (8004)</td><td>orchestrator (8005)</td></tr>
+<tr><td><code>portfolio-updates</code></td><td>orchestrator (8005)</td><td>all services</td></tr>
+<tr><td><code>system-events</code></td><td>all services</td><td>orchestrator (8005)</td></tr>
+</table>
+<h4>Dead Letter Queue (services/common/dlq.py)</h4>
+<table class="tbl">
+<tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+<tr><td>Base delay</td><td>1.0s</td><td>Initial retry delay</td></tr>
+<tr><td>Multiplier</td><td>2x</td><td>Exponential backoff factor</td></tr>
+<tr><td>Max retries</td><td>5</td><td>Before EXHAUSTED status</td></tr>
+<tr><td>Max delay</td><td>60s</td><td>Delay cap</td></tr>
+<tr><td>Jitter</td><td>0-25%</td><td>Random delay addition</td></tr>
+<tr><td>Retry poll</td><td>30s</td><td>Background worker interval</td></tr>
+<tr><td>Batch size</td><td>50</td><td>Messages per poll</td></tr>
+</table>
+<p>Status lifecycle: <code>PENDING &rarr; RETRYING &rarr; RESOLVED / EXHAUSTED</code></p>
+<p>Backoff formula: <code>delay = min(1.0 * 2^retry_count + jitter, 60s)</code></p>
+<p>Persisted to <code>dead_letter_queue</code> PostgreSQL table. Dashboard at <code>/dlq</code> endpoint.</p>
+<h4>Schema Registry</h4>
+<p>Confluent Schema Registry (port 8085). Thread-safe singleton connection cache. Exponential backoff on connection failure (max 3 retries). All Kafka messages validated against registered schemas.</p>
 `},
-{id:'monitoring',label:'Monitoring',val:'Prometheus',desc:'Metrics, Grafana, alerts',detail:`
-<h3>Monitoring Stack</h3>
+{id:'monitoring',label:'Monitoring',val:'Full Stack',desc:'Prometheus, Grafana, Discord',detail:`
+<h3>Monitoring Stack &mdash; Prometheus + Grafana + Notifications</h3>
 <h4>Prometheus (port 9090)</h4>
-<p>9 custom metrics scraped from <code>/metrics</code>: <code>apex_signal_score</code>, <code>apex_strategy_weight</code>, <code>apex_regime_state</code>, <code>apex_ensemble_confidence</code>, <code>apex_execution_slippage_bps</code>, <code>apex_pipeline_duration_seconds</code>, <code>apex_risk_max_drawdown</code>, <code>apex_risk_var_99</code>, <code>apex_risk_cvar_95</code>.</p>
+<p>9 custom metrics scraped from paper trader <code>/metrics</code> endpoint. See Prometheus card for full metric list.</p>
 <h4>Grafana (port 3000)</h4>
-<p>8-panel dashboard: signal heatmap, strategy weights bar, regime timeline, confidence histogram, slippage scatter, pipeline duration, risk gauges, correlation matrix.</p>
-<h4>Notifications</h4>
+<p>8-panel dashboard: signal heatmap, strategy weights, regime timeline, confidence histogram, slippage scatter, pipeline duration, risk gauges, correlation matrix. See Grafana card for details.</p>
+<h4>Notifications &mdash; trading/notifications/alerts.py (202 lines)</h4>
+<p>Class: <code>NotificationManager</code>. Two channels:</p>
+<table class="tbl">
+<tr><th>Channel</th><th>Class</th><th>Env Var</th><th>Use Case</th></tr>
+<tr><td>Discord</td><td><code>DiscordWebhookSender</code></td><td><code>DISCORD_WEBHOOK_URL</code></td><td>Real-time alerts + daily reports</td></tr>
+<tr><td>Email</td><td><code>EmailSender</code></td><td><code>EMAIL_PASSWORD</code>, <code>EMAIL_SENDER</code>, <code>EMAIL_RECIPIENT</code></td><td>Daily P&L summary + critical alerts</td></tr>
+</table>
+<h4>Alert Types</h4>
 <ul>
-<li><code>NotificationManager</code> (202 lines): Discord webhooks + Email (SMTP)</li>
-<li>Critical alerts: signal variance halt, execution failure pause, circuit breaker trip</li>
-<li>Daily reports: P&L summary, strategy weights, regime state</li>
+<li><strong>Critical</strong>: Signal variance halt, execution failure pause, circuit breaker trip</li>
+<li><strong>Warning</strong>: High correlation detected, strategy killed, leverage near limit</li>
+<li><strong>Info</strong>: Daily P&L summary, strategy weights, regime state change</li>
 </ul>
+<h4>Environment Validator &mdash; utils/env_validator.py</h4>
+<p>Called at paper trader startup: <code>validate(strict=True)</code>. Checks 3 required vars (<code>DB_PASSWORD</code>, <code>ALPACA_API_KEY</code>, <code>ALPACA_SECRET_KEY</code>), 10 optional vars with defaults, and detects placeholder patterns (<code>your_</code>, <code>CHANGE_ME</code>, <code>xxx</code>, <code>placeholder</code>).</p>
+<h4>LLM Signal Analysis &mdash; agents/signal_analyst.py (~500 lines)</h4>
+<p>Class: <code>SignalAnalyst</code>. Connects to Ollama for post-pipeline analysis. Detects patterns, generates narrative summary, flags anomalies. Results logged to <code>paper_signal_analyses</code> table. Enable via <code>LLM_ANALYST_ENABLED=true</code>.</p>
 `}
 ];
 
@@ -760,10 +1027,7 @@ function toggleDetail(group,idx){
   panel.innerHTML=data[idx].detail;
   panel.classList.remove('open');
 
-  // Position panel after the clicked card's row
   const grid=panel.parentElement;
-  const cardRect=card.getBoundingClientRect();
-  const gridRect=grid.getBoundingClientRect();
   const cols=getComputedStyle(grid).gridTemplateColumns.split(' ').length;
   const row=Math.floor(idx/cols);
   const insertAfterIdx=Math.min((row+1)*cols-1,data.length-1);
@@ -797,51 +1061,65 @@ function doSearch(q){
   const nodes=[];
   while(walker.nextNode())nodes.push(walker.currentNode);
   nodes.forEach(n=>{
-    const span=document.createElement('span');
-    span.innerHTML=n.textContent.replace(regex,'<mark>$1</mark>');
-    n.parentNode.replaceChild(span,n);
+    const frag=document.createDocumentFragment();
+    let last=0;
+    n.textContent.replace(regex,(match,p1,offset)=>{
+      frag.appendChild(document.createTextNode(n.textContent.slice(last,offset)));
+      const mark=document.createElement('mark');
+      mark.textContent=match;
+      frag.appendChild(mark);
+      last=offset+match.length;
+    });
+    frag.appendChild(document.createTextNode(n.textContent.slice(last)));
+    n.parentNode.replaceChild(frag,n);
   });
   const first=document.querySelector('mark');
   if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 // ── PARTICLES ──
-(function(){
-  const c=document.getElementById('bg'),ctx=c.getContext('2d');
-  let w,h,pts=[];
-  function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
-  resize();addEventListener('resize',resize);
-  for(let i=0;i<40;i++)pts.push({x:Math.random()*2000,y:Math.random()*5000,r:Math.random()*1.5+.5,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,a:Math.random()*.2+.05});
-  (function draw(){
-    ctx.clearRect(0,0,w,h);
-    pts.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,229,255,${p.a})`;ctx.fill()});
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,229,255,${.05*(1-d/110)})`;ctx.stroke()}}
-    requestAnimationFrame(draw);
-  })();
-})();
+const canvas=document.getElementById('bg'),ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+resize();addEventListener('resize',resize);
+const particles=Array.from({length:60},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+.5}));
+function drawParticles(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,229,255,.3)';ctx.fill();
+  });
+  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+    const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<120){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(0,229,255,${.12*(1-d/120)})`;ctx.stroke()}
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 
 // ── COUNTERS ──
-function animCount(el,target){
-  const start=performance.now(),dur=1800;
-  (function tick(now){
-    const t=Math.min((now-start)/dur,1),ease=1-Math.pow(1-t,3);
-    el.textContent=Math.round(target*ease).toLocaleString();
-    if(t<1)requestAnimationFrame(tick);
-  })(performance.now());
-}
-
-// ── OBSERVERS ──
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      const num=e.target.querySelector('[data-count]');
+      if(num&&!num.dataset.done){
+        num.dataset.done='1';
+        const target=+num.dataset.count;
+        const dur=1500,start=performance.now();
+        (function step(now){
+          const p=Math.min((now-start)/dur,1);
+          num.textContent=Math.floor(target*p);
+          if(p<1)requestAnimationFrame(step);else num.textContent=target;
+        })(start);
+      }
+    }
+  });
 },{threshold:.2});
-document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+document.querySelectorAll('.fade-up,.hero-stat').forEach(el=>obs.observe(el));
 
-const heroIO=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.hero-stat .num[data-count]').forEach(el=>{if(!el.dataset.done){el.dataset.done='1';animCount(el,+el.dataset.count)}});heroIO.unobserve(e.target)}});
-},{threshold:.3});
-heroIO.observe(document.querySelector('.hero'));
-
-// ── BTT ──
+// ── BACK TO TOP ──
 addEventListener('scroll',()=>{document.getElementById('btt').classList.toggle('show',scrollY>600)});
 
 // ── INIT ──
