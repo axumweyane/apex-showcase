@@ -12,11 +12,22 @@ Interactive documentation for the **APEX multi-strategy algorithmic trading plat
 
 **https://axumweyane.github.io/apex-showcase/**
 
+## Screenshots
+
+### Landing Page with Backtest Performance
+![Landing Page](screenshots/landing-hero.png)
+![Performance Metrics](screenshots/landing-performance.png)
+
+### Animated System Tour
+![10 ML Models](screenshots/system-models.png)
+![12 Strategy Sliders](screenshots/system-strategies.png)
+![Safety Guardrails](screenshots/system-guardrails.png)
+
 ## Pages
 
 | Page | Description |
 |------|-------------|
-| [Landing Page](https://axumweyane.github.io/apex-showcase/) | Platform overview with animated metrics, tech stack, and architecture |
+| [Landing Page](https://axumweyane.github.io/apex-showcase/) | Platform overview with animated metrics, backtest performance, tech stack |
 | [Animated System Tour](https://axumweyane.github.io/apex-showcase/system.html) | 10-scene interactive journey through the entire APEX pipeline |
 | [Visual Architecture Guide](https://axumweyane.github.io/apex-showcase/guide.html) | Printable reference with tables, diagrams, and the 17-step pipeline |
 | [One-Page Summary](https://axumweyane.github.io/apex-showcase/summary.html) | Print-to-PDF executive summary for investors and employers |
@@ -46,7 +57,7 @@ Python 3.12, PyTorch, FastAPI, PostgreSQL, TimescaleDB, Redis, Kafka, Docker, Pr
 
 ## Source Code
 
-The main APEX codebase is at [github.com/axumweyane/TFT-main](https://github.com/axumweyane).
+The main APEX codebase is at [github.com/axumweyane/lastcode10](https://github.com/axumweyane/lastcode10).
 
 ## License
 
