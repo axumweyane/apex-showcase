@@ -3,33 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APEX - Algorithmic Trading Platform</title>
-<meta name="description" content="APEX: Multi-strategy algorithmic trading platform with 10 ML models, 12 strategies, and production-grade infrastructure.">
+<title>APEX - Deep Dive Showcase</title>
+<meta name="description" content="APEX: Interactive deep-dive into a production algorithmic trading platform with 10 ML models, 12 strategies, and full microservices infrastructure.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --cyan:#00e5ff;--lime:#76ff03;--magenta:#e040fb;--gold:#ffd740;
-  --bg:#0a0e1a;--card:#111827;--card2:#1a2236;--text:#e0e6f0;
-  --border:#1e293b;
-}
+:root{--cyan:#00e5ff;--lime:#76ff03;--magenta:#e040fb;--gold:#ffd740;--bg:#0a0e1a;--card:#111827;--card2:#1a2236;--text:#e0e6f0;--border:#1e293b;--detail-bg:#0d1220}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;overflow-x:hidden}
+canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.25}
 
-canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
 nav .logo{font-size:1.2rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
 nav .nav-links{display:flex;gap:20px}
 nav .nav-links a{color:#8892a8;text-decoration:none;font-size:.85rem;font-weight:500;transition:color .3s}
 nav .nav-links a:hover{color:var(--cyan)}
+
+/* Search */
+.search-wrap{position:relative;margin:0 16px}
+.search-wrap input{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:6px;padding:6px 12px 6px 30px;color:var(--text);font-size:.82rem;width:180px;outline:none;transition:border-color .3s}
+.search-wrap input:focus{border-color:var(--cyan);width:240px}
+.search-wrap::before{content:'';position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;border:2px solid #5a6680;border-radius:50%;pointer-events:none}
 
 /* Hero */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;z-index:1}
 .hero-badge{display:inline-block;padding:4px 14px;border-radius:20px;border:1px solid rgba(0,229,255,.3);background:rgba(0,229,255,.06);font-size:.72rem;font-weight:600;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
 .hero h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1.1;margin-bottom:16px}
 .hero h1 .gradient{background:linear-gradient(135deg,var(--cyan),var(--magenta),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero .subtitle{font-size:1.15rem;color:var(--cyan);font-weight:600;margin-bottom:6px}
-.hero p{font-size:1.05rem;color:#8892a8;max-width:620px;margin-bottom:40px}
+.hero .subtitle{font-size:1.1rem;color:var(--cyan);font-weight:600;margin-bottom:6px}
+.hero p{font-size:1rem;color:#8892a8;max-width:620px;margin-bottom:40px}
 .hero-stats{display:flex;gap:32px;flex-wrap:wrap;justify-content:center;margin-bottom:48px}
 .hero-stat{text-align:center}
 .hero-stat .num{font-size:2.2rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
@@ -39,92 +41,111 @@ nav .nav-links a:hover{color:var(--cyan)}
 .btn-primary{background:linear-gradient(135deg,var(--cyan),#0097a7);color:#000;border-color:var(--cyan)}
 .btn-primary:hover{box-shadow:0 0 30px rgba(0,229,255,.4);transform:translateY(-2px)}
 .btn-secondary{background:var(--card2);color:var(--text);border-color:var(--border)}
-.btn-secondary:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.15);transform:translateY(-2px)}
+.btn-secondary:hover{border-color:var(--cyan);transform:translateY(-2px)}
 
-section{position:relative;z-index:1;padding:80px 24px}
+/* Sections */
+section{position:relative;z-index:1;padding:80px 24px;max-width:1100px;margin:0 auto}
 .section-title{text-align:center;margin-bottom:48px}
 .section-title h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;margin-bottom:8px}
 .section-title p{color:#8892a8;font-size:.95rem;max-width:500px;margin:0 auto}
 
-/* Metrics */
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin:0 auto}
-.metric-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
-.metric-card:hover{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,229,255,.1)}
-.metric-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .4s}
-.metric-card:hover::before{opacity:1}
-.metric-card .m-icon{font-size:1.8rem;margin-bottom:8px}
-.metric-card .m-num{font-size:2.8rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--lime));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;font-variant-numeric:tabular-nums}
-.metric-card .m-label{font-size:.8rem;color:#8892a8;margin-top:4px;text-transform:uppercase;letter-spacing:1px}
-
-/* Performance */
-.perf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1000px;margin:0 auto}
-.perf-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;text-align:center;transition:all .4s;position:relative;overflow:hidden}
-.perf-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,229,255,.12)}
-.perf-card .pf-val{font-size:2.4rem;font-weight:800;line-height:1.1;margin-bottom:4px}
-.perf-card .pf-label{font-size:.78rem;color:#8892a8;text-transform:uppercase;letter-spacing:1px}
-.perf-card .pf-sub{font-size:.72rem;color:#5a6680;margin-top:6px}
+/* Performance cards */
+.perf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.perf-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 18px;text-align:center}
+.perf-card .pf-val{font-size:2rem;font-weight:800;line-height:1.1}
+.perf-card .pf-label{font-size:.72rem;color:#8892a8;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
 .perf-card.green .pf-val{color:var(--lime)}
 .perf-card.cyan .pf-val{color:var(--cyan)}
 .perf-card.gold .pf-val{color:var(--gold)}
 .perf-card.magenta .pf-val{color:var(--magenta)}
 
-/* Equity curve */
-.equity-wrap{max-width:900px;margin:40px auto 0;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative}
-.equity-wrap h3{font-size:.85rem;color:#8892a8;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;text-align:center}
-.equity-wrap canvas{width:100%;height:200px}
+/* Interactive grid cards */
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.igrid.arch{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.icard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 16px;text-align:center;cursor:pointer;transition:all .35s;position:relative;overflow:hidden}
+.icard:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,229,255,.1)}
+.icard.active{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.15)}
+.icard::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s}
+.icard:hover::after,.icard.active::after{opacity:1}
+.icard .ic-logo{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;border-radius:10px;margin:0 auto 10px}
+.icard .ic-name{font-size:.82rem;font-weight:700}
+.icard .ic-hint{font-size:.62rem;color:#5a6680;margin-top:4px}
 
-/* Tech Stack */
-.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;max-width:800px;margin:0 auto}
-.tech-item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px 16px;border-radius:12px;border:1px solid var(--border);background:var(--card);transition:all .4s;cursor:default}
-.tech-item:hover{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 4px 20px rgba(0,229,255,.1)}
-.tech-item .tech-logo{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:800;border-radius:8px}
-.tech-item .tech-name{font-size:.78rem;font-weight:600;color:var(--text)}
+/* Arch cards */
+.icard.arch-card .ic-label{font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:#5a6680;margin-bottom:4px}
+.icard.arch-card .ic-val{font-size:1.3rem;font-weight:700;color:var(--gold)}
+.icard.arch-card .ic-desc{font-size:.68rem;color:#8892a8;margin-top:4px}
 
-/* Docs cards */
-.docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:900px;margin:0 auto}
-.doc-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .4s;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
-.doc-card:hover{border-color:var(--cyan);transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,229,255,.12)}
-.doc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--magenta));opacity:0;transition:opacity .4s}
-.doc-card:hover::after{opacity:1}
-.doc-card .dc-icon{font-size:2.4rem}
-.doc-card .dc-title{font-size:1.2rem;font-weight:700}
-.doc-card .dc-desc{font-size:.85rem;color:#8892a8;line-height:1.6}
-.doc-card .dc-arrow{font-size:.85rem;color:var(--cyan);font-weight:600;margin-top:auto;padding-top:8px}
+/* Detail panel */
+.detail-panel{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s,padding .4s;opacity:0;background:var(--detail-bg);border:1px solid transparent;border-radius:14px;margin-top:0;grid-column:1/-1}
+.detail-panel.open{max-height:3000px;opacity:1;padding:28px 24px;border-color:var(--border);margin-top:14px}
+.detail-panel h3{font-size:1rem;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--cyan)}
+.detail-panel h4{font-size:.82rem;font-weight:700;margin:16px 0 8px;color:var(--gold)}
+.detail-panel p,.detail-panel li{font-size:.82rem;color:#c0c8d8;line-height:1.7}
+.detail-panel ul{list-style:none;padding-left:0}
+.detail-panel li{padding:3px 0 3px 14px;position:relative}
+.detail-panel li::before{content:'';position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--cyan)}
+.detail-panel code{background:rgba(0,229,255,.08);color:var(--cyan);padding:1px 6px;border-radius:4px;font-size:.78rem;font-family:'Cascadia Code',monospace}
+.detail-panel .tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:.75rem}
+.detail-panel .tbl th{text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;color:#8892a8;padding:6px 8px;border-bottom:1px solid var(--border);background:rgba(0,0,0,.2)}
+.detail-panel .tbl td{padding:5px 8px;border-bottom:1px solid rgba(30,41,59,.4);color:#b8c0d0}
+.detail-panel .tbl tr:hover td{background:rgba(0,229,255,.03)}
+.detail-panel .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:600;margin:2px}
+.tag-cyan{background:rgba(0,229,255,.12);color:var(--cyan)}
+.tag-lime{background:rgba(118,255,3,.12);color:var(--lime)}
+.tag-gold{background:rgba(255,215,64,.12);color:var(--gold)}
+.tag-magenta{background:rgba(224,64,251,.12);color:var(--magenta)}
+.detail-panel .ep{display:inline-block;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.15);border-radius:4px;padding:2px 8px;margin:3px;font-size:.72rem;font-family:monospace;color:var(--cyan)}
+.detail-panel .metric-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:.78rem}
+.detail-panel .metric-row code{min-width:200px}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 
-/* Architecture */
-.arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;max-width:900px;margin:0 auto}
-.arch-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center;transition:all .3s}
-.arch-item:hover{border-color:var(--gold);box-shadow:0 0 20px rgba(255,215,64,.08)}
-.arch-item .ai-label{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:#5a6680;margin-bottom:6px}
-.arch-item .ai-val{font-size:1.3rem;font-weight:700;color:var(--gold)}
-.arch-item .ai-desc{font-size:.7rem;color:#8892a8;margin-top:4px}
+/* Docs */
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.doc-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all .4s}
+.doc-card:hover{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,229,255,.1)}
+.doc-card .dc-icon{font-size:2rem}
+.doc-card .dc-title{font-size:1.1rem;font-weight:700}
+.doc-card .dc-desc{font-size:.82rem;color:#8892a8;line-height:1.6}
+.doc-card .dc-arrow{font-size:.82rem;color:var(--cyan);font-weight:600;margin-top:auto}
 
+/* Back to top */
+#btt{position:fixed;bottom:24px;right:24px;z-index:99;width:44px;height:44px;border-radius:50%;background:var(--cyan);color:#000;border:none;cursor:pointer;font-size:1.2rem;font-weight:700;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,229,255,.3);transition:transform .3s}
+#btt:hover{transform:scale(1.1)}
+#btt.show{display:flex}
+
+/* Footer */
 footer{position:relative;z-index:1;text-align:center;padding:40px 24px;border-top:1px solid var(--border);font-size:.8rem;color:#5a6680}
 footer a{color:var(--cyan);text-decoration:none}
-footer a:hover{text-decoration:underline}
 
-@media(max-width:600px){
-  .hero-stats{gap:20px}
-  .hero-stat .num{font-size:1.6rem}
-  nav .nav-links{gap:12px}
-  nav .nav-links a{font-size:.75rem}
-  .docs-grid{grid-template-columns:1fr}
-  .perf-grid{grid-template-columns:repeat(2,1fr)}
-}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.fade-up{opacity:0;transform:translateY(30px);transition:all .7s ease}
+/* Animations */
+.fade-up{opacity:0;transform:translateY(25px);transition:all .6s ease}
 .fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* Search highlight */
+mark{background:rgba(0,229,255,.25);color:var(--text);padding:0 2px;border-radius:2px}
+
+/* Responsive */
+@media(max-width:700px){
+  .hero-stats{gap:16px}
+  .hero-stat .num{font-size:1.6rem}
+  nav .nav-links{gap:10px}
+  nav .nav-links a{font-size:.72rem}
+  .igrid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+  .cols-2,.cols-3{grid-template-columns:1fr}
+  .search-wrap input{width:120px}
+  .search-wrap input:focus{width:160px}
+}
 </style>
 </head>
 <body>
-
 <canvas id="bg"></canvas>
 
 <nav>
   <span class="logo">APEX</span>
+  <div class="search-wrap"><input type="text" id="searchBox" placeholder="Search anything..." oninput="doSearch(this.value)"></div>
   <div class="nav-links">
-    <a href="#metrics">Metrics</a>
     <a href="#performance">Performance</a>
     <a href="#tech">Tech Stack</a>
     <a href="#architecture">Architecture</a>
@@ -132,347 +153,700 @@ footer a:hover{text-decoration:underline}
   </div>
 </nav>
 
-<!-- Hero -->
 <div class="hero">
   <div class="hero-badge">Multi-Strategy Algorithmic Trading</div>
   <h1><span class="gradient">APEX</span> Trading Platform</h1>
   <div class="subtitle">Built by axumweyane &mdash; Algorithmic Trading Engineer</div>
-  <p>A production-grade algorithmic trading system built on Temporal Fusion Transformers, Bayesian ensemble methods, and real-time market microstructure analysis.</p>
+  <p>Production-grade system with 10 ML models, 12 strategies, 5 safety guardrails, and full microservices infrastructure. Click any card below to explore every component in detail.</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num" style="color:var(--cyan)" data-target="10">0</div><div class="label">ML Models</div></div>
-    <div class="hero-stat"><div class="num" style="color:var(--lime)" data-target="12">0</div><div class="label">Strategies</div></div>
-    <div class="hero-stat"><div class="num" style="color:var(--magenta)" data-target="970">0</div><div class="label">Tests</div></div>
-    <div class="hero-stat"><div class="num" style="color:var(--gold)" data-target="179">0</div><div class="label">Files</div></div>
+    <div class="hero-stat"><div class="num" style="color:var(--cyan)" data-count="10">0</div><div class="label">ML Models</div></div>
+    <div class="hero-stat"><div class="num" style="color:var(--lime)" data-count="12">0</div><div class="label">Strategies</div></div>
+    <div class="hero-stat"><div class="num" style="color:var(--magenta)" data-count="970">0</div><div class="label">Tests</div></div>
+    <div class="hero-stat"><div class="num" style="color:var(--gold)" data-count="179">0</div><div class="label">Files</div></div>
   </div>
   <div class="hero-buttons">
-    <a href="system.html" class="btn btn-primary">View Animated System Tour</a>
+    <a href="system.html" class="btn btn-primary">Animated System Tour</a>
     <a href="guide.html" class="btn btn-secondary">Architecture Guide</a>
     <a href="summary.html" class="btn btn-secondary">One-Page Summary</a>
   </div>
 </div>
 
-<!-- Metrics -->
-<section id="metrics">
-  <div class="section-title">
-    <h2>Platform at a Glance</h2>
-    <p>Production-grade infrastructure for systematic alpha generation</p>
-  </div>
-  <div class="metrics">
-    <div class="metric-card fade-up"><div class="m-icon">&#129302;</div><div class="m-num" data-target="10">0</div><div class="m-label">ML Models</div></div>
-    <div class="metric-card fade-up"><div class="m-icon">&#9889;</div><div class="m-num" data-target="12">0</div><div class="m-label">Strategies</div></div>
-    <div class="metric-card fade-up"><div class="m-icon">&#128737;</div><div class="m-num" data-target="5">0</div><div class="m-label">Safety Guardrails</div></div>
-    <div class="metric-card fade-up"><div class="m-icon">&#9989;</div><div class="m-num" data-target="970">0</div><div class="m-label">Tests Passing</div></div>
-    <div class="metric-card fade-up"><div class="m-icon">&#128451;</div><div class="m-num" data-target="31">0</div><div class="m-label">DB Tables</div></div>
-    <div class="metric-card fade-up"><div class="m-icon">&#128196;</div><div class="m-num" data-target="179">0</div><div class="m-label">Python Files</div></div>
-    <div class="metric-card fade-up"><div class="m-icon">&#128640;</div><div class="m-num" data-target="5">0</div><div class="m-label">Microservices</div></div>
-    <div class="metric-card fade-up"><div class="m-icon">&#128200;</div><div class="m-num" data-target="4">0</div><div class="m-label">Asset Classes</div></div>
-  </div>
-</section>
-
-<!-- Simulated Performance Metrics -->
-<section id="performance" style="background:rgba(17,24,39,.5)">
-  <div class="section-title">
-    <h2>Backtest Performance</h2>
-    <p>Walk-forward validated results, Jan 2022 &ndash; Dec 2025 (simulated)</p>
-  </div>
+<!-- Performance -->
+<section id="performance">
+  <div class="section-title"><h2>Backtest Performance</h2><p>Walk-forward validated, Jan 2022 &ndash; Dec 2025 (simulated)</p></div>
   <div class="perf-grid">
-    <div class="perf-card green fade-up">
-      <div class="pf-val" data-target-d="1.82">0</div>
-      <div class="pf-label">Sharpe Ratio</div>
-      <div class="pf-sub">Annualized, risk-free = 4.5%</div>
-    </div>
-    <div class="perf-card cyan fade-up">
-      <div class="pf-val" data-target-pct="24.6">0%</div>
-      <div class="pf-label">Ann. Return</div>
-      <div class="pf-sub">Gross, before slippage</div>
-    </div>
-    <div class="perf-card gold fade-up">
-      <div class="pf-val" data-target-pct="13.4">0%</div>
-      <div class="pf-label">Ann. Volatility</div>
-      <div class="pf-sub">Target: 15%</div>
-    </div>
-    <div class="perf-card magenta fade-up">
-      <div class="pf-val" data-target-pct="-8.7">0%</div>
-      <div class="pf-label">Max Drawdown</div>
-      <div class="pf-sub">Jun 2022 bear market</div>
-    </div>
-    <div class="perf-card green fade-up">
-      <div class="pf-val" data-target-pct="57.3">0%</div>
-      <div class="pf-label">Win Rate</div>
-      <div class="pf-sub">Daily P&L positive</div>
-    </div>
-    <div class="perf-card cyan fade-up">
-      <div class="pf-val" data-target-d="1.47">0</div>
-      <div class="pf-label">Profit Factor</div>
-      <div class="pf-sub">Gross profit / gross loss</div>
-    </div>
-    <div class="perf-card gold fade-up">
-      <div class="pf-val" data-target-d="0.68">0</div>
-      <div class="pf-label">Calmar Ratio</div>
-      <div class="pf-sub">Return / max drawdown</div>
-    </div>
-    <div class="perf-card magenta fade-up">
-      <div class="pf-val" data-target-pct="-2.1">0%</div>
-      <div class="pf-label">CVaR-95</div>
-      <div class="pf-sub">Expected shortfall (daily)</div>
-    </div>
-  </div>
-  <div class="equity-wrap fade-up">
-    <h3>Simulated Equity Curve (normalized to $100k)</h3>
-    <canvas id="equityChart" height="200"></canvas>
+    <div class="perf-card green fade-up"><div class="pf-val">1.82</div><div class="pf-label">Sharpe Ratio</div></div>
+    <div class="perf-card cyan fade-up"><div class="pf-val">24.6%</div><div class="pf-label">Ann. Return</div></div>
+    <div class="perf-card gold fade-up"><div class="pf-val">13.4%</div><div class="pf-label">Ann. Volatility</div></div>
+    <div class="perf-card magenta fade-up"><div class="pf-val">-8.7%</div><div class="pf-label">Max Drawdown</div></div>
+    <div class="perf-card green fade-up"><div class="pf-val">57.3%</div><div class="pf-label">Win Rate</div></div>
+    <div class="perf-card cyan fade-up"><div class="pf-val">1.47</div><div class="pf-label">Profit Factor</div></div>
+    <div class="perf-card gold fade-up"><div class="pf-val">0.68</div><div class="pf-label">Calmar Ratio</div></div>
+    <div class="perf-card magenta fade-up"><div class="pf-val">-2.1%</div><div class="pf-label">CVaR-95</div></div>
   </div>
 </section>
 
 <!-- Tech Stack -->
 <section id="tech">
-  <div class="section-title">
-    <h2>Technology Stack</h2>
-    <p>Built on battle-tested open-source infrastructure</p>
-  </div>
-  <div class="tech-grid">
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#3776ab;color:#ffd43b;border-radius:50%">Py</div><span class="tech-name">Python 3.12</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#336791;color:#fff">PG</div><span class="tech-name">PostgreSQL</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#dc382d;color:#fff;border-radius:50%">Re</div><span class="tech-name">Redis</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#2496ed;color:#fff">Dk</div><span class="tech-name">Docker</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#009688;color:#fff">FA</div><span class="tech-name">FastAPI</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#ee4c2c;color:#fff;border-radius:50%">PT</div><span class="tech-name">PyTorch</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#231f20;color:#fff">Kf</div><span class="tech-name">Kafka</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#e6522c;color:#fff;border-radius:50%">Pm</div><span class="tech-name">Prometheus</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#f46800;color:#fff">Gf</div><span class="tech-name">Grafana</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#0db7ed;color:#fff">TS</div><span class="tech-name">TimescaleDB</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#0366d6;color:#fff">ML</div><span class="tech-name">MLflow</span></div>
-    <div class="tech-item fade-up"><div class="tech-logo" style="background:#f7df1e;color:#000">AL</div><span class="tech-name">Alpaca API</span></div>
-  </div>
+  <div class="section-title"><h2>Technology Stack</h2><p>Click any technology to see exactly how APEX uses it</p></div>
+  <div class="igrid" id="tech-grid"></div>
 </section>
 
 <!-- Architecture -->
-<section id="architecture" style="background:rgba(17,24,39,.5)">
-  <div class="section-title">
-    <h2>System Architecture</h2>
-    <p>End-to-end pipeline from data ingestion to trade execution</p>
-  </div>
-  <div class="arch-grid">
-    <div class="arch-item fade-up"><div class="ai-label">Data Layer</div><div class="ai-val">3 Sources</div><div class="ai-desc">yfinance, Polygon.io, Reddit</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Model Layer</div><div class="ai-val">10 Models</div><div class="ai-desc">TFT, Kronos, FinBERT, TDGF</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Strategy Layer</div><div class="ai-val">12 Strategies</div><div class="ai-desc">Momentum, StatArb, FX, Options</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Ensemble</div><div class="ai-val">Bayesian</div><div class="ai-desc">60% Sharpe + 40% Regime</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Risk</div><div class="ai-val">VaR / CVaR</div><div class="ai-desc">Kill switches, correlation gates</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Execution</div><div class="ai-val">Alpaca</div><div class="ai-desc">Paper + live trading</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Safety</div><div class="ai-val">5 Guardrails</div><div class="ai-desc">Variance, leverage, calibration</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Regime</div><div class="ai-val">4 States</div><div class="ai-desc">Calm/volatile x trend/chop</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Messaging</div><div class="ai-val">Kafka</div><div class="ai-desc">7 topics, DLQ, schema registry</div></div>
-    <div class="arch-item fade-up"><div class="ai-label">Monitoring</div><div class="ai-val">Prometheus</div><div class="ai-desc">Metrics, Grafana, alerts</div></div>
+<section id="architecture">
+  <div class="section-title"><h2>System Architecture</h2><p>Click any component for full implementation details</p></div>
+  <div class="igrid arch" id="arch-grid"></div>
+</section>
+
+<!-- Docs -->
+<section id="docs">
+  <div class="section-title"><h2>Interactive Documentation</h2></div>
+  <div class="docs-grid">
+    <a href="system.html" class="doc-card"><div class="dc-icon">&#127916;</div><div class="dc-title">Animated System Tour</div><div class="dc-desc">10-scene animated journey with interactive model cards, guardrail toggles, strategy sliders, and live data panel.</div><div class="dc-arrow">Explore &rarr;</div></a>
+    <a href="guide.html" class="doc-card"><div class="dc-icon">&#128214;</div><div class="dc-title">Visual Architecture Guide</div><div class="dc-desc">Static reference: system diagrams, model specs, strategy tables, database schema, deployment topology.</div><div class="dc-arrow">View Guide &rarr;</div></a>
+    <a href="summary.html" class="doc-card"><div class="dc-icon">&#128196;</div><div class="dc-title">One-Page Summary</div><div class="dc-desc">Executive overview for investors and employers. Print-to-PDF format.</div><div class="dc-arrow">View Summary &rarr;</div></a>
   </div>
 </section>
 
-<!-- Documentation Links -->
-<section id="docs">
-  <div class="section-title">
-    <h2>Interactive Documentation</h2>
-    <p>Explore the APEX system through animated visualizations</p>
-  </div>
-  <div class="docs-grid">
-    <a href="system.html" class="doc-card">
-      <div class="dc-icon">&#127916;</div>
-      <div class="dc-title">Animated System Tour</div>
-      <div class="dc-desc">10-scene animated journey through the APEX pipeline with interactive model cards, guardrail toggles, draggable strategy sliders, and live data panel.</div>
-      <div class="dc-arrow">Explore &rarr;</div>
-    </a>
-    <a href="guide.html" class="doc-card">
-      <div class="dc-icon">&#128214;</div>
-      <div class="dc-title">Visual Architecture Guide</div>
-      <div class="dc-desc">Static visual reference: system diagrams, model specs, strategy details, data flow, database schema, deployment topology. Print-friendly.</div>
-      <div class="dc-arrow">View Guide &rarr;</div>
-    </a>
-    <a href="summary.html" class="doc-card">
-      <div class="dc-icon">&#128196;</div>
-      <div class="dc-title">One-Page Summary</div>
-      <div class="dc-desc">Executive overview of APEX for investors and employers. Print-to-PDF format with architecture, performance, and key differentiators.</div>
-      <div class="dc-arrow">View Summary &rarr;</div>
-    </a>
-  </div>
-</section>
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top">&#8593;</button>
 
 <footer>
   <p>APEX v3.0.0 &mdash; Multi-Strategy Algorithmic Trading Platform</p>
-  <p style="margin-top:6px">
-    <a href="https://github.com/axumweyane">GitHub</a>
-    &nbsp;&middot;&nbsp;
-    <a href="https://github.com/axumweyane/apex-showcase">Source</a>
-  </p>
+  <p style="margin-top:6px"><a href="https://github.com/axumweyane">GitHub</a> &middot; <a href="https://github.com/axumweyane/apex-showcase">Source</a></p>
 </footer>
 
 <script>
-// Particle background
+// ── DATA ──
+const TECH=[
+{id:'python',name:'Python 3.12',logo:'Py',bg:'#3776ab',fg:'#ffd43b',round:true,detail:`
+<h3>Python 3.12 &mdash; Core Language</h3>
+<p><strong>179 Python files</strong> across the entire APEX codebase. Python was chosen for its dominant position in quantitative finance, deep ML ecosystem, and async capabilities via <code>asyncio</code>/<code>aiohttp</code>.</p>
+<h4>Key Libraries</h4>
+<div class="cols-2">
+<div>
+<ul>
+<li><code>pandas &ge; 2.1</code> &mdash; DataFrame operations, time series</li>
+<li><code>numpy &ge; 1.24</code> &mdash; Numerical computing</li>
+<li><code>torch &ge; 2.2</code> &mdash; Deep learning (TFT, Kronos)</li>
+<li><code>pytorch-forecasting</code> &mdash; TFT implementation</li>
+<li><code>scikit-learn &ge; 1.3</code> &mdash; Preprocessing, metrics</li>
+<li><code>scipy / statsmodels</code> &mdash; Statistical tests, OU estimation</li>
+</ul>
+</div>
+<div>
+<ul>
+<li><code>fastapi &ge; 0.100</code> &mdash; REST APIs (6 services)</li>
+<li><code>psycopg2</code> &mdash; PostgreSQL driver</li>
+<li><code>aiohttp</code> &mdash; Async HTTP (Alpaca broker)</li>
+<li><code>redis</code> &mdash; Circuit breaker, pub/sub</li>
+<li><code>transformers</code> &mdash; FinBERT sentiment model</li>
+<li><code>confluent-kafka</code> &mdash; Event streaming</li>
+</ul>
+</div>
+</div>
+<h4>Project Structure</h4>
+<p><code>models/</code> (10 models), <code>strategies/</code> (12 strategies), <code>trading/</code> (broker, safety, risk, audit), <code>services/</code> (DLQ, schema registry), <code>microservices/</code> (5 FastAPI services), <code>paper-trader/</code> (daily pipeline), <code>tests/</code> (970 tests across 30 modules).</p>
+`},
+{id:'postgres',name:'PostgreSQL',logo:'PG',bg:'#336791',fg:'#fff',detail:`
+<h3>PostgreSQL 15 / TimescaleDB &mdash; Primary Database</h3>
+<p>Port <code>5432</code> (Docker: <code>15432</code>), database <code>tft_trading</code>. All trade data, signals, risk reports, and audit trails are persisted here with connection pooling (<code>ThreadedConnectionPool</code>, 2&ndash;10 connections).</p>
+<h4>Core Tables (11)</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Key Columns</th></tr>
+<tr><td><code>paper_trades</code></td><td>time, symbol, side, qty, price, filled_price, order_id, strategy</td></tr>
+<tr><td><code>paper_daily_snapshots</code></td><td>time, portfolio_value, cash, positions_value, day_return, high_water_mark</td></tr>
+<tr><td><code>paper_strategy_signals</code></td><td>time, strategy_name, symbol, score, direction, confidence</td></tr>
+<tr><td><code>paper_risk_reports</code></td><td>time, var_99, cvar_95, max_drawdown, correlation_matrix, portfolio_value</td></tr>
+<tr><td><code>paper_execution_stats</code></td><td>time, symbol, expected_price, filled_price, slippage_bps, strategy</td></tr>
+<tr><td><code>paper_signal_analyses</code></td><td>time, analysis_json, patterns, narrative</td></tr>
+<tr><td><code>bayesian_weight_state</code></td><td>strategy_name, alpha, beta, weight, updated_at</td></tr>
+<tr><td><code>dead_letter_queue</code></td><td>id, service_name, topic, payload, status, retry_count, error_message, created_at</td></tr>
+<tr><td><code>portfolio_snapshots</code></td><td>time, portfolio_value, high_water_mark, snapshot_type, created_at</td></tr>
+<tr><td><code>circuit_breaker_events</code></td><td>time, event_type, details</td></tr>
+<tr><td><code>calibration_snapshots</code></td><td>time, model_name, metrics_json</td></tr>
+</table>
+<h4>Microservices Tables (15+)</h4>
+<table class="tbl">
+<tr><th>Table</th><th>Service</th></tr>
+<tr><td><code>raw_ohlcv</code></td><td>data-ingestion</td></tr>
+<tr><td><code>raw_news</code></td><td>data-ingestion</td></tr>
+<tr><td><code>raw_reddit_posts</code></td><td>data-ingestion</td></tr>
+<tr><td><code>sentiment_scores</code></td><td>sentiment-engine</td></tr>
+<tr><td><code>tft_predictions</code></td><td>tft-predictor</td></tr>
+<tr><td><code>model_registry</code></td><td>tft-predictor</td></tr>
+<tr><td><code>trading_signals</code></td><td>trading-engine</td></tr>
+<tr><td><code>order_history</code></td><td>trading-engine</td></tr>
+<tr><td><code>position_snapshots</code></td><td>trading-engine</td></tr>
+<tr><td><code>workflow_state</code></td><td>orchestrator</td></tr>
+<tr><td><code>saga_events</code></td><td>orchestrator</td></tr>
+<tr><td><code>system_health</code></td><td>orchestrator</td></tr>
+<tr><td><code>audit_log</code></td><td>shared</td></tr>
+<tr><td><code>notification_log</code></td><td>shared</td></tr>
+<tr><td><code>feature_store</code></td><td>shared</td></tr>
+</table>
+<h4>TimescaleDB Features</h4>
+<ul>
+<li><strong>Hypertables</strong>: <code>raw_ohlcv</code>, <code>paper_trades</code>, <code>paper_daily_snapshots</code>, <code>sentiment_scores</code></li>
+<li><strong>Retention policies</strong>: 365 days for OHLCV/snapshots, 90 days for signals/risk/execution</li>
+<li><strong>Continuous aggregates</strong>: <code>ohlcv_15m</code>, <code>ohlcv_1h</code>, <code>ohlcv_1d</code> with automatic refresh</li>
+<li><strong>Compression</strong>: segment by symbol, order by time, after 7 days</li>
+</ul>
+`},
+{id:'redis',name:'Redis',logo:'Re',bg:'#dc382d',fg:'#fff',round:true,detail:`
+<h3>Redis &mdash; Cache & Circuit Breaker</h3>
+<p>Port <code>6379</code>. Redis serves two critical roles in APEX: circuit breaker state management and real-time signal distribution.</p>
+<h4>Circuit Breaker (405 lines)</h4>
+<ul>
+<li><strong>Keys</strong>: <code>apex:circuit_breaker:tripped</code>, <code>apex:circuit_breaker:high_water_mark</code>, <code>apex:circuit_breaker:daily_pnl</code></li>
+<li><strong>Drawdown methods</strong>: High Water Mark (5%), Start-of-Day (3%)</li>
+<li><strong>Check interval</strong>: Every 30 seconds</li>
+<li><strong>Fail-closed</strong>: If Redis crashes, circuit breaker assumes TRIPPED &mdash; no trades execute until Redis recovers</li>
+<li><strong>Lifespan management</strong>: Started in FastAPI startup, stopped in shutdown with 30s timeout</li>
+</ul>
+<h4>Signal Pub/Sub Channels</h4>
+<ul>
+<li><code>apex:signals:stock</code> &mdash; Equity alpha signals</li>
+<li><code>apex:signals:forex</code> &mdash; FX strategy signals</li>
+<li><code>apex:signals:options</code> &mdash; Options/vol signals</li>
+<li><code>apex:signals:risk</code> &mdash; Risk alerts and kill switch events</li>
+</ul>
+<p>Signal publishing is <strong>fire-and-forget</strong> &mdash; if Redis is down, the pipeline continues without pub/sub (additive layer, not required).</p>
+`},
+{id:'docker',name:'Docker',logo:'Dk',bg:'#2496ed',fg:'#fff',detail:`
+<h3>Docker Compose &mdash; Microservices Orchestration</h3>
+<p>Single <code>docker-compose.yml</code> orchestrates the full APEX stack on an external network <code>tft_network</code>.</p>
+<h4>Services</h4>
+<table class="tbl">
+<tr><th>Service</th><th>Image/Build</th><th>Port</th></tr>
+<tr><td><code>postgres</code></td><td>timescale/timescaledb:latest-pg15</td><td>15432</td></tr>
+<tr><td><code>redis</code></td><td>redis:7-alpine (healthcheck)</td><td>6379</td></tr>
+<tr><td><code>kafka</code></td><td>confluentinc/cp-kafka (KRaft mode)</td><td>9092</td></tr>
+<tr><td><code>schema-registry</code></td><td>confluentinc/cp-schema-registry</td><td>8081</td></tr>
+<tr><td><code>prometheus</code></td><td>prom/prometheus</td><td>9090</td></tr>
+<tr><td><code>grafana</code></td><td>grafana/grafana</td><td>3000</td></tr>
+<tr><td><code>mlflow</code></td><td>ghcr.io/mlflow/mlflow</td><td>5000</td></tr>
+<tr><td><code>data-ingestion</code></td><td>./microservices/data-ingestion</td><td>8001</td></tr>
+<tr><td><code>sentiment-engine</code></td><td>./microservices/sentiment-engine</td><td>8002</td></tr>
+<tr><td><code>tft-predictor</code></td><td>./microservices/tft-predictor</td><td>8003</td></tr>
+<tr><td><code>trading-engine</code></td><td>./microservices/trading-engine</td><td>8004</td></tr>
+<tr><td><code>orchestrator</code></td><td>./microservices/orchestrator</td><td>8005</td></tr>
+<tr><td><code>paper-trader</code></td><td>./paper-trader</td><td>8010</td></tr>
+</table>
+<p>All credentials use <code>\${VAR:?error}</code> syntax &mdash; Docker refuses to start if any required env var is missing.</p>
+`},
+{id:'fastapi',name:'FastAPI',logo:'FA',bg:'#009688',fg:'#fff',detail:`
+<h3>FastAPI &mdash; REST API Framework</h3>
+<p>ASGI server via <code>uvicorn</code>. Used across 6 services. The paper trader on port <strong>8010</strong> is the primary API surface.</p>
+<h4>Paper Trader Endpoints</h4>
+<div>
+<span class="ep">GET /health</span>
+<span class="ep">GET /dashboard</span>
+<span class="ep">POST /run-now</span>
+<span class="ep">GET /positions</span>
+<span class="ep">GET /weights</span>
+<span class="ep">GET /history</span>
+<span class="ep">GET /dlq</span>
+<span class="ep">GET /metrics</span>
+</div>
+<h4>Signal Provider API (API Key Auth + Rate Limiting + ETag Cache)</h4>
+<div>
+<span class="ep">GET /api/v1/signals</span>
+<span class="ep">GET /api/v1/signals/{symbol}</span>
+<span class="ep">GET /api/v1/signals/regime</span>
+<span class="ep">GET /api/v1/signals/weights</span>
+<span class="ep">GET /api/v1/signals/history/{symbol}</span>
+</div>
+<h4>/health Response Shape</h4>
+<p><code>{ status, version, day_count, last_run, portfolio_value, is_running, regime, strategy_weights, enabled_strategies, circuit_breaker_tripped, infrastructure: { broker, models: { registered, loaded, details } } }</code></p>
+`},
+{id:'pytorch',name:'PyTorch',logo:'PT',bg:'#ee4c2c',fg:'#fff',round:true,detail:`
+<h3>PyTorch &mdash; Deep Learning Framework</h3>
+<p>Powers the core TFT model and Kronos foundation model. Training via <code>pytorch-lightning</code>, model definition via <code>pytorch-forecasting</code>.</p>
+<h4>TFT Architecture</h4>
+<ul>
+<li><strong>Model</strong>: <code>TemporalFusionTransformer</code> with quantile loss</li>
+<li><strong>Attention</strong>: Multi-head interpretable attention (4 heads)</li>
+<li><strong>Forecasting</strong>: Multi-horizon (5 steps ahead)</li>
+<li><strong>Encoder length</strong>: 63 bars | <strong>Hidden size</strong>: 64 | <strong>LSTM layers</strong>: 2</li>
+<li><strong>Dropout</strong>: 0.2 | <strong>Batch size</strong>: 64 | <strong>LR</strong>: 0.001</li>
+</ul>
+<h4>Training Pipeline</h4>
+<ul>
+<li><code>train_postgres.py</code> &mdash; PostgreSQL-based training (recommended)</li>
+<li><code>train.py</code> &mdash; Legacy file-based training</li>
+<li>Technical indicators computed: RSI, MACD, Bollinger Bands, ATR</li>
+<li>Temporal features: day of week, month, quarter</li>
+<li>GPU-enabled with mixed precision (<code>TFT_MIXED_PRECISION=true</code>)</li>
+</ul>
+<h4>MLflow Integration</h4>
+<p>All training runs logged to MLflow (port 5000): loss curves, validation Sharpe, model artifacts. Model registry tracks versions for promotion via <code>ModelPromotionGate</code> (Sharpe &ge; 0.5 required).</p>
+`},
+{id:'kafka',name:'Kafka',logo:'Kf',bg:'#231f20',fg:'#fff',detail:`
+<h3>Apache Kafka &mdash; Event Streaming</h3>
+<p><strong>KRaft mode</strong> (no ZooKeeper). Retention: 168h (7 days), 5GB max per topic, 1GB segments.</p>
+<h4>Topics (7)</h4>
+<table class="tbl">
+<tr><th>Topic</th><th>Producer</th><th>Consumer</th></tr>
+<tr><td><code>market-data</code></td><td>data-ingestion</td><td>tft-predictor</td></tr>
+<tr><td><code>sentiment-scores</code></td><td>sentiment-engine</td><td>tft-predictor</td></tr>
+<tr><td><code>tft-predictions</code></td><td>tft-predictor</td><td>trading-engine</td></tr>
+<tr><td><code>trading-signals</code></td><td>trading-engine</td><td>orchestrator</td></tr>
+<tr><td><code>order-updates</code></td><td>trading-engine</td><td>orchestrator</td></tr>
+<tr><td><code>portfolio-updates</code></td><td>orchestrator</td><td>all services</td></tr>
+<tr><td><code>system-events</code></td><td>all services</td><td>orchestrator</td></tr>
+</table>
+<h4>Consumer Configuration</h4>
+<ul>
+<li><code>enable_auto_commit=False</code> on all 4 consumers (CF-7 fix)</li>
+<li>Explicit <code>consumer.commit()</code> after processing</li>
+<li><code>producer.flush()</code> before commit</li>
+<li>Failed messages routed to Dead Letter Queue (PostgreSQL-backed)</li>
+</ul>
+<h4>Schema Registry</h4>
+<p>Confluent Schema Registry (port 8081) with thread-safe singleton connection cache, exponential backoff (max 3 retries).</p>
+`},
+{id:'prometheus',name:'Prometheus',logo:'Pm',bg:'#e6522c',fg:'#fff',round:true,detail:`
+<h3>Prometheus &mdash; Metrics Collection</h3>
+<p>Scrapes <code>/metrics</code> endpoint on the paper trader (port 8010). 9 custom metrics defined in <code>monitoring/metrics.py</code> (185 lines).</p>
+<h4>Custom Metrics</h4>
+<table class="tbl">
+<tr><th>Metric</th><th>Type</th><th>Labels</th></tr>
+<tr><td><code>apex_signal_score</code></td><td>Gauge</td><td>strategy, symbol</td></tr>
+<tr><td><code>apex_strategy_weight</code></td><td>Gauge</td><td>strategy</td></tr>
+<tr><td><code>apex_regime_state</code></td><td>Gauge</td><td>regime</td></tr>
+<tr><td><code>apex_ensemble_confidence</code></td><td>Gauge</td><td>&mdash;</td></tr>
+<tr><td><code>apex_execution_slippage_bps</code></td><td>Histogram</td><td>strategy, symbol</td></tr>
+<tr><td><code>apex_pipeline_duration_seconds</code></td><td>Histogram</td><td>stage</td></tr>
+<tr><td><code>apex_risk_max_drawdown</code></td><td>Gauge</td><td>&mdash;</td></tr>
+<tr><td><code>apex_risk_var_99</code></td><td>Gauge</td><td>&mdash;</td></tr>
+<tr><td><code>apex_risk_cvar_95</code></td><td>Gauge</td><td>&mdash;</td></tr>
+</table>
+`},
+{id:'grafana',name:'Grafana',logo:'Gf',bg:'#f46800',fg:'#fff',detail:`
+<h3>Grafana &mdash; Visualization Dashboard</h3>
+<p>Port <code>3000</code>. Prometheus datasource auto-provisioned. 8-panel dashboard for real-time trading observability.</p>
+<h4>Dashboard Panels (8)</h4>
+<table class="tbl">
+<tr><th>#</th><th>Panel</th><th>Visualization</th></tr>
+<tr><td>1</td><td>Signal Heatmap</td><td>Heatmap &mdash; strategy x symbol scores</td></tr>
+<tr><td>2</td><td>Strategy Weights</td><td>Bar chart &mdash; current ensemble allocation</td></tr>
+<tr><td>3</td><td>Regime Timeline</td><td>State timeline &mdash; regime transitions over time</td></tr>
+<tr><td>4</td><td>Confidence Histogram</td><td>Histogram &mdash; ensemble confidence distribution</td></tr>
+<tr><td>5</td><td>Slippage Scatter</td><td>Scatter &mdash; expected vs filled price by symbol</td></tr>
+<tr><td>6</td><td>Pipeline Duration</td><td>Time series &mdash; seconds per pipeline stage</td></tr>
+<tr><td>7</td><td>Risk Gauges</td><td>Gauge &mdash; VaR-99, CVaR-95, max drawdown</td></tr>
+<tr><td>8</td><td>Correlation Matrix</td><td>Heatmap &mdash; inter-strategy return correlation</td></tr>
+</table>
+`},
+{id:'timescale',name:'TimescaleDB',logo:'TS',bg:'#0db7ed',fg:'#fff',detail:`
+<h3>TimescaleDB &mdash; Time-Series Extension</h3>
+<p>PostgreSQL 15 extension providing hypertables, continuous aggregates, and automated data retention.</p>
+<h4>Hypertables (4)</h4>
+<ul>
+<li><code>raw_ohlcv</code> &mdash; partitioned by time, 7-day chunks</li>
+<li><code>paper_trades</code> &mdash; all executed orders</li>
+<li><code>paper_daily_snapshots</code> &mdash; daily portfolio state</li>
+<li><code>sentiment_scores</code> &mdash; NLP sentiment by symbol</li>
+</ul>
+<h4>Continuous Aggregates (3)</h4>
+<table class="tbl">
+<tr><th>View</th><th>Interval</th><th>Refresh</th></tr>
+<tr><td><code>ohlcv_15m</code></td><td>15 minutes</td><td>Every 15 min, lag 1h</td></tr>
+<tr><td><code>ohlcv_1h</code></td><td>1 hour</td><td>Every 1h, lag 2h</td></tr>
+<tr><td><code>ohlcv_1d</code></td><td>1 day</td><td>Every 1d, lag 1d</td></tr>
+</table>
+<h4>Retention Policies</h4>
+<ul>
+<li><strong>365 days</strong>: OHLCV data, portfolio snapshots</li>
+<li><strong>90 days</strong>: Signals, risk reports, execution stats</li>
+<li>Compression: segment by <code>symbol</code>, order by <code>time</code>, after 7 days</li>
+</ul>
+`},
+{id:'mlflow',name:'MLflow',logo:'ML',bg:'#0366d6',fg:'#fff',detail:`
+<h3>MLflow &mdash; Experiment Tracking & Model Registry</h3>
+<p>Port <code>5000</code>. Tracks all training experiments and manages model lifecycle from training to production deployment.</p>
+<h4>Experiment Tracking</h4>
+<ul>
+<li>Training metrics: loss per epoch, validation Sharpe, RMSE</li>
+<li>Hyperparameters: learning rate, hidden size, dropout, batch size</li>
+<li>Artifacts: model checkpoints (<code>.pth</code>), preprocessor (<code>.pkl</code>), config</li>
+</ul>
+<h4>Model Registry</h4>
+<ul>
+<li>Stages: <code>None</code> &rarr; <code>Staging</code> &rarr; <code>Production</code> &rarr; <code>Archived</code></li>
+<li>Promotion requires passing <code>ModelPromotionGate</code> (Sharpe &ge; 0.5)</li>
+<li>Version history with rollback capability</li>
+<li>3 TFT variants registered: stocks, forex, volatility</li>
+</ul>
+`},
+{id:'alpaca',name:'Alpaca API',logo:'AL',bg:'#f7df1e',fg:'#000',detail:`
+<h3>Alpaca &mdash; Broker Integration</h3>
+<p><code>AlpacaBroker</code> class (282 lines) in <code>trading/broker/alpaca.py</code>. Async via <code>aiohttp.ClientSession</code> with 30s timeout.</p>
+<h4>Order Execution</h4>
+<ul>
+<li><strong>Order types</strong>: Market, Limit, IOC (Immediate or Cancel)</li>
+<li><strong>Position management</strong>: <code>get_positions()</code>, <code>close_position()</code>, <code>close_all()</code> with retry</li>
+<li><strong>Timeout alignment</strong>: Session timeout = API call timeout (CF-8 fix)</li>
+</ul>
+<h4>VWAP Execution Model</h4>
+<ul>
+<li><strong>Slices</strong>: 5 child orders per parent</li>
+<li><strong>Interval</strong>: 60 seconds between slices</li>
+<li><strong>ADV cap</strong>: 10% of average daily volume per slice</li>
+<li>Enabled via <code>EXECUTION_USE_VWAP=true</code></li>
+</ul>
+<h4>Paper vs Live</h4>
+<ul>
+<li>Paper: <code>https://paper-api.alpaca.markets</code></li>
+<li>Live: <code>https://api.alpaca.markets</code></li>
+<li>Controlled by <code>TRADING_MODE</code> env var</li>
+</ul>
+`}
+];
+
+const ARCH=[
+{id:'data',label:'Data Layer',val:'3 Sources',desc:'yfinance, Polygon.io, Reddit',detail:`
+<h3>Data Layer &mdash; 3 Sources</h3>
+<div class="cols-3">
+<div>
+<h4>yfinance</h4>
+<ul>
+<li>OHLCV for 500+ US equities</li>
+<li>FX pairs (EURUSD, GBPUSD, USDJPY, AUDUSD, USDCAD, USDCHF)</li>
+<li>SPY for regime detection</li>
+<li>Treasury yields (2Y, 10Y, 30Y)</li>
+<li>Free, no API key required</li>
+</ul>
+</div>
+<div>
+<h4>Polygon.io</h4>
+<ul>
+<li>Real-time OHLCV quotes</li>
+<li>Options chains (strikes, expiries)</li>
+<li>Financial news articles</li>
+<li>Company fundamentals</li>
+<li>Rate limited: 5 req/min (free tier)</li>
+</ul>
+</div>
+<div>
+<h4>Reddit (PRAW)</h4>
+<ul>
+<li>r/wallstreetbets</li>
+<li>r/stocks, r/investing</li>
+<li>r/SecurityAnalysis</li>
+<li>r/ValueInvesting</li>
+<li>25 posts/subreddit, 8 subreddits</li>
+</ul>
+</div>
+</div>
+`},
+{id:'models',label:'Model Layer',val:'10 Models',desc:'TFT, Kronos, FinBERT, TDGF',detail:`
+<h3>Model Layer &mdash; 10 ML Models</h3>
+<p>Managed by <code>ModelManager</code> with graceful fallback (missing models return empty predictions).</p>
+<table class="tbl">
+<tr><th>#</th><th>Model</th><th>Asset Class</th><th>Method</th><th>Accuracy</th></tr>
+<tr><td>1</td><td>TFT Stocks</td><td><span class="tag tag-cyan">stocks</span></td><td>Temporal Fusion Transformer</td><td>78%</td></tr>
+<tr><td>2</td><td>TFT Forex</td><td><span class="tag tag-lime">forex</span></td><td>TFT for G10 FX pairs</td><td>72%</td></tr>
+<tr><td>3</td><td>TFT Volatility</td><td><span class="tag tag-gold">volatility</span></td><td>IV/RV forecaster</td><td>75%</td></tr>
+<tr><td>4</td><td>Kronos</td><td><span class="tag tag-cyan">stocks</span><span class="tag tag-lime">forex</span></td><td>Pre-trained K-line foundation model</td><td>70%</td></tr>
+<tr><td>5</td><td>Deep Surrogates</td><td><span class="tag tag-gold">options</span></td><td>Neural option pricing (Heston)</td><td>85%</td></tr>
+<tr><td>6</td><td>TDGF</td><td><span class="tag tag-gold">options</span></td><td>PDE solver, American exercise</td><td>80%</td></tr>
+<tr><td>7</td><td>Sentiment</td><td><span class="tag tag-magenta">cross-asset</span></td><td>FinBERT + VADER NLP</td><td>68%</td></tr>
+<tr><td>8</td><td>Mean Reversion</td><td><span class="tag tag-cyan">stocks</span></td><td>Hurst exponent + OU estimation</td><td>74%</td></tr>
+<tr><td>9</td><td>Macro Regime</td><td><span class="tag tag-magenta">cross-asset</span></td><td>Yield curve + rate trends</td><td>65%</td></tr>
+<tr><td>10</td><td>Microstructure</td><td><span class="tag tag-cyan">stocks</span></td><td>Volume profile + order flow</td><td>71%</td></tr>
+</table>
+<p>Key classes: <code>BaseTFTModel</code> (ABC), <code>ModelManager</code> (unified loader), <code>ModelPrediction</code> (standardized output).</p>
+`},
+{id:'strategies',label:'Strategy Layer',val:'12 Strategies',desc:'Momentum, StatArb, FX, Options',detail:`
+<h3>Strategy Layer &mdash; 12 Trading Strategies</h3>
+<p>Each extends <code>BaseStrategy</code> (ABC) and produces <code>StrategyOutput</code> containing z-scored alpha signals.</p>
+<table class="tbl">
+<tr><th>#</th><th>Strategy</th><th>Asset</th><th>Model Dep</th><th>Regime Bucket</th></tr>
+<tr><td>1</td><td>Cross-Sectional Momentum</td><td><span class="tag tag-cyan">stocks</span></td><td>None (factor)</td><td>momentum</td></tr>
+<tr><td>2</td><td>Pairs Trading (StatArb)</td><td><span class="tag tag-cyan">stocks</span></td><td>None (cointegration)</td><td>pairs</td></tr>
+<tr><td>3</td><td>Mean Reversion</td><td><span class="tag tag-cyan">stocks</span></td><td>MeanReversionModel</td><td>mean_reversion</td></tr>
+<tr><td>4</td><td>Sector Rotation</td><td><span class="tag tag-cyan">stocks</span></td><td>MacroRegimeModel</td><td>momentum</td></tr>
+<tr><td>5</td><td>FX Carry + Trend</td><td><span class="tag tag-lime">forex</span></td><td>None</td><td>tft</td></tr>
+<tr><td>6</td><td>FX Momentum</td><td><span class="tag tag-lime">forex</span></td><td>None</td><td>momentum</td></tr>
+<tr><td>7</td><td>FX Vol Breakout</td><td><span class="tag tag-lime">forex</span></td><td>TFT Volatility</td><td>pairs</td></tr>
+<tr><td>8</td><td>Deep Surrogates</td><td><span class="tag tag-gold">options</span></td><td>DeepSurrogateModel</td><td>pairs</td></tr>
+<tr><td>9</td><td>TDGF American Options</td><td><span class="tag tag-gold">options</span></td><td>TDGFModel</td><td>pairs</td></tr>
+<tr><td>10</td><td>Vol Surface Arb</td><td><span class="tag tag-gold">options</span></td><td>None (IV-RV)</td><td>pairs</td></tr>
+<tr><td>11</td><td>Kronos Forecasting</td><td><span class="tag tag-cyan">stocks</span><span class="tag tag-lime">forex</span></td><td>KronosModel</td><td>tft</td></tr>
+<tr><td>12</td><td>Sentiment</td><td><span class="tag tag-magenta">cross</span></td><td>SentimentModel</td><td>tft</td></tr>
+</table>
+`},
+{id:'ensemble',label:'Ensemble',val:'Bayesian',desc:'60% Sharpe + 40% Regime',detail:`
+<h3>Bayesian Ensemble Combiner</h3>
+<p><code>EnsembleCombiner</code> in <code>strategies/ensemble/combiner.py</code>. Fuses signals from all enabled strategies using a hybrid weighting scheme.</p>
+<h4>Weighting Method</h4>
+<ul>
+<li><strong>60% Sharpe-based</strong>: Rolling Sharpe ratio over 63-bar lookback</li>
+<li><strong>40% Regime-based</strong>: 4-state regime detector adjusts weights per bucket</li>
+<li>Weights clamped to <code>[min_weight=0.05, max_weight=0.50]</code> then renormalized</li>
+</ul>
+<h4>Bayesian Updater</h4>
+<ul>
+<li>Beta-binomial model per strategy</li>
+<li>Exponential decay: <code>&lambda; = 0.995</code></li>
+<li>Rolling window: 500 bars</li>
+<li>Prior: <code>Alpha=1, Beta=1</code> (uniform)</li>
+<li>Updated daily with win/loss outcome</li>
+</ul>
+<h4>Regime Weight Buckets</h4>
+<table class="tbl">
+<tr><th>Regime</th><th>Momentum</th><th>Mean Rev</th><th>Pairs</th><th>TFT</th></tr>
+<tr><td>Calm + Trending</td><td>0.35</td><td>0.15</td><td>0.20</td><td>0.30</td></tr>
+<tr><td>Calm + Choppy</td><td>0.15</td><td>0.35</td><td>0.30</td><td>0.20</td></tr>
+<tr><td>Volatile + Trending</td><td>0.30</td><td>0.10</td><td>0.25</td><td>0.35</td></tr>
+<tr><td>Volatile + Choppy</td><td>0.10</td><td>0.30</td><td>0.35</td><td>0.25</td></tr>
+</table>
+`},
+{id:'risk',label:'Risk',val:'VaR / CVaR',desc:'Kill switches, correlation gates',detail:`
+<h3>Portfolio Risk Manager (478 lines)</h3>
+<p><code>strategies/risk/portfolio_risk.py</code>. Persistent instance seeded with 30 days of historical returns at startup, fed live daily returns.</p>
+<h4>Risk Metrics</h4>
+<ul>
+<li><strong>VaR-99</strong>: Value at Risk at 99% confidence (daily)</li>
+<li><strong>CVaR-95</strong>: Conditional VaR / Expected Shortfall at 95%</li>
+<li><strong>Max Drawdown</strong>: Running high-water-mark tracking</li>
+</ul>
+<h4>Correlation Monitoring</h4>
+<ul>
+<li>Pairwise return correlation computed daily across all active strategies</li>
+<li>If correlation &gt; <strong>0.85</strong>: both strategies get <strong>50% weight reduction</strong></li>
+<li>Prevents concentration risk from correlated alpha sources</li>
+</ul>
+<h4>Kill Switches</h4>
+<ul>
+<li><strong>Per-strategy kill</strong>: Triggered by drawdown threshold or Sharpe &lt; kill_sharpe</li>
+<li><strong>Portfolio-level kill</strong>: Halts ALL trades when total drawdown exceeds limit</li>
+<li>Killed strategies filtered from ensemble before optimization</li>
+<li>Reports logged to <code>paper_risk_reports</code> table</li>
+</ul>
+`},
+{id:'execution',label:'Execution',val:'Alpaca',desc:'Paper + live trading',detail:`
+<h3>Execution Layer</h3>
+<h4>AlpacaBroker (282 lines)</h4>
+<ul>
+<li>Async <code>aiohttp.ClientSession</code> with 30s timeout</li>
+<li>Order types: Market, Limit, IOC</li>
+<li>Position close with 2x retry on failure</li>
+<li>Slippage tracked per order in <code>paper_execution_stats</code></li>
+</ul>
+<h4>VWAP Execution Model</h4>
+<ul>
+<li>Splits large orders into 5 child slices</li>
+<li>60-second intervals between slices</li>
+<li>Each slice capped at 10% of ADV</li>
+<li>Enabled via <code>EXECUTION_USE_VWAP=true</code></li>
+</ul>
+<h4>Audit Trail (277 lines)</h4>
+<p><code>AuditLogger</code> persists every pipeline event to PostgreSQL: order submissions, fills, rejections, guardrail triggers, risk alerts, and system events.</p>
+`},
+{id:'safety',label:'Safety',val:'5 Guardrails',desc:'Variance, leverage, calibration',detail:`
+<h3>5 Safety Guardrails</h3>
+<p>Automated pre-trade checks in <code>trading/safety/guardrails.py</code>. Added after March 10 incident analysis.</p>
+<table class="tbl">
+<tr><th>#</th><th>Guardrail</th><th>Threshold</th><th>On Failure</th></tr>
+<tr><td>1</td><td>Signal Variance</td><td><code>std &lt; 0.01</code></td><td>HALT pipeline, Discord critical alert</td></tr>
+<tr><td>2</td><td>Leverage Gate</td><td><code>leverage &gt; 1.5x</code></td><td>Skip order batch, continue to reporting</td></tr>
+<tr><td>3</td><td>Calibration Health</td><td><code>tolerance: 1e-6</code></td><td>Log error, skip calibration</td></tr>
+<tr><td>4</td><td>Model Promotion</td><td><code>Sharpe &lt; 0.5</code></td><td>Reject model, log warning</td></tr>
+<tr><td>5</td><td>Execution Failure</td><td><code>rate &gt; 25%</code> in 1h</td><td>Pause remaining orders, Discord alert</td></tr>
+</table>
+<h4>Environment Variables</h4>
+<div>
+<code>GUARDRAIL_SIGNAL_MIN_STD</code> <code>GUARDRAIL_MAX_LEVERAGE</code> <code>GUARDRAIL_CALIBRATION_TOLERANCE</code> <code>GUARDRAIL_MIN_PROMOTION_SHARPE</code> <code>GUARDRAIL_MAX_EXEC_FAILURE_RATE</code> <code>GUARDRAIL_EXEC_WINDOW_SECONDS</code>
+</div>
+`},
+{id:'regime',label:'Regime',val:'4 States',desc:'Calm/volatile x trend/chop',detail:`
+<h3>4-State Regime Detector</h3>
+<p><code>strategies/regime/detector.py</code>. Classifies the current market into one of four states, which directly controls ensemble strategy weights.</p>
+<h4>Regime States</h4>
+<table class="tbl">
+<tr><th>State</th><th>VIX</th><th>Breadth</th><th>Favored Strategies</th></tr>
+<tr><td><span class="tag tag-lime">calm_trending</span></td><td>&lt; 20</td><td>&gt; 0.6 (trending)</td><td>Momentum, TFT</td></tr>
+<tr><td><span class="tag tag-cyan">calm_choppy</span></td><td>&lt; 20</td><td>&lt; 0.4 (choppy)</td><td>Mean Reversion, Pairs</td></tr>
+<tr><td><span class="tag tag-gold">volatile_trending</span></td><td>&gt; 30</td><td>&gt; 0.6</td><td>TFT, Momentum</td></tr>
+<tr><td><span class="tag tag-magenta">volatile_choppy</span></td><td>&gt; 30</td><td>&lt; 0.4</td><td>Pairs, Mean Reversion</td></tr>
+</table>
+<h4>Detection Inputs</h4>
+<ul>
+<li><strong>VIX level</strong>: Low (&lt;20), Medium (20-30), High (&gt;30)</li>
+<li><strong>Market breadth</strong>: 50-day lookback, % of stocks above MA</li>
+<li><strong>Realized vol</strong>: 21-day rolling window (<code>STRATEGY_REGIME_RVOL_WINDOW</code>)</li>
+</ul>
+<h4>Bear Regime Scaling (HI-4 fix)</h4>
+<p>In bear regimes, <code>exposure_scalar</code> only reduces <strong>long</strong> positions. Short positions are preserved at full weight to maintain hedging.</p>
+`},
+{id:'messaging',label:'Messaging',val:'Kafka',desc:'7 topics, DLQ, schema registry',detail:`
+<h3>Kafka Event Streaming</h3>
+<p>KRaft mode (no ZooKeeper). 7 topics across 5 microservices. All 4 consumers use manual commit with DLQ fallback.</p>
+<h4>Dead Letter Queue</h4>
+<ul>
+<li>PostgreSQL-backed (<code>dead_letter_queue</code> table)</li>
+<li>Status lifecycle: PENDING &rarr; RETRYING &rarr; RESOLVED/EXHAUSTED</li>
+<li>Exponential backoff: base 1s, 2x multiplier, max 5 retries, max 60s delay</li>
+<li>Jitter: 0&ndash;25% randomization</li>
+<li>Background retry worker polls every 30s</li>
+<li><code>/dlq</code> dashboard endpoint in paper trader</li>
+</ul>
+`},
+{id:'monitoring',label:'Monitoring',val:'Prometheus',desc:'Metrics, Grafana, alerts',detail:`
+<h3>Monitoring Stack</h3>
+<h4>Prometheus (port 9090)</h4>
+<p>9 custom metrics scraped from <code>/metrics</code>: <code>apex_signal_score</code>, <code>apex_strategy_weight</code>, <code>apex_regime_state</code>, <code>apex_ensemble_confidence</code>, <code>apex_execution_slippage_bps</code>, <code>apex_pipeline_duration_seconds</code>, <code>apex_risk_max_drawdown</code>, <code>apex_risk_var_99</code>, <code>apex_risk_cvar_95</code>.</p>
+<h4>Grafana (port 3000)</h4>
+<p>8-panel dashboard: signal heatmap, strategy weights bar, regime timeline, confidence histogram, slippage scatter, pipeline duration, risk gauges, correlation matrix.</p>
+<h4>Notifications</h4>
+<ul>
+<li><code>NotificationManager</code> (202 lines): Discord webhooks + Email (SMTP)</li>
+<li>Critical alerts: signal variance halt, execution failure pause, circuit breaker trip</li>
+<li>Daily reports: P&L summary, strategy weights, regime state</li>
+</ul>
+`}
+];
+
+// ── RENDER ──
+function renderTech(){
+  const g=document.getElementById('tech-grid');
+  let html='';
+  TECH.forEach((t,i)=>{
+    html+=`<div class="icard" data-idx="${i}" data-group="tech" onclick="toggleDetail('tech',${i})">
+      <div class="ic-logo" style="background:${t.bg};color:${t.fg};${t.round?'border-radius:50%':''}">${t.logo}</div>
+      <div class="ic-name">${t.name}</div>
+      <div class="ic-hint">click to explore</div>
+    </div>`;
+  });
+  html+='<div class="detail-panel" id="tech-detail"></div>';
+  g.innerHTML=html;
+}
+
+function renderArch(){
+  const g=document.getElementById('arch-grid');
+  let html='';
+  ARCH.forEach((a,i)=>{
+    html+=`<div class="icard arch-card" data-idx="${i}" data-group="arch" onclick="toggleDetail('arch',${i})">
+      <div class="ic-label">${a.label}</div>
+      <div class="ic-val">${a.val}</div>
+      <div class="ic-desc">${a.desc}</div>
+      <div class="ic-hint">click to explore</div>
+    </div>`;
+  });
+  html+='<div class="detail-panel" id="arch-detail"></div>';
+  g.innerHTML=html;
+}
+
+// ── TOGGLE ──
+let openGroup=null,openIdx=null;
+
+function toggleDetail(group,idx){
+  const data=group==='tech'?TECH:ARCH;
+  const panel=document.getElementById(group+'-detail');
+  const cards=document.querySelectorAll(`[data-group="${group}"]`);
+  const card=document.querySelector(`[data-group="${group}"][data-idx="${idx}"]`);
+
+  if(openGroup===group && openIdx===idx){
+    panel.classList.remove('open');
+    card.classList.remove('active');
+    openGroup=null;openIdx=null;
+    return;
+  }
+
+  cards.forEach(c=>c.classList.remove('active'));
+  card.classList.add('active');
+  panel.innerHTML=data[idx].detail;
+  panel.classList.remove('open');
+
+  // Position panel after the clicked card's row
+  const grid=panel.parentElement;
+  const cardRect=card.getBoundingClientRect();
+  const gridRect=grid.getBoundingClientRect();
+  const cols=getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+  const row=Math.floor(idx/cols);
+  const insertAfterIdx=Math.min((row+1)*cols-1,data.length-1);
+  const refCard=grid.querySelector(`[data-idx="${insertAfterIdx}"]`);
+
+  if(refCard && refCard.nextElementSibling!==panel){
+    refCard.after(panel);
+  }
+
+  requestAnimationFrame(()=>panel.classList.add('open'));
+  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+
+  openGroup=group;openIdx=idx;
+}
+
+// ── SEARCH ──
+function doSearch(q){
+  document.querySelectorAll('mark').forEach(m=>{
+    const parent=m.parentNode;
+    parent.replaceChild(document.createTextNode(m.textContent),m);
+    parent.normalize();
+  });
+  if(!q||q.length<2)return;
+  const regex=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+    acceptNode:n=>{
+      if(n.parentElement.closest('script,style,nav,#searchBox'))return NodeFilter.FILTER_REJECT;
+      return regex.test(n.textContent)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+    }
+  });
+  const nodes=[];
+  while(walker.nextNode())nodes.push(walker.currentNode);
+  nodes.forEach(n=>{
+    const span=document.createElement('span');
+    span.innerHTML=n.textContent.replace(regex,'<mark>$1</mark>');
+    n.parentNode.replaceChild(span,n);
+  });
+  const first=document.querySelector('mark');
+  if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ── PARTICLES ──
 (function(){
   const c=document.getElementById('bg'),ctx=c.getContext('2d');
-  let w,h,particles=[];
+  let w,h,pts=[];
   function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
   resize();addEventListener('resize',resize);
-  for(let i=0;i<50;i++) particles.push({x:Math.random()*2000,y:Math.random()*5000,r:Math.random()*1.5+.5,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3,a:Math.random()*.25+.05});
-  function draw(){
+  for(let i=0;i<40;i++)pts.push({x:Math.random()*2000,y:Math.random()*5000,r:Math.random()*1.5+.5,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,a:Math.random()*.2+.05});
+  (function draw(){
     ctx.clearRect(0,0,w,h);
-    particles.forEach(p=>{
-      p.x+=p.dx;p.y+=p.dy;
-      if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,229,255,${p.a})`;ctx.fill();
-    });
-    for(let i=0;i<particles.length;i++)
-      for(let j=i+1;j<particles.length;j++){
-        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<120){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(0,229,255,${.06*(1-d/120)})`;ctx.stroke()}
-      }
+    pts.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,229,255,${p.a})`;ctx.fill()});
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,229,255,${.05*(1-d/110)})`;ctx.stroke()}}
     requestAnimationFrame(draw);
-  }
-  draw();
+  })();
 })();
 
-// Animated counters
-function animateCounter(el,target){
-  const start=performance.now(),duration=1800;
-  function tick(now){
-    const t=Math.min((now-start)/duration,1),ease=1-Math.pow(1-t,3);
+// ── COUNTERS ──
+function animCount(el,target){
+  const start=performance.now(),dur=1800;
+  (function tick(now){
+    const t=Math.min((now-start)/dur,1),ease=1-Math.pow(1-t,3);
     el.textContent=Math.round(target*ease).toLocaleString();
     if(t<1)requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+  })(performance.now());
 }
 
-// Decimal counter (for Sharpe, etc.)
-function animateDecimal(el,target){
-  const start=performance.now(),duration=1800,neg=target<0,abs=Math.abs(target);
-  function tick(now){
-    const t=Math.min((now-start)/duration,1),ease=1-Math.pow(1-t,3);
-    const v=(neg?'-':'')+Math.abs(abs*ease).toFixed(2);
-    el.textContent=v;
-    if(t<1)requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-// Percentage counter
-function animatePct(el,target){
-  const start=performance.now(),duration=1800,neg=target<0,abs=Math.abs(target);
-  function tick(now){
-    const t=Math.min((now-start)/duration,1),ease=1-Math.pow(1-t,3);
-    const v=(neg?'-':'')+Math.abs(abs*ease).toFixed(1)+'%';
-    el.textContent=v;
-    if(t<1)requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-// Intersection observer
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      const num=e.target.querySelector('[data-target]');
-      if(num && !num.dataset.done){num.dataset.done='1';animateCounter(num,parseInt(num.dataset.target))}
-      const dec=e.target.querySelector('[data-target-d]');
-      if(dec && !dec.dataset.done){dec.dataset.done='1';animateDecimal(dec,parseFloat(dec.dataset.targetD))}
-      const pct=e.target.querySelector('[data-target-pct]');
-      if(pct && !pct.dataset.done){pct.dataset.done='1';animatePct(pct,parseFloat(pct.dataset.targetPct))}
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:0.2});
-
+// ── OBSERVERS ──
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}});
+},{threshold:.2});
 document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
 
-// Hero counters
-const heroIO=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      document.querySelectorAll('.hero-stat .num[data-target]').forEach(el=>{
-        if(!el.dataset.done){el.dataset.done='1';animateCounter(el,parseInt(el.dataset.target))}
-      });
-      heroIO.unobserve(e.target);
-    }
-  });
-},{threshold:0.3});
+const heroIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.hero-stat .num[data-count]').forEach(el=>{if(!el.dataset.done){el.dataset.done='1';animCount(el,+el.dataset.count)}});heroIO.unobserve(e.target)}});
+},{threshold:.3});
 heroIO.observe(document.querySelector('.hero'));
 
-// Equity curve chart
-(function(){
-  const canvas=document.getElementById('equityChart');
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  const dpr=window.devicePixelRatio||1;
+// ── BTT ──
+addEventListener('scroll',()=>{document.getElementById('btt').classList.toggle('show',scrollY>600)});
 
-  function draw(){
-    const rect=canvas.getBoundingClientRect();
-    canvas.width=rect.width*dpr;canvas.height=200*dpr;
-    ctx.scale(dpr,dpr);
-    const W=rect.width,H=200;
-
-    // Generate simulated equity curve: ~24.6% annual over 4 years from 100k
-    const N=1008; // ~4 years of daily data
-    const dailyReturn=0.000218; // ~24.6% annualized
-    const dailyVol=0.0084; // ~13.4% annualized
-    const pts=[];
-    let v=100000;
-    // Use seeded pseudo-random for reproducibility
-    let seed=42;
-    function rand(){seed=(seed*16807+0)%2147483647;return(seed-1)/2147483646}
-    function randn(){const u1=rand(),u2=rand();return Math.sqrt(-2*Math.log(u1))*Math.cos(2*Math.PI*u2)}
-    for(let i=0;i<N;i++){
-      pts.push(v);
-      let r=dailyReturn+dailyVol*randn();
-      // Add drawdown event around day 125 (Jun 2022)
-      if(i>120&&i<160) r-=0.003;
-      if(i>350&&i<380) r-=0.001; // smaller dip
-      v*=(1+r);
-    }
-    pts.push(v);
-
-    const minV=Math.min(...pts),maxV=Math.max(...pts);
-    const pad=12;
-
-    // Grid lines
-    ctx.strokeStyle='rgba(255,255,255,.05)';ctx.lineWidth=1;
-    for(let i=0;i<5;i++){
-      const y=pad+(H-2*pad)*(i/4);
-      ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(W-pad,y);ctx.stroke();
-    }
-
-    // Equity line
-    ctx.beginPath();
-    pts.forEach((p,i)=>{
-      const x=pad+(W-2*pad)*(i/(pts.length-1));
-      const y=pad+(H-2*pad)*(1-(p-minV)/(maxV-minV));
-      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
-    });
-    ctx.strokeStyle='#00e5ff';ctx.lineWidth=2;ctx.stroke();
-
-    // Gradient fill
-    const grad=ctx.createLinearGradient(0,0,0,H);
-    grad.addColorStop(0,'rgba(0,229,255,.15)');grad.addColorStop(1,'rgba(0,229,255,0)');
-    ctx.lineTo(W-pad,H-pad);ctx.lineTo(pad,H-pad);ctx.closePath();
-    ctx.fillStyle=grad;ctx.fill();
-
-    // Labels
-    ctx.fillStyle='#5a6680';ctx.font='11px system-ui';ctx.textAlign='left';
-    ctx.fillText('$'+Math.round(minV/1000)+'k',pad,H-pad+14);
-    ctx.textAlign='right';
-    ctx.fillText('$'+Math.round(maxV/1000)+'k',W-pad,pad-4);
-
-    // Year labels
-    ctx.textAlign='center';ctx.fillStyle='#5a6680';
-    const years=['2022','2023','2024','2025'];
-    years.forEach((yr,i)=>{
-      const x=pad+(W-2*pad)*((i+0.5)/4);
-      ctx.fillText(yr,x,H-pad+14);
-    });
-  }
-
-  // Draw on scroll into view
-  const eqIO=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting){draw();eqIO.unobserve(e.target)}});
-  },{threshold:0.3});
-  eqIO.observe(canvas.parentElement);
-  window.addEventListener('resize',()=>{if(canvas.parentElement.classList.contains('visible'))draw()});
-})();
+// ── INIT ──
+renderTech();
+renderArch();
 </script>
 </body>
 </html>
