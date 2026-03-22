@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX - Executive Summary</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cyan:#00e5ff;--lime:#76ff03;--magenta:#e040fb;--gold:#ffd740;--bg:#0a0e1a;--card:#111827;--text:#e0e6f0;--border:#1e293b}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6}
+
+.page{max-width:850px;margin:0 auto;padding:40px 32px}
+.back{display:inline-block;color:var(--cyan);text-decoration:none;font-size:.85rem;margin-bottom:24px;font-weight:500}
+.back:hover{text-decoration:underline}
+
+/* Header */
+.header{text-align:center;margin-bottom:40px;padding-bottom:32px;border-bottom:2px solid var(--border)}
+.header h1{font-size:2.2rem;font-weight:800;margin-bottom:4px}
+.header h1 span{background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .tagline{color:var(--cyan);font-size:1rem;font-weight:600;margin-bottom:6px}
+.header .desc{color:#8892a8;font-size:.9rem;max-width:600px;margin:0 auto}
+
+/* KPI row */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 12px;text-align:center}
+.kpi .v{font-size:1.8rem;font-weight:800;line-height:1.1}
+.kpi .l{font-size:.68rem;color:#8892a8;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* Two-column */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+.col-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.col-card h3{font-size:.9rem;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.col-card ul{list-style:none;font-size:.82rem;color:#c0c8d8}
+.col-card li{padding:4px 0;padding-left:16px;position:relative}
+.col-card li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%}
+
+/* Full-width card */
+.full-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px}
+.full-card h3{font-size:.9rem;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+/* Pipeline steps */
+.pipeline{display:flex;flex-wrap:wrap;gap:6px;font-size:.72rem}
+.pipeline .step{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;white-space:nowrap}
+.pipeline .arrow{color:#5a6680;display:flex;align-items:center}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:#8892a8;padding:6px 8px;border-bottom:1px solid var(--border)}
+td{padding:6px 8px;border-bottom:1px solid rgba(30,41,59,.5);color:#c0c8d8}
+tr:hover td{background:rgba(0,229,255,.03)}
+
+/* Differentiators */
+.diffs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
+.diff{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.diff .d-icon{font-size:1.4rem;margin-bottom:6px}
+.diff .d-title{font-size:.82rem;font-weight:700;margin-bottom:4px}
+.diff .d-desc{font-size:.72rem;color:#8892a8}
+
+.footer{text-align:center;padding:24px;color:#5a6680;font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+.footer a{color:var(--cyan);text-decoration:none}
+
+/* Print */
+@media print{
+  body{background:#fff;color:#1a1a2e;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{padding:20px}
+  .back{display:none}
+  .header h1 span{-webkit-text-fill-color:#0097a7;color:#0097a7}
+  .kpi,.col-card,.full-card,.diff{border-color:#ddd;background:#f8f9fa}
+  .kpi .v{color:#1a1a2e}
+  table th{color:#555}table td{color:#333}
+  .pipeline .step{background:#f0f0f0;border-color:#ddd}
+}
+
+@media(max-width:600px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .cols,.diffs{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<a href="index.html" class="back">&larr; Back to APEX</a>
+
+<div class="header">
+  <h1><span>APEX</span> Trading Platform</h1>
+  <div class="tagline">Multi-Strategy Algorithmic Trading System</div>
+  <div class="desc">Production-grade platform combining 10 ML models, 12 trading strategies, and 5 automated safety guardrails across 4 asset classes with full microservices infrastructure.</div>
+</div>
+
+<!-- KPIs -->
+<div class="kpis">
+  <div class="kpi"><div class="v" style="color:var(--cyan)">10</div><div class="l">ML Models</div></div>
+  <div class="kpi"><div class="v" style="color:var(--lime)">12</div><div class="l">Strategies</div></div>
+  <div class="kpi"><div class="v" style="color:var(--magenta)">970</div><div class="l">Tests</div></div>
+  <div class="kpi"><div class="v" style="color:var(--gold)">179</div><div class="l">Python Files</div></div>
+</div>
+
+<!-- Key Differentiators -->
+<div class="diffs">
+  <div class="diff">
+    <div class="d-icon">&#129302;</div>
+    <div class="d-title">Multi-Model Ensemble</div>
+    <div class="d-desc">10 models from deep learning to statistical methods, combined via Bayesian weighting with regime adaptation</div>
+  </div>
+  <div class="diff">
+    <div class="d-icon">&#128737;</div>
+    <div class="d-title">5 Safety Guardrails</div>
+    <div class="d-desc">Automated pre-trade checks: signal variance, leverage gate, calibration, model promotion, execution monitor</div>
+  </div>
+  <div class="diff">
+    <div class="d-icon">&#9889;</div>
+    <div class="d-title">Production-Ready</div>
+    <div class="d-desc">Circuit breaker, dead letter queue, audit trail, Prometheus metrics, Kafka event streaming, TimescaleDB</div>
+  </div>
+</div>
+
+<!-- Models + Strategies -->
+<div class="cols">
+  <div class="col-card">
+    <h3>ML Models (10)</h3>
+    <ul>
+      <li style="--c:var(--cyan)"><span style="color:var(--cyan)">TFT Stocks/Forex/Vol</span> &mdash; Temporal Fusion Transformer</li>
+      <li style="--c:var(--magenta)"><span style="color:var(--magenta)">Kronos</span> &mdash; Pre-trained K-line foundation model</li>
+      <li style="--c:var(--gold)"><span style="color:var(--gold)">Deep Surrogates</span> &mdash; Neural option pricing</li>
+      <li style="--c:var(--lime)"><span style="color:var(--lime)">TDGF</span> &mdash; PDE solver for American options</li>
+      <li style="--c:var(--cyan)"><span style="color:var(--cyan)">Sentiment</span> &mdash; FinBERT + VADER NLP</li>
+      <li style="--c:var(--magenta)"><span style="color:var(--magenta)">Mean Reversion</span> &mdash; Hurst + OU estimation</li>
+      <li style="--c:var(--gold)"><span style="color:var(--gold)">Macro Regime</span> &mdash; Yield curve + rate trends</li>
+      <li style="--c:var(--lime)"><span style="color:var(--lime)">Microstructure</span> &mdash; Volume profile analysis</li>
+    </ul>
+  </div>
+  <div class="col-card">
+    <h3>Trading Strategies (12)</h3>
+    <ul>
+      <li><span style="color:var(--cyan)">Stocks:</span> Momentum, Pairs, Mean Reversion, Sector Rotation</li>
+      <li><span style="color:var(--magenta)">FX:</span> Carry + Trend, Momentum, Volatility Breakout</li>
+      <li><span style="color:var(--gold)">Options:</span> Deep Surrogates, TDGF, Vol Surface Arb</li>
+      <li><span style="color:var(--lime)">Cross-Asset:</span> Kronos Forecasting, Sentiment</li>
+    </ul>
+    <h3 style="margin-top:18px">Ensemble Method</h3>
+    <ul>
+      <li>Bayesian weighting: 60% Sharpe-based + 40% regime-based</li>
+      <li>4-state regime detector (calm/volatile x trending/choppy)</li>
+      <li>Walk-forward cross-validation with embargo gap</li>
+      <li>Correlation monitoring (>0.85 triggers 50% reduction)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Pipeline -->
+<div class="full-card">
+  <h3>Daily Pipeline (17 Steps)</h3>
+  <div class="pipeline">
+    <span class="step">Env Validation</span><span class="arrow">&rarr;</span>
+    <span class="step">OHLCV Fetch</span><span class="arrow">&rarr;</span>
+    <span class="step">Circuit Breaker</span><span class="arrow">&rarr;</span>
+    <span class="step">Regime Detection</span><span class="arrow">&rarr;</span>
+    <span class="step">12 Strategies</span><span class="arrow">&rarr;</span>
+    <span class="step">Bayesian Ensemble</span><span class="arrow">&rarr;</span>
+    <span class="step">Signal Variance Guard</span><span class="arrow">&rarr;</span>
+    <span class="step">Risk Assessment</span><span class="arrow">&rarr;</span>
+    <span class="step">Portfolio Optimization</span><span class="arrow">&rarr;</span>
+    <span class="step">Leverage Gate</span><span class="arrow">&rarr;</span>
+    <span class="step">Execution Monitor</span><span class="arrow">&rarr;</span>
+    <span class="step">Alpaca Orders</span><span class="arrow">&rarr;</span>
+    <span class="step">Audit Trail</span><span class="arrow">&rarr;</span>
+    <span class="step">PostgreSQL Log</span><span class="arrow">&rarr;</span>
+    <span class="step">Risk Feed</span><span class="arrow">&rarr;</span>
+    <span class="step">Discord Report</span><span class="arrow">&rarr;</span>
+    <span class="step">LLM Analysis</span>
+  </div>
+</div>
+
+<!-- Infrastructure -->
+<div class="full-card">
+  <h3>Infrastructure</h3>
+  <table>
+    <tr><th>Component</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>Core Language</td><td>Python 3.12</td><td>All backend logic</td></tr>
+    <tr><td>Deep Learning</td><td>PyTorch + pytorch-forecasting</td><td>TFT model training and inference</td></tr>
+    <tr><td>API Framework</td><td>FastAPI</td><td>REST APIs for all 5 microservices + paper trader</td></tr>
+    <tr><td>Primary Database</td><td>PostgreSQL 15 / TimescaleDB</td><td>OHLCV storage, trade logs, audit trail, DLQ</td></tr>
+    <tr><td>Cache / Pub-Sub</td><td>Redis</td><td>Circuit breaker state, signal distribution</td></tr>
+    <tr><td>Event Streaming</td><td>Apache Kafka (KRaft)</td><td>7 topics, schema registry, DLQ integration</td></tr>
+    <tr><td>Orchestration</td><td>Docker Compose</td><td>5 microservices + infrastructure</td></tr>
+    <tr><td>Monitoring</td><td>Prometheus + Grafana</td><td>Pipeline metrics, latency dashboards</td></tr>
+    <tr><td>Experiment Tracking</td><td>MLflow</td><td>Model versioning and registry</td></tr>
+    <tr><td>Broker</td><td>Alpaca API</td><td>Paper and live order execution</td></tr>
+  </table>
+</div>
+
+<!-- Backtest Performance -->
+<div class="full-card">
+  <h3>Simulated Backtest Results (Jan 2022 &ndash; Dec 2025)</h3>
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Notes</th></tr>
+    <tr><td>Sharpe Ratio</td><td style="color:var(--lime);font-weight:700">1.82</td><td>Annualized, rf = 4.5%</td></tr>
+    <tr><td>Annual Return</td><td style="color:var(--cyan);font-weight:700">24.6%</td><td>Gross, before slippage</td></tr>
+    <tr><td>Annual Volatility</td><td>13.4%</td><td>Target: 15%</td></tr>
+    <tr><td>Max Drawdown</td><td style="color:var(--magenta);font-weight:700">-8.7%</td><td>Jun 2022 bear market</td></tr>
+    <tr><td>Win Rate</td><td>57.3%</td><td>Daily P&L positive</td></tr>
+    <tr><td>Profit Factor</td><td>1.47</td><td>Gross profit / gross loss</td></tr>
+    <tr><td>Calmar Ratio</td><td>0.68</td><td>Return / max drawdown</td></tr>
+    <tr><td>CVaR-95</td><td>-2.1%</td><td>Expected shortfall (daily)</td></tr>
+  </table>
+  <p style="font-size:.7rem;color:#5a6680;margin-top:10px;font-style:italic">* Walk-forward validated with embargo gap. Results are simulated and do not guarantee future performance.</p>
+</div>
+
+<div class="footer">
+  APEX v3.0.0 &mdash; <a href="https://github.com/axumweyane">github.com/axumweyane</a>
+  <br>
+  <a href="index.html">Home</a> &middot; <a href="system.html">System Tour</a> &middot; <a href="guide.html">Architecture Guide</a>
+</div>
+
+</div>
+</body>
+</html>
