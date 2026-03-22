@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX Visual Architecture Guide</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cyan:#00e5ff;--lime:#76ff03;--magenta:#e040fb;--gold:#ffd740;--bg:#0a0e1a;--card:#111827;--card2:#1a2236;--text:#e0e6f0;--border:#1e293b}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;padding:0}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Header */
+.header{background:rgba(10,14,26,.95);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:50;backdrop-filter:blur(12px)}
+.header .logo{font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.header a.back{color:#8892a8;font-size:.85rem}
+.header a.back:hover{color:var(--cyan)}
+
+/* Layout */
+.container{max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+h1{font-size:2rem;font-weight:800;margin-bottom:8px;text-align:center}
+h1 span{background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#8892a8;margin-bottom:48px;font-size:.95rem}
+h2{font-size:1.3rem;font-weight:700;margin:48px 0 20px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h2 .badge{display:inline-block;font-size:.65rem;padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:middle;font-weight:600}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:.82rem}
+th{text-align:left;padding:10px 12px;background:var(--card2);color:var(--cyan);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border)}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(0,229,255,.03)}
+.tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:.68rem;font-weight:600}
+.tag-cyan{background:rgba(0,229,255,.12);color:var(--cyan)}
+.tag-lime{background:rgba(118,255,3,.12);color:var(--lime)}
+.tag-magenta{background:rgba(224,64,251,.12);color:var(--magenta)}
+.tag-gold{background:rgba(255,215,64,.12);color:var(--gold)}
+.tag-red{background:rgba(255,82,82,.12);color:#ff5252}
+
+/* Flow diagram */
+.flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin:24px 0;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:12px}
+.flow-item{padding:10px 18px;border-radius:8px;font-size:.78rem;font-weight:600;text-align:center;white-space:nowrap}
+.flow-arrow{color:#5a6680;font-size:1.2rem;padding:0 4px}
+
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:16px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.card .c-title{font-size:.82rem;font-weight:700;margin-bottom:4px}
+.card .c-desc{font-size:.72rem;color:#8892a8;line-height:1.5}
+.card .c-tag{margin-top:8px}
+
+/* Pipeline */
+.pipeline{display:flex;flex-direction:column;gap:0;margin:16px 0}
+.pipe-step{display:flex;align-items:flex-start;gap:12px;padding:8px 0}
+.pipe-num{width:28px;height:28px;border-radius:50%;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;color:var(--cyan)}
+.pipe-line{width:1px;height:12px;background:var(--border);margin-left:13px}
+.pipe-text{font-size:.8rem}
+.pipe-text strong{color:var(--cyan)}
+
+/* Print */
+@media print{
+  body{background:#fff;color:#111}
+  .header{display:none}
+  table th{background:#f0f0f0;color:#111}
+  td{border-color:#ddd}
+  .flow{background:#f8f8f8;border-color:#ddd}
+  .card{background:#f8f8f8;border-color:#ddd}
+  a{color:#0066cc}
+}
+@media(max-width:600px){
+  .flow{flex-direction:column;align-items:stretch}
+  .flow-arrow{transform:rotate(90deg);text-align:center}
+  table{font-size:.72rem}
+  th,td{padding:6px 8px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="logo">APEX</span>
+  <a href="index.html" class="back">&larr; Back to Home</a>
+  <span style="flex:1"></span>
+  <span style="font-size:.75rem;color:#5a6680">Visual Architecture Guide v3.0.0</span>
+</div>
+
+<div class="container">
+<h1><span>APEX</span> Visual Architecture Guide</h1>
+<p class="subtitle">Complete reference for the multi-strategy algorithmic trading platform</p>
+
+<!-- ===== Pipeline Overview ===== -->
+<h2>Daily Pipeline Flow</h2>
+<div class="flow">
+  <div class="flow-item" style="background:rgba(118,255,3,.12);color:var(--lime)">Data Fetch</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(0,229,255,.12);color:var(--cyan)">Circuit Breaker</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(224,64,251,.12);color:var(--magenta)">Regime Detect</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(0,229,255,.12);color:var(--cyan)">12 Strategies</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(255,215,64,.12);color:var(--gold)">Bayesian Ensemble</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(118,255,3,.12);color:var(--lime)">5 Guardrails</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(224,64,251,.12);color:var(--magenta)">Risk (VaR/CVaR)</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(255,215,64,.12);color:var(--gold)">Alpaca Execute</div>
+  <div class="flow-arrow">&rarr;</div>
+  <div class="flow-item" style="background:rgba(0,229,255,.12);color:var(--cyan)">Log + Report</div>
+</div>
+
+<!-- ===== 10 Models ===== -->
+<h2>10 ML Models <span class="badge" style="background:rgba(0,229,255,.15);color:var(--cyan)">models/</span></h2>
+<table>
+  <tr><th>#</th><th>Model</th><th>File</th><th>Asset Class</th><th>Source</th></tr>
+  <tr><td>1</td><td>TFT Stocks</td><td>stocks_adapter.py</td><td><span class="tag tag-cyan">stocks</span></td><td>Trained (PyTorch Forecasting)</td></tr>
+  <tr><td>2</td><td>TFT Forex</td><td>forex_model.py</td><td><span class="tag tag-lime">forex</span></td><td>Trained</td></tr>
+  <tr><td>3</td><td>TFT Volatility</td><td>volatility_model.py</td><td><span class="tag tag-magenta">volatility</span></td><td>Trained</td></tr>
+  <tr><td>4</td><td>Kronos</td><td>kronos_model.py</td><td><span class="tag tag-cyan">stocks+forex</span></td><td>HuggingFace (NeoQuasar/Kronos-base)</td></tr>
+  <tr><td>5</td><td>Deep Surrogates</td><td>deep_surrogate_model.py</td><td><span class="tag tag-gold">options</span></td><td>Pre-trained neural surrogate</td></tr>
+  <tr><td>6</td><td>TDGF</td><td>tdgf_model.py</td><td><span class="tag tag-gold">options</span></td><td>PDE solver</td></tr>
+  <tr><td>7</td><td>Sentiment</td><td>sentiment_model.py</td><td><span class="tag tag-magenta">cross-asset</span></td><td>FinBERT + VADER fallback</td></tr>
+  <tr><td>8</td><td>Mean Reversion</td><td>mean_reversion_model.py</td><td><span class="tag tag-cyan">stocks</span></td><td>Hurst exponent + OU process</td></tr>
+  <tr><td>9</td><td>Macro Regime</td><td>macro_model.py</td><td><span class="tag tag-magenta">cross-asset</span></td><td>Yield curve + rate trends</td></tr>
+  <tr><td>10</td><td>Microstructure</td><td>microstructure_model.py</td><td><span class="tag tag-cyan">stocks</span></td><td>Volume profile + order flow</td></tr>
+</table>
+
+<!-- ===== 12 Strategies ===== -->
+<h2>12 Trading Strategies <span class="badge" style="background:rgba(224,64,251,.15);color:var(--magenta)">strategies/</span></h2>
+<table>
+  <tr><th>#</th><th>Strategy</th><th>File</th><th>Regime Bucket</th><th>Model Dependency</th></tr>
+  <tr><td>1</td><td>Cross-Sectional Momentum</td><td>momentum/cross_sectional.py</td><td><span class="tag tag-cyan">momentum</span></td><td>None (factor-based)</td></tr>
+  <tr><td>2</td><td>Pairs Trading (StatArb)</td><td>statarb/pairs.py</td><td><span class="tag tag-magenta">pairs</span></td><td>None (cointegration)</td></tr>
+  <tr><td>3</td><td>Mean Reversion</td><td>stocks/mean_reversion.py</td><td><span class="tag tag-lime">mean_reversion</span></td><td>MeanReversionModel</td></tr>
+  <tr><td>4</td><td>Sector Rotation</td><td>stocks/sector_rotation.py</td><td><span class="tag tag-cyan">momentum</span></td><td>MacroRegimeModel</td></tr>
+  <tr><td>5</td><td>FX Carry + Trend</td><td>fx/carry_trend.py</td><td><span class="tag tag-gold">tft</span></td><td>None</td></tr>
+  <tr><td>6</td><td>FX Momentum</td><td>fx/momentum.py</td><td><span class="tag tag-cyan">momentum</span></td><td>None</td></tr>
+  <tr><td>7</td><td>FX Vol Breakout</td><td>fx/vol_breakout.py</td><td><span class="tag tag-magenta">pairs</span></td><td>TFT Volatility</td></tr>
+  <tr><td>8</td><td>Deep Surrogates</td><td>deep_surrogates/strategy.py</td><td><span class="tag tag-magenta">pairs</span></td><td>DeepSurrogateModel</td></tr>
+  <tr><td>9</td><td>TDGF American Options</td><td>tdgf/strategy.py</td><td><span class="tag tag-magenta">pairs</span></td><td>TDGFModel</td></tr>
+  <tr><td>10</td><td>Vol Surface Arbitrage</td><td>options/strategies/vol_arb.py</td><td><span class="tag tag-magenta">pairs</span></td><td>None (IV-RV spread)</td></tr>
+  <tr><td>11</td><td>Kronos Forecasting</td><td>kronos/strategy.py</td><td><span class="tag tag-gold">tft</span></td><td>KronosModel</td></tr>
+  <tr><td>12</td><td>Sentiment</td><td>sentiment/strategy.py</td><td><span class="tag tag-gold">tft</span></td><td>SentimentModel</td></tr>
+</table>
+
+<!-- ===== Safety Guardrails ===== -->
+<h2>5 Safety Guardrails <span class="badge" style="background:rgba(118,255,3,.15);color:var(--lime)">trading/safety/</span></h2>
+<div class="cards">
+  <div class="card"><div class="c-title" style="color:var(--lime)">Signal Variance Guard</div><div class="c-desc">Halts pipeline if signal scores collapse (std &lt; 0.01). Prevents undiversified random bets.</div><div class="c-tag"><span class="tag tag-red">Halts pipeline</span></div></div>
+  <div class="card"><div class="c-title" style="color:var(--lime)">Leverage Gate</div><div class="c-desc">Skips order batch if portfolio leverage exceeds 1.5x. Continues to snapshot/reporting.</div><div class="c-tag"><span class="tag tag-gold">Skips orders</span></div></div>
+  <div class="card"><div class="c-title" style="color:var(--lime)">Calibration Health</div><div class="c-desc">Verifies model calibration at startup. Logs error and skips calibration if drift detected.</div><div class="c-tag"><span class="tag tag-cyan">Logs warning</span></div></div>
+  <div class="card"><div class="c-title" style="color:var(--lime)">Model Promotion Gate</div><div class="c-desc">Rejects models with Sharpe ratio below 0.5 from going live. Prevents poisoned ensemble signals.</div><div class="c-tag"><span class="tag tag-gold">Rejects model</span></div></div>
+  <div class="card"><div class="c-title" style="color:var(--lime)">Execution Failure Monitor</div><div class="c-desc">Pauses remaining orders if failure rate exceeds 25% within the execution window.</div><div class="c-tag"><span class="tag tag-red">Pauses batch</span></div></div>
+</div>
+
+<!-- ===== Regime Detection ===== -->
+<h2>4-State Market Regime <span class="badge" style="background:rgba(255,215,64,.15);color:var(--gold)">strategies/regime/</span></h2>
+<table>
+  <tr><th>Regime</th><th>Volatility</th><th>Trend</th><th>Top Weight</th><th>Exposure</th></tr>
+  <tr><td style="color:var(--lime)">Calm Trending</td><td>Low (VIX &lt; 20)</td><td>High breadth (&gt; 0.6)</td><td>Momentum 40%</td><td>1.0x</td></tr>
+  <tr><td style="color:var(--cyan)">Calm Choppy</td><td>Low</td><td>Low breadth (&lt; 0.4)</td><td>Mean Reversion 40%</td><td>0.8x</td></tr>
+  <tr><td style="color:var(--gold)">Volatile Trending</td><td>High (VIX &gt; 30)</td><td>High breadth</td><td>Momentum 30%</td><td>0.6x</td></tr>
+  <tr><td style="color:var(--magenta)">Volatile Choppy</td><td>High</td><td>Low breadth</td><td>Pairs 45%</td><td>0.5x</td></tr>
+</table>
+
+<!-- ===== Database Schema ===== -->
+<h2>Database Schema <span class="badge" style="background:rgba(0,229,255,.15);color:var(--cyan)">PostgreSQL</span></h2>
+<table>
+  <tr><th>Table</th><th>Purpose</th><th>Retention</th></tr>
+  <tr><td>paper_trades</td><td>All executed trades with fill details</td><td>365 days</td></tr>
+  <tr><td>paper_daily_snapshots</td><td>Daily portfolio value, P&L, positions</td><td>365 days</td></tr>
+  <tr><td>paper_strategy_signals</td><td>Per-strategy alpha scores each run</td><td>90 days</td></tr>
+  <tr><td>paper_risk_reports</td><td>VaR, CVaR, correlation, kill switch status</td><td>90 days</td></tr>
+  <tr><td>portfolio_snapshots</td><td>Circuit breaker portfolio snapshots</td><td>365 days</td></tr>
+  <tr><td>circuit_breaker_events</td><td>Trip, reset, and closure audit trail</td><td>365 days</td></tr>
+  <tr><td>dead_letter_queue</td><td>Failed Kafka messages with retry status</td><td>90 days</td></tr>
+  <tr><td>ohlcv_1m / 15m / 1h / 1d</td><td>TimescaleDB continuous aggregates</td><td>365 days</td></tr>
+</table>
+
+<!-- ===== Microservices ===== -->
+<h2>Microservices <span class="badge" style="background:rgba(224,64,251,.15);color:var(--magenta)">docker-compose</span></h2>
+<table>
+  <tr><th>Service</th><th>Port</th><th>Role</th></tr>
+  <tr><td>data-ingestion</td><td>8001</td><td>Polygon.io + Reddit data &rarr; Kafka</td></tr>
+  <tr><td>sentiment-engine</td><td>8002</td><td>NLP sentiment scoring (FinBERT/VADER)</td></tr>
+  <tr><td>tft-predictor</td><td>8003</td><td>GPU inference, MLflow model versioning</td></tr>
+  <tr><td>trading-engine</td><td>8004</td><td>Alpaca paper/live order execution</td></tr>
+  <tr><td>orchestrator</td><td>8005</td><td>Saga-pattern workflow coordination</td></tr>
+  <tr><td>paper-trader</td><td>8010</td><td>Daily ensemble pipeline + dashboard</td></tr>
+</table>
+
+<!-- ===== Full Pipeline Steps ===== -->
+<h2>17-Step Daily Pipeline</h2>
+<div class="pipeline">
+  <div class="pipe-step"><div class="pipe-num">1</div><div class="pipe-text"><strong>Fetch OHLCV</strong> via yfinance (stocks + SPY + FX pairs)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">2</div><div class="pipe-text"><strong>Circuit breaker</strong> check (Redis-backed drawdown limits)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">3</div><div class="pipe-text"><strong>Detect market regime</strong> (calm/volatile x trending/choppy)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">4</div><div class="pipe-text"><strong>Run 12 strategies</strong> (momentum, pairs, FX, options, sentiment)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">5</div><div class="pipe-text"><strong>Bayesian ensemble</strong> combine (60% Sharpe + 40% regime weights)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">6</div><div class="pipe-text"><strong>Signal variance check</strong> &mdash; halt if scores collapse</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">7</div><div class="pipe-text"><strong>Risk assessment</strong> (VaR/CVaR, correlation gates, kill switches)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">8</div><div class="pipe-text"><strong>Portfolio optimization</strong> with position/leverage constraints</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">9</div><div class="pipe-text"><strong>Leverage gate</strong> &mdash; skip if leverage &gt; 1.5x</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">10</div><div class="pipe-text"><strong>Execution failure monitor</strong> &mdash; pause if failure rate spikes</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">11</div><div class="pipe-text"><strong>Execute via Alpaca</strong> (market/limit orders)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">12</div><div class="pipe-text"><strong>Audit trail</strong> logging to PostgreSQL</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">13</div><div class="pipe-text"><strong>PostgreSQL persistence</strong> (trades, snapshots, signals)</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">14</div><div class="pipe-text"><strong>Feed risk manager</strong> with daily return</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">15</div><div class="pipe-text"><strong>Redis pub/sub</strong> signal distribution</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">16</div><div class="pipe-text"><strong>Discord + Email</strong> reports via NotificationManager</div></div><div class="pipe-line"></div>
+  <div class="pipe-step"><div class="pipe-num">17</div><div class="pipe-text"><strong>LLM signal analysis</strong> via Ollama (pattern detection)</div></div>
+</div>
+
+<p style="text-align:center;color:#5a6680;margin-top:48px;font-size:.8rem">
+  APEX v3.0.0 &mdash; <a href="index.html">Back to Home</a> &mdash; <a href="system.html">Animated System Tour</a>
+</p>
+</div>
+</body>
+</html>
